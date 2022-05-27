@@ -30,16 +30,8 @@
                     <a class="navbar-brand brand-logo-mini" href="index.html"><img src="<?= base_url('public/assets/images/logo-mini.svg') ?>" alt="logo" /></a>
                 </div>
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-email-outline"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown ms-3">
-                        <a class="nav-link" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                            <i class="mdi mdi-bell-outline"></i>
-                        </a>
-                    </li>
+                    <div class="row">
+                    </div>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-logout d-none d-md-block me-3">

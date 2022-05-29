@@ -1867,7 +1867,7 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 hr {
-  margin: 1rem 0;
+  margin: 12px 0;
   color: inherit;
   background-color: currentColor;
   border: 0;
@@ -3709,7 +3709,7 @@ progress {
 .form-control-plaintext {
   display: block;
   width: 100%;
-  padding: 0.94rem 0;
+  padding: 0.5rem 0;
   margin-bottom: 0;
   line-height: 1;
   color: #212529;
@@ -5327,7 +5327,8 @@ textarea.is-invalid.tt-hint {
 
 .nav-fill .nav-item .nav-link,
 .nav-justified .nav-item .nav-link {
-  width: 100%; }
+  width: 100%; 
+}
 
 .tab-content > .tab-pane {
   display: none; }
@@ -8598,7 +8599,7 @@ html {
   font-size: 1.25rem !important; }
 
 .fs-6 {
-  font-size: 1rem !important; }
+  font-size: 0.9rem !important; }
 
 .fst-italic {
   font-style: italic !important; }
@@ -11280,7 +11281,7 @@ input:focus {
 /* Typography */
 body {
   font-size: 1rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 400;
   font-weight: initial;
   line-height: normal;
@@ -11293,7 +11294,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 600; }
 
 p {
@@ -11440,7 +11441,7 @@ pre {
 code {
   padding: 5px;
   color: #ff0854;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 300;
   font-size: 0.875rem;
   border-radius: 4px; }
@@ -11468,13 +11469,13 @@ code {
 .footer {
   background: #f8f9fb;
   color: color(dark);
-  padding: 5px 25px 12px 37px;
+  padding: 5px 25px 12px 10px;
   transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
   -webkit-transition: all 0.25s ease;
   -ms-transition: all 0.25s ease;
   font-size: calc(0.875rem - 0.05rem);
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 400; }
   .footer a {
     color: #00d284;
@@ -11589,19 +11590,19 @@ code {
   color: #313131; }
 
 .font-weight-light {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 300; }
 
 .font-weight-bold {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 700; }
 
 .font-weight-normal {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 400; }
 
 .font-weight-semibold {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 600; }
 
 .image-grouped {
@@ -12273,7 +12274,7 @@ code {
   font-weight: initial;
   line-height: 1;
   padding: .375rem .5625rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 600; }
   .badge.badge-pill {
     border-radius: 10rem; }
@@ -12356,7 +12357,7 @@ code {
 .btn, .ajax-upload-dragdrop .ajax-file-upload {
   font-size: 12px;
   line-height: 1;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 600;
   /* Buttons with only icons */
   /* Buttons with icon and text */ }
@@ -13153,18 +13154,18 @@ code {
     color: #313131;
     margin-bottom: 0.75rem;
     text-transform: capitalize;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Nunito", "Segoe UI", arial;
     font-weight: 700;
     font-size: 16px; }
   .card .card-subtitle {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Nunito", "Segoe UI", arial;
     font-weight: 400;
     margin-top: 0.625rem;
     margin-bottom: 0.625rem; }
   .card .card-description {
     color: #76838f;
     margin-bottom: 1.5rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Nunito", "Segoe UI", arial;
     font-weight: 400; }
   .card.card-outline-success {
     border: 1px solid theme-color("success"); }
@@ -13419,7 +13420,7 @@ code {
 .tt-query,
 .tt-hint {
   border: 1px solid #e4e9f0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 400;
   font-size: 0.8125rem; }
   .form-control:focus, .select2-container--default .select2-selection--single:focus, .select2-container--default .select2-selection--single .select2-search__field:focus, .typeahead:focus,
@@ -13541,7 +13542,7 @@ select.tt-hint {
     -ms-flex-align: center;
     align-items: center;
     padding: 15px 15px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Nunito", "Segoe UI", arial;
     font-weight: 400;
     font-size: 0.875rem; }
     .icons-list > div i {
@@ -14472,7 +14473,7 @@ dl {
   .table thead th {
     border-top: 0;
     border-bottom-width: 1px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Nunito", "Segoe UI", arial;
     font-weight: 600;
     font-weight: initial; }
     .table thead th i {
@@ -14819,7 +14820,7 @@ dl {
   .settings-panel .settings-heading {
     padding: 16px 0 13px 35px;
     font-size: 0.875rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Nunito", "Segoe UI", arial;
     font-weight: 700;
     line-height: 1;
     color: rgba(0, 0, 0, 0.9);
@@ -14954,7 +14955,7 @@ dl {
       right: unset;
       left: 10px; }
   .settings-panel .events p {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Nunito", "Segoe UI", arial;
     font-weight: 400; }
   .rtl .settings-panel {
     right: unset;
@@ -15014,7 +15015,7 @@ dl {
 
 /* Navbar */
 .navbar {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 300;
   left: 260px;
   transition: left 0.25s ease;
@@ -15374,7 +15375,7 @@ dl {
 .sidebar {
   min-height: calc(100vh - 60px);
   background: #ffffff;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito", "Segoe UI", arial;
   font-weight: 400;
   padding: 0;
   width: 260px;
@@ -15395,9 +15396,9 @@ dl {
     margin-bottom: 60px;
     width: inherit; }
     .sidebar .nav .nav-item-head {
-      padding: 0 2.25rem;
-      font-size: 11px;
-      font-weight: 700;
+      padding: 0 1.5rem;
+      font-size: 12px;
+      font-weight: 800;
       text-transform: uppercase; }
     .sidebar .nav .nav-item {
       padding: 0 2.25rem;
@@ -15424,20 +15425,24 @@ dl {
         .sidebar .nav .nav-item .nav-link i {
           color: inherit; }
           .sidebar .nav .nav-item .nav-link i.menu-icon {
-            font-size: 20px;
-            line-height: 1.2;
-            margin-right: 10px;
+            font-size: 16px;
+            width: 25px;
+            text-align: center;
+            line-height: auto;
+            margin-right: 20px;
             color: #6a6b83; }
             .rtl .sidebar .nav .nav-item .nav-link i.menu-icon {
-              margin-right: 0;
+              margin-right: 10px;
               margin-left: 10px; }
             .sidebar .nav .nav-item .nav-link i.menu-icon:before {
-              vertical-align: middle; }
+              vertical-align: middle;
+              text-align: center;
+            }
           .sidebar .nav .nav-item .nav-link i.menu-arrow {
             font: normal normal normal 24px/1 "Material Design Icons";
             line-height: 1;
             font-size: 16px;
-            margin-left: auto;
+            margin-left: 5px;
             color: #423a8e;
             opacity: 0.36; }
             .rtl .sidebar .nav .nav-item .nav-link i.menu-arrow {
@@ -15459,7 +15464,8 @@ dl {
         .sidebar .nav .nav-item .nav-link .menu-title {
           color: #141212;
           display: inline-block;
-          font-size: 0.875rem;
+          font-size: 14px;
+          font-weight: 600;
           line-height: 1;
           vertical-align: middle;
           white-space: normal; }
@@ -15512,7 +15518,7 @@ dl {
         background: #1a55e3; }
         .sidebar .nav .nav-item:not(:nth-child(2)).active > .nav-link .menu-title {
           color: #ffffff;
-          font-family: "Open Sans", sans-serif;
+          font-family: "Nunito", "Segoe UI", arial;
           font-weight: 600; }
           .sidebar-icon-only .sidebar .nav .nav-item:not(:nth-child(2)).active > .nav-link .menu-title {
             color: #000000; }
@@ -15954,7 +15960,7 @@ dl {
   padding-right: 0; }
   @media (min-width: 992px) {
     .page-body-wrapper {
-      width: calc(100% - 260px); } }
+      width: 100%; } }
   .page-body-wrapper.full-page-wrapper {
     width: 100%;
     min-height: 100vh; }

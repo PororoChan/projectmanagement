@@ -8,6 +8,6 @@ class Dashboard extends BaseController
 {
     public function home()
     {
-        echo view('dashboard/home');
+        echo view('dashboard/v_home');
     }
 }

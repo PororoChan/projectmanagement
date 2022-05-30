@@ -11,6 +11,11 @@ class Board extends BaseController
         helper('form');
     }
 
+    public function index()
+    {
+        echo view('dashboard/v_board');
+    }
+
     public function addBoard()
     {
     }

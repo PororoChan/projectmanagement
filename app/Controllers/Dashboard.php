@@ -13,6 +13,11 @@ class Dashboard extends BaseController
 
     public function index()
     {
-        echo view('dashboard/v_home');
+        $id = session()->get('id_user');
+        if ($id != '') {
+            return view('dashboard/v_home');
+        } else {
+            return redirect()->to('login');
+        }
     }
 }

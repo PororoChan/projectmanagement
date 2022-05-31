@@ -3883,7 +3883,9 @@ textarea.form-control-lg {
   -webkit-print-color-adjust: exact;
   color-adjust: exact; }
   .form-check-input[type="checkbox"] {
-    border-radius: 0.25em; }
+    border-radius: 0.25em;
+    border-color: red;
+  }
   .form-check-input[type="radio"] {
     border-radius: 50%; }
   .form-check-input:active {
@@ -11930,6 +11932,10 @@ code {
 .font-13 {
   font-size: 13px; }
 
+.font-14 {
+  font-size: 14px;
+}
+
 .font-20 {
   font-size: 20px; }
 
@@ -18404,7 +18410,7 @@ div.tagsinput {
 /* === Landing screens === */
 /* Auth */
 .auth .login-half-bg {
-  background: url("../../images/login-bg.jpg");
+  background: url("../../images/bg-login.jpg");
   background-size: cover; }
 
 .auth .register-half-bg {

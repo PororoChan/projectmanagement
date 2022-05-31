@@ -21,15 +21,16 @@ class Login extends BaseController
     public function auth()
     {
         $session = session();
-        $uname = $this->request->getPost('username');
-        $pass = $this->request->getPost('password');
+        $uname = $this->request->getPost('uname');
+        $pass = $this->request->getPost('passw');
 
         $data = $this->model->cek($uname);
 
         if ($data) {
             if (password_verify($pass, rtrim($data['password']))) {
                 $session->set('name', $data['name']);
-                $res['success'] = 1;
+                $session->set('id_user', $data['userid']);
+                -$res['success'] = 1;
             } else {
                 $res['success'] = 0;
             }

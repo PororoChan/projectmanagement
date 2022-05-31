@@ -27,7 +27,7 @@
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
                             <img src="#" alt="logo" />
-                            <span class="font-12 d-block font-weight-light">Project Management</span>
+                            <span class="font-12 d-block font-weight-semibold">Project Management</span>
                         </a>
                         <a class="navbar-brand brand-logo-mini" href="#"><img src="<?= base_url('public/assets/images/logo-mini.svg') ?>" /></a>
                     </div>
@@ -37,10 +37,10 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
                                         <span class="input-group-text" id="search">
-                                            <i class="fas fa-search fs-6"></i>
+                                            <i class="fas fa-search text-dark fs-6"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" id="navbar-search-input" placeholder="Search" aria-label="search" aria-describedby="search" />
+                                    <input type="text" class="form-control text-secondary" id="navbar-search-input" placeholder="Search" aria-label="search" aria-describedby="search" />
                                 </div>
                             </li>
                         </ul>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black font-weight-semibold m-0"> <?= session()->get('name') ?> </p>
-                                        <span class="font-13 online-color">online <i class="fas fa-chevron-down fs-8"></i></span>
+                                        <span class="font-13 online-color">Online <i class="fas fa-chevron-down fs-8"></i></span>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -74,13 +74,13 @@
                 <div class="container">
                     <ul class="nav page-navigation">
                         <li class="nav-item">
-                            <a class="nav-link justify-content-end" href="<?= base_url('home') ?>">
+                            <a class="nav-link justify-content-center" href="<?= base_url('home') ?>">
                                 <i class="fas fa-compass menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link justify-content-end" href="<?= base_url('board') ?>">
+                            <a class="nav-link justify-content-center" href="<?= base_url('board') ?>">
                                 <i class="fas fa-clipboard fs-6 menu-icon"></i>
                                 <span class="menu-title">Board</span>
                             </a>

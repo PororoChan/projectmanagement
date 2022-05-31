@@ -25,21 +25,21 @@
                 <div class="row flex-grow">
                     <div class="col-lg-6 d-flex align-items-center justify-content-center">
                         <div class="auth-form-transparent text-left p-3">
-                            <div class="brand-logo">
-                                <img src="<?= base_url('public/assets/images/logo.svg') ?>" alt="logo">
+                            <h3>Welcome back!</h3>
+                            <h5 class="font-14 font-weight-light">Happy to see you again!</h5>
+                            <div id="warn" class="mt-3 mb-0">
+
                             </div>
-                            <h4>Welcome back!</h4>
-                            <h6 class="font-weight-light">Happy to see you again!</h6>
-                            <form id="form-user" class="pt-3">
+                            <form id="form-log" method="post" class="pt-3">
                                 <div class="form-group">
-                                    <label for="uname">Username</label>
+                                    <label class="font-13" for="uname">Username</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
                                                 <i class="fas fa-user fs-6 text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="text" id="name" name="uname" class="form-control form-control-sm border-left-0" placeholder="Username">
+                                        <input type="text" id="uname" name="uname" class="form-control form-control-sm border-left-0" style="font-size: 13px;" placeholder="Username">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -50,7 +50,7 @@
                                                 <i class="fas fa-lock fs-6 text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="password" class="form-control form-control-sm border-left-0" id="exampleInputPassword" placeholder="Password">
+                                        <input type="password" name="pass" id="pass" class="form-control form-control-sm border-left-0" style="font-size: 13px;" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
@@ -58,18 +58,18 @@
                                         <label class="form-check-label text-muted">
                                             <input type="checkbox" class="form-check-input"> Keep me signed in </label>
                                     </div>
-                                    <a href="#" class="auth-link text-black">Forgot password?</a>
+                                    <a href="#" class="auth-link text-secondary">Forgot password?</a>
                                 </div>
                                 <div class="my-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-semibold auth-form-btn" href="#">LOGIN</a>
+                                    <button type="button" class="btn btn-primary w-25" style="height: 45px;" id="btn-login">Login</button>
                                 </div>
-                                <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="#" class="text-primary">Create</a>
+                                <div class="text-center mt-5 font-14"> Don't have an account? <a href="#" class="text-primary">Create</a>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="col-lg-6 login-half-bg d-flex flex-row">
-                        <p class="text-white font-weight-semibold text-center flex-grow align-self-end">Copyright &copy; 2021 All rights reserved.</p>
+                        <p class="text-white font-weight-semibold fs-6 text-center flex-grow align-self-end">Copyright &copy; 2021 All rights reserved.</p>
                     </div>
                 </div>
             </div>
@@ -77,6 +77,46 @@
     </div>
 </body>
 
-<script src="<?= base_url('public/assets/js/login/vendor.bundle.base.js') ?>"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btn-login').on('click', function() {
+            $('#btn-login').html("<i class='fas fa-spinner fa-pulse text-white'></i>")
+
+            var username = $('#uname').val();
+            var password = $('#pass').val();
+            var link = "<?= base_url('auth') ?>";
+            var msg = '';
+
+            if (username != '' && password != '') {
+                $.ajax({
+                    url: link,
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        uname: username,
+                        passw: password,
+                    },
+                    success: function(res) {
+                        if (res.success == 1) {
+                            msg = "Login berhasil"
+                            $('#warn').removeClass('alert alert-danger');
+                            $('#warn').addClass('alert alert-success');
+                            setTimeout(() => {
+                                window.location.href = "<?= base_url('home') ?>";
+                            }, 500);
+                        } else {
+                            msg = "Username atau Password salah"
+                            $('#warn').addClass('alert alert-danger');
+                        }
+
+                        $('#form-log')[0].reset();
+                        $('#warn').html(msg);
+                        $('#btn-login').html("Login");
+                    }
+                })
+            }
+        })
+    });
+</script>
 
 </html>

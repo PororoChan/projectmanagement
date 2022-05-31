@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Home</title>
+    <title><?= $title ?></title>
 
     <!-- CSS Import -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
                             <img src="#" alt="logo" />
-                            <span class="font-12 d-block font-weight-semibold">Project Management</span>
+                            <span class="font-14 d-block font-weight-semibold">Project Management</span>
                         </a>
                         <a class="navbar-brand brand-logo-mini" href="#"><img src="<?= base_url('public/assets/images/logo-mini.svg') ?>" /></a>
                     </div>
@@ -45,6 +45,16 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav navbar-nav-right">
+                            <li class="nav-item">
+                                <a class="text-secondary" href="#">
+                                    <i class="fas fa-envelope fs-5"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="text-secondary" href="#">
+                                    <i class="fas fa-bell fs-5"></i>
+                                </a>
+                            </li>
                             <li class="nav-item nav-profile dropdown">
                                 <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="nav-profile-img">
@@ -56,11 +66,8 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-sync fs-7 me-2 text-success"></i> Activity Log </a>
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?= base_url('logout') ?>">
-                                        <i class="fas fa-sign-out-alt fs-7 me-2 text-primary"></i> Log Out </a>
+                                        <i class="fas fa-sign-out-alt fs-7 me-2 text-danger"></i> Log Out </a>
                                 </div>
                             </li>
                         </ul>

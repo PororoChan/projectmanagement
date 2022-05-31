@@ -15,7 +15,8 @@ class Dashboard extends BaseController
     {
         $id = session()->get('id_user');
         if ($id != '') {
-            return view('dashboard/v_home');
+            $dt['title'] = 'PM | Home';
+            return view('dashboard/v_home', $dt);
         } else {
             return redirect()->to('login');
         }

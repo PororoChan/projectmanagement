@@ -9,20 +9,17 @@
 </div>
 </div>
 
+<!-- Additional JS -->
 <script src="<?= base_url('public/assets/js/custom.js') ?>"></script>
 <script src="<?= base_url('public/assets/js/off-canvas.js') ?>"></script>
+
+<!-- Import JS -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- JavaScript Proses -->
 <script type="text/javascript">
-    $('#add-todo').keyup(function(e) {
-        var title = $('#add-todo').val();
-        if (e.keyCode == 13) {
-            $('#todo-list').append(
-                "<h5>" + title + "</h5>"
-            )
-        }
-    })
+
 </script>
 </body>
 

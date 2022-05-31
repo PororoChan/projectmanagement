@@ -13,7 +13,14 @@ class Board extends BaseController
 
     public function index()
     {
-        echo view('dashboard/v_board');
+        $id = session()->get('id_user');
+
+        if ($id != '') {
+            $data['title'] = 'PM | Board';
+            return view('dashboard/v_board', $data);
+        } else {
+            return redirect()->to('login');
+        }
     }
 
     public function addBoard()

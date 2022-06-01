@@ -12320,7 +12320,7 @@ code {
 /* === Components === */
 /* Badges */
 .badge {
-  border-radius: 4px;
+  border-radius: 50%;
   font-size: 14px;
   font-weight: initial;
   line-height: 1;
@@ -12362,9 +12362,9 @@ code {
   color: #ffffff; }
 
 .badge-light {
-  border: 1px solid #f8f9fa;
-  background: #f8f9fa;
-  color: #ffffff; }
+  border: 1px solid #F8F8F8;
+  background: #FFFFFD;
+  color: #B6BAC3; }
 
 .badge-dark {
   border: 1px solid #3e4b5b;

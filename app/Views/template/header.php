@@ -23,7 +23,7 @@
     <div class="container-scroller">
         <div class="horizontal-menu">
             <nav class="navbar top-navbar col-lg-12 col-12 p-0">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
                             <img src="#" alt="logo" />

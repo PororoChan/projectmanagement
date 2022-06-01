@@ -20,4 +20,9 @@ class MUser extends Model
             ->where('m.username', $username)
             ->get()->getRowArray();
     }
+
+    public function getAll()
+    {
+        return $this->builder->get()->getResultArray();
+    }
 }

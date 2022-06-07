@@ -1,7 +1,7 @@
 <?= $this->include('template/header') ?>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 <div class="content-wrapper pb-0">
-    <div class="main-panel p-3">
+    <div class="main-panel p-1">
         <div class="main-content">
             <section class="section">
                 <div class="row p-0 w-75 text-start">
@@ -16,27 +16,31 @@
                         </button>
                     </div>
                 </div>
-                <div class="board-wrapper pt-4">
+                <div class="pt-2">
                     <div class="row flex-grow">
                         <div class="col-lg-3 col-md-4">
-                            <div id="row-todo" class="board-portlet p-4 bg-secondary bg-opacity-25 rounded">
+                            <div id="row-todo" class="board-portlet p-3 rounded">
                                 <div class="row">
                                     <div class="col text-start">
                                         <div id="title" class="fs-6 fw-bold text-dark">
                                             <span class="me-2">TODO</span>
-                                            <span id="todo-count" class="badge badge-light">
+                                            <span id="todo-count" class="badge badge-light shadow-sm">
                                                 0
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col text-end">
-                                        <i class="fas fa-ellipsis-h text-secondary"></i>
+                                        <a href="#" id="drop-todo" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h text-secondary"></i></a>
+                                        <ul class="dropdown-menu" aria-labelledby="drop-todo">
+                                            <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-dark fs-7 me-2"></i><span class="fs-7 text-dark fw-bolder">Edit</span></a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="fas fa-trash text-dark fs-7 me-2"></i><span class="fs-7 text-dark fw-bolder">Delete</span></a></li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <hr class="text-secondary fw-bolder">
-                                <button class="btn btn-light shadow-sm w-100">
+                                <button class="btn btn-light mb-2 shadow-sm border w-100" style="min-height: 45px;">
                                     <i class="fas fa-plus fs-7 text-primary me-2"></i>
-                                    <span class="text-primary text-center fs-7 font-weight-semibold">
+                                    <span class="text-primary text-center fs-7 font-weight-bold">
                                         New Task
                                     </span>
                                 </button>
@@ -58,12 +62,12 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
-                            <div id="row-todo" class="board-portlet p-4 bg-secondary bg-opacity-25 rounded">
+                            <div id="row-review" class="board-portlet p-3 rounded">
                                 <div class="row">
                                     <div class="col text-start">
                                         <div id="title" class="fs-6 fw-bold text-dark">
                                             <span class="me-2">Review</span>
-                                            <span id="review-count" class="badge badge-light">
+                                            <span id="review-count" class="badge badge-light shadow-sm">
                                                 0
                                             </span>
                                         </div>
@@ -73,9 +77,9 @@
                                     </div>
                                 </div>
                                 <hr class="text-secondary fw-bolder">
-                                <button class="btn btn-light shadow-sm w-100">
+                                <button class="btn btn-inverse-light mb-2 shadow-sm border w-100" style="min-height: 45px;">
                                     <i class="fas fa-plus fs-7 text-primary me-2"></i>
-                                    <span class="text-primary text-center fs-7 font-weight-semibold">
+                                    <span class="text-primary text-center fs-7 font-weight-bold">
                                         New Task
                                     </span>
                                 </button>
@@ -88,11 +92,6 @@
                                                         <h5 class="text-start text-secondary">
                                                             <?= $r['username'] ?>
                                                         </h5>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <span class="fs-7">
-                                                            <?= $r['name'] ?>
-                                                        </span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -119,14 +118,27 @@
     }
 
     $(document).ready(function() {
-        $('.portlet-card').addClass('pb-0 pt-1');
+        $('.portlet-card').addClass('pb-auto pt-1 shadow-sm hover-board');
 
         $('#list-todo, #list-review, #list-finish').sortable({
+            placeholder: "bg-secondary bg-opacity-10 rounded",
             connectWith: "#list-todo, #list-review, #list-finish",
             items: ".portlet-card",
-            stop: function(ev) {
+            start: function(ev, ui) {
+                $('.portlet-card').removeClass('hover-board');
+                $('.portlet-card').addClass('grab-board');
+
+                // Rotate
+                ui.item.css('transform', 'rotate(3deg)')
+
+                // PlaceHolder
+                ui.placeholder.height(ui.item.height());
+                ui.placeholder.css('visibility', 'visible');
+            },
+            stop: function(ev, ui) {
                 reload();
-            }
+                ui.item.css('transform', 'rotate(0deg)')
+            },
         });
 
         reload();

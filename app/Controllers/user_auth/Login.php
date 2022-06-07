@@ -15,7 +15,7 @@ class Login extends BaseController
 
     public function index()
     {
-        return view('login/v_login');
+        return view('v_login');
     }
 
     public function auth()

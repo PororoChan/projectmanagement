@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <script src="https://kit.fontawesome.com/9cc02ff3df.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Additional CSS -->
@@ -47,7 +47,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="fas fa-lock fs-6 text-primary"></i>
+                                                <i class="fas fa-key fs-6 text-primary"></i>
                                             </span>
                                         </div>
                                         <input type="password" name="pass" id="pass" class="form-control form-control-sm border-left-0" style="font-size: 13px;" placeholder="Password">
@@ -63,7 +63,7 @@
                                 <div class="my-3">
                                     <button type="button" class="btn btn-primary w-25" style="height: 45px;" id="btn-login">Login</button>
                                 </div>
-                                <div class="text-center mt-5 font-14"> Don't have an account? <a href="#" class="text-primary">Create</a>
+                                <div class="text-center mt-5 font-14"> Don't have an account? <a href="#" class="text-primary">Register</a>
                                 </div>
                             </form>
                         </div>
@@ -80,7 +80,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#btn-login').on('click', function() {
-            $('#btn-login').html("<i class='fas fa-spinner fa-pulse text-white'></i>")
+            $('#btn-login').html("<i class='fas fa-circle-notch fa-spin text-white'></i>")
 
             var username = $('#uname').val();
             var password = $('#pass').val();
@@ -102,19 +102,32 @@
                             $('#warn').removeClass('alert alert-danger');
                             $('#warn').addClass('alert alert-success');
                             setTimeout(() => {
-                                window.location.href = "<?= base_url('home') ?>";
-                            }, 500);
+                                window.location.href = "<?= base_url('home') ?>"
+                            }, 700);
                         } else {
                             msg = "Username atau Password salah"
                             $('#warn').addClass('alert alert-danger');
                         }
-
-                        $('#form-log')[0].reset();
                         $('#warn').html(msg);
-                        $('#btn-login').html("Login");
+                        $('#warn').show();
+                        setTimeout(() => {
+                            $('#btn-login').html("Login");
+                        }, 500);
                     }
                 })
+            } else {
+                msg = "Username dan Password dibutuhkan!"
+                $('#warn').addClass('alert alert-danger');
+                $('#warn').show();
+                setTimeout(() => {
+                    $('#btn-login').html("Login");
+                }, 500);
             }
+            $('#form-log')[0].reset();
+            $('#warn').html(msg);
+            setTimeout(() => {
+                $('#warn').fadeOut(500);
+            }, 1000);
         })
     });
 </script>

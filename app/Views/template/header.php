@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <script src="https://kit.fontawesome.com/9cc02ff3df.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Base CSS -->
@@ -26,7 +26,7 @@
                 <div class="container-fluid">
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
-                            <img src="#" alt="logo" />
+                            <img src="#" />
                             <span class="font-14 d-block font-weight-semibold">Project Management</span>
                         </a>
                         <a class="navbar-brand brand-logo-mini" href="#"><img src="<?= base_url('public/assets/images/logo-mini.svg') ?>" /></a>
@@ -47,12 +47,12 @@
                         <ul class="navbar-nav navbar-nav-right">
                             <li class="nav-item">
                                 <a class="text-secondary" href="#">
-                                    <i class="fas fa-envelope fs-5"></i>
+                                    <i class="far fa-envelope fs-6"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="text-secondary" href="#">
-                                    <i class="fas fa-bell fs-5"></i>
+                                    <i class="far fa-bell fs-6"></i>
                                 </a>
                             </li>
                             <li class="nav-item nav-profile dropdown">
@@ -67,7 +67,7 @@
                                 </a>
                                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                                     <a class="dropdown-item" href="<?= base_url('logout') ?>">
-                                        <i class="fas fa-sign-out-alt fs-7 me-2 text-danger"></i> Log Out </a>
+                                        <i class="fas fa-sign-out-alt fs-7 me-2 text-danger"></i> <span class="fs-7">Log Out</span> </a>
                                 </div>
                             </li>
                         </ul>
@@ -82,13 +82,13 @@
                     <ul class="nav page-navigation">
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('home') ?>">
-                                <i class="fas fa-compass menu-icon"></i>
+                                <i class="far fa-compass menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('board') ?>">
-                                <i class="fas fa-clipboard fs-6 menu-icon"></i>
+                                <i class="far fa-clipboard fs-6 menu-icon"></i>
                                 <span class="menu-title">Board</span>
                             </a>
                         </li>

@@ -1,7 +1,7 @@
-<?= $this->include('template/header') ?>
+<?= $this->include('inc_template/header') ?>
 
 <div class="content-wrapper pb-0">
 
 </div>
 
-<?= $this->include('template/footer') ?>
+<?= $this->include('inc_template/footer') ?>

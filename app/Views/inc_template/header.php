@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black font-weight-semibold m-0"> <?= session()->get('name') ?> </p>
-                                        <span class="font-13 online-color">Online <i class="fas fa-chevron-down fs-8"></i></span>
+                                        <span class="font-12 online-color me-3">Online <i class="fas fa-chevron-down fs-8"></i></span>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -90,6 +90,12 @@
                             <a class="nav-link justify-content-center" href="<?= base_url('board') ?>">
                                 <i class="far fa-clipboard fs-6 menu-icon"></i>
                                 <span class="menu-title">Board</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link justify-content-center" href="<?= base_url('board/form') ?>">
+                                <i class="far fa-clipboard fs-6 menu-icon"></i>
+                                <span class="menu-title">Form</span>
                             </a>
                         </li>
                     </ul>

@@ -1,9 +1,12 @@
-<?= $this->include('template/header') ?>
+<?= $this->include('inc_template/header') ?>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 <div class="content-wrapper pb-0">
     <div class="main-panel p-1">
         <div class="main-content">
             <section class="section">
+                <div class="dropdown-menu">
+                    <ul class="drop"></ul>
+                </div>
                 <div class="row p-0 w-75 text-start">
                     <div class="col d-flex justify-content-start">
                         <button id="list-board" class="btn btn-inverse-primary me-4">
@@ -16,43 +19,43 @@
                         </button>
                     </div>
                 </div>
-                <div class="pt-2">
-                    <div class="row flex-grow">
+                <div class="pt-0">
+                    <div class="row">
                         <div class="col-lg-3 col-md-4">
                             <div id="row-todo" class="board-portlet p-3 rounded">
                                 <div class="row">
                                     <div class="col text-start">
                                         <div id="title" class="fs-6 fw-bold text-dark">
-                                            <span class="me-2">TODO</span>
-                                            <span id="todo-count" class="badge badge-light shadow-sm">
+                                            <span class="me-2 sts">TODO</span>
+                                            <span id="todo-count" class="badge badge-light shadow-sm count">
                                                 0
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col text-end">
-                                        <a href="#" id="drop-todo" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h text-secondary"></i></a>
-                                        <ul class="dropdown-menu" aria-labelledby="drop-todo">
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-dark fs-7 me-2"></i><span class="fs-7 text-dark fw-bolder">Edit</span></a></li>
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-trash text-dark fs-7 me-2"></i><span class="fs-7 text-dark fw-bolder">Delete</span></a></li>
-                                        </ul>
+                                        <i class="fas fa-ellipsis-h text-secondary"></i>
                                     </div>
                                 </div>
-                                <hr class="text-secondary fw-bolder">
-                                <button class="btn btn-light mb-2 shadow-sm border w-100" style="min-height: 45px;">
+                                <hr class="text-secondary fw-bolder rounded" style="height: 2px;">
+                                <button class="btn btn-inverse-light mb-2 shadow-sm border w-100" data-coba="todo" style="min-height: 45px;">
                                     <i class="fas fa-plus fs-7 text-primary me-2"></i>
-                                    <span class="text-primary text-center fs-7 font-weight-bold">
+                                    <span class="text-primary text-center fs-7 font-weight-bold new">
                                         New Task
                                     </span>
                                 </button>
                                 <div id="task-list-todo" style="height: max-content;">
-                                    <ul id="list-todo" class="portlet-card-list ui-sortable list-unstyled" style="min-height: 75px;">
-                                        <?php foreach ($row as $r) : ?>
-                                            <li class="portlet-card ui-sortable-handle">
-                                                <div class="card rounded">
+                                    <ul id="list-todo" class="portlet-card-list ui-sortable list-unstyled" sts="TODO" style="min-height: 75px;">
+                                        <?php foreach ($todo as $td) : ?>
+                                            <li class="portlet-card ui-sortable-handle" data-id="<?= $td['idtask'] ?>">
+                                                <div class="card">
                                                     <div class="card-header">
-                                                        <h5 class="text-start text-secondary">
-                                                            <?= $r['name'] ?>
-                                                        </h5>
+                                                        <h5 class="text-start"><?= $td['taskname'] ?></h5>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <span><?= $td['taskdesc'] ?></span>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <span class="badge badge-success badge-sm rounded fs-8"><?= $td['taskbadge'] ?></span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -62,12 +65,12 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
-                            <div id="row-review" class="board-portlet p-3 rounded">
+                            <div id="row-active" class="board-portlet p-3 rounded">
                                 <div class="row">
                                     <div class="col text-start">
                                         <div id="title" class="fs-6 fw-bold text-dark">
-                                            <span class="me-2">Review</span>
-                                            <span id="review-count" class="badge badge-light shadow-sm">
+                                            <span class="me-2 sts">Active</span>
+                                            <span id="active-count" class="badge badge-light shadow-sm count">
                                                 0
                                             </span>
                                         </div>
@@ -76,22 +79,112 @@
                                         <i class="fas fa-ellipsis-h text-secondary"></i>
                                     </div>
                                 </div>
-                                <hr class="text-secondary fw-bolder">
-                                <button class="btn btn-inverse-light mb-2 shadow-sm border w-100" style="min-height: 45px;">
+                                <hr class="text-info fw-bolder rounded" style="height: 2px;">
+                                <button class="btn btn-inverse-light mb-2 shadow-sm border w-100" data-coba="active" style="min-height: 45px;">
                                     <i class="fas fa-plus fs-7 text-primary me-2"></i>
-                                    <span class="text-primary text-center fs-7 font-weight-bold">
+                                    <span class="text-primary text-center fs-7 font-weight-bold new">
                                         New Task
                                     </span>
                                 </button>
                                 <div id="task-list-todo" style="height: max-content;">
-                                    <ul id="list-review" class="portlet-card-list ui-sortable list-unstyled" style="min-height: 75px;">
-                                        <?php foreach ($row as $r) : ?>
-                                            <li class="portlet-card ui-sortable-handle">
-                                                <div class="card rounded">
+                                    <ul id="list-active" class="portlet-card-list ui-sortable list-unstyled" sts="Active" style="min-height: 75px;">
+                                        <?php foreach ($active as $act) : ?>
+                                            <li class="portlet-card ui-sortable-handle" data-id="<?= $act['idtask'] ?>">
+                                                <div class="card">
                                                     <div class="card-header">
-                                                        <h5 class="text-start text-secondary">
-                                                            <?= $r['username'] ?>
-                                                        </h5>
+                                                        <h5 class="text-start"><?= $act['taskname'] ?></h5>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <span><?= $act['taskdesc'] ?></span>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <span class="badge badge-success badge-sm rounded fs-8"><?= $act['taskbadge'] ?></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4">
+                            <div id="row-progress" class="board-portlet p-3 rounded">
+                                <div class="row">
+                                    <div class="col text-start">
+                                        <div id="title" class="fs-6 fw-bold text-dark">
+                                            <span class="me-2 sts">In Progress</span>
+                                            <span id="progress-count" class="badge badge-light shadow-sm count">
+                                                0
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col text-end">
+                                        <i class="fas fa-ellipsis-h text-secondary"></i>
+                                    </div>
+                                </div>
+                                <hr class="text-warning fw-bolder rounded" style="height: 2px;">
+                                <button class="btn btn-inverse-light mb-2 shadow-sm border w-100" data-coba="progress" style="min-height: 45px;">
+                                    <i class="fas fa-plus fs-7 text-primary me-2"></i>
+                                    <span class="text-primary text-center fs-7 font-weight-bold new">
+                                        New Task
+                                    </span>
+                                </button>
+                                <div id="task-list-todo" style="height: max-content;">
+                                    <ul id="list-progress" class="portlet-card-list ui-sortable list-unstyled" sts="In Progress" style="min-height: 75px;">
+                                        <?php foreach ($progress as $pg) : ?>
+                                            <li class="portlet-card ui-sortable-handle" data-id="<?= $pg['idtask'] ?>">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5 class="text-start"><?= $pg['taskname'] ?></h5>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <span><?= $pg['taskdesc'] ?></span>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <span class="badge badge-success badge-sm rounded fs-8"><?= $pg['taskbadge'] ?></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4">
+                            <div id="row-complete" class="board-portlet p-3 rounded">
+                                <div class="row">
+                                    <div class="col text-start">
+                                        <div id="title" class="fs-6 fw-bold text-dark">
+                                            <span class="me-2 sts">Completed</span>
+                                            <span id="complete-count" class="badge badge-light shadow-sm count">
+                                                0
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col text-end">
+                                        <i class="fas fa-ellipsis-h text-secondary"></i>
+                                    </div>
+                                </div>
+                                <hr class="text-success fw-bolder rounded" style="height: 2px;">
+                                <button class="btn btn-inverse-light mb-2 shadow-sm border w-100" data-coba="complete" style="min-height: 45px;">
+                                    <i class="fas fa-plus fs-7 text-primary me-2"></i>
+                                    <span class="text-primary text-center fs-7 font-weight-bold new">
+                                        New Task
+                                    </span>
+                                </button>
+                                <div id="task-list-todo" style="height: max-content;">
+                                    <ul id="list-complete" class="portlet-card-list ui-sortable list-unstyled" sts="Completed" style="min-height: 75px;">
+                                        <?php foreach ($complete as $cd) : ?>
+                                            <li class="portlet-card ui-sortable-handle" data-id="<?= $cd['idtask'] ?>">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5 class="text-start"><?= $cd['taskname'] ?></h5>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <span><?= $cd['taskdesc'] ?></span>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <span class="badge badge-success badge-sm rounded fs-8"><?= $cd['taskbadge'] ?></span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -106,23 +199,34 @@
         </div>
     </div>
 </div>
-<?= $this->include('template/footer') ?>
+<?= $this->include('inc_template/footer') ?>
 <script type="text/javascript">
-    function reload() {
+    function countRef() {
         // Count
-        var Ctodo = $('#list-todo li').length;
-        $('#todo-count').html(Ctodo);
+        var ctTodo = $('#list-todo li').length,
+            ctActive = $('#list-active li').length,
+            ctProgress = $('#list-progress li').length,
+            ctComplete = $('#list-complete li').length;
 
-        var Creview = $('#list-review li').length;
-        $('#review-count').html(Creview);
+        $('#todo-count').html(ctTodo)
+        $('#active-count').html(ctActive)
+        $('#progress-count').html(ctProgress)
+        $('#complete-count').html(ctComplete)
     }
 
     $(document).ready(function() {
-        $('.portlet-card').addClass('pb-auto pt-1 shadow-sm hover-board');
 
-        $('#list-todo, #list-review, #list-finish').sortable({
+        $('.btn').each(function() {
+            $(this).on('click', function() {
+                console.log($(this).attr('data-coba'))
+            })
+        })
+
+        $('.portlet-card').addClass('pb-auto pt-2 shadow-sm hover-board');
+
+        $('.portlet-card-list').sortable({
             placeholder: "bg-secondary bg-opacity-10 rounded",
-            connectWith: "#list-todo, #list-review, #list-finish",
+            connectWith: $('.portlet-card-list'),
             items: ".portlet-card",
             start: function(ev, ui) {
                 $('.portlet-card').removeClass('hover-board');
@@ -136,12 +240,13 @@
                 ui.placeholder.css('visibility', 'visible');
             },
             stop: function(ev, ui) {
-                reload();
-                ui.item.css('transform', 'rotate(0deg)')
+                countRef();
+                ui.item.css('transform', 'rotate(0deg)');
+
+                var id = ui.item.attr('data-id');
             },
         });
 
-        reload();
-
+        countRef();
     });
 </script>

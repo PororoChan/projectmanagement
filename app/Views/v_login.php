@@ -30,7 +30,7 @@
                             <div id="warn" class="mt-3 mb-0">
 
                             </div>
-                            <form id="form-log" method="post" class="pt-3">
+                            <form id="form-log" method="POST" class="pt-3">
                                 <div class="form-group">
                                     <label class="font-13" for="uname">Username</label>
                                     <div class="input-group">
@@ -54,13 +54,11 @@
                                     </div>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <div class="form-check">
-                                        <label class="form-check-label text-muted">
-                                            <input type="checkbox" class="form-check-input"> Keep me signed in </label>
+                                    <div class="form-check d-flex justify-content-center">
+                                        <input type="checkbox" style="width: 15px; height: 15px;"> <span class="text-dark font-13">&nbsp; Remember Me</span>
                                     </div>
-                                    <a href="#" class="auth-link text-secondary">Forgot password?</a>
                                 </div>
-                                <div class="my-3">
+                                <div class="my-3 d-flex justify-content-end">
                                     <button type="button" class="btn btn-primary w-25" style="height: 45px;" id="btn-login">Login</button>
                                 </div>
                                 <div class="text-center mt-5 font-14"> Don't have an account? <a href="#" class="text-primary">Register</a>
@@ -68,7 +66,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-6 login-half-bg d-flex flex-row">
+                    <div class="col-lg-6 login-half-bg d-flex">
                         <p class="text-white font-weight-semibold fs-6 text-center flex-grow align-self-end">Copyright &copy; 2021 All rights reserved.</p>
                     </div>
                 </div>

@@ -35,12 +35,20 @@ $routes->setAutoRoute(true);
 // Display Index
 $routes->add('login', 'user_auth\Login::index');
 $routes->add('home', 'Dashboard::index');
-$routes->add('board', 'task_board\Board::index');
+$routes->add('board', 'master\Board::index');
 
-// Auth-Proses
+// Login Process
 $routes->add('auth', 'user_auth\Login::auth');
 $routes->add('logout', 'user_auth\Login::logout');
 
+// Form
+$routes->add('board/form', 'master\Board::form');
+
+
+// Submit Form Process
+// Board
+$routes->add('board/addData', 'master\Board::addData');
+$routes->add('board/switch', 'master\Board::switch');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

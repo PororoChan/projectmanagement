@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://kit.fontawesome.com/9cc02ff3df.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="<?= base_url('public/assets/js/notify.js') ?>"></script>
 
     <!-- Base CSS -->
     <link rel="stylesheet" href="<?= base_url('public/assets/css/style.css') ?>" />
@@ -26,8 +27,8 @@
                 <div class="container-fluid">
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
-                            <img src="#" />
-                            <span class="font-14 d-block font-weight-semibold">Project Management</span>
+                            <!-- <img src="#" /> -->
+                            <span class="font-16 d-block font-weight-bold">Project Management</span>
                         </a>
                         <a class="navbar-brand brand-logo-mini" href="#"><img src="<?= base_url('public/assets/images/logo-mini.svg') ?>" /></a>
                     </div>

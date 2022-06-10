@@ -77,7 +77,8 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#btn-login').on('click', function() {
+        $('#btn-login').on('click', function(ev) {
+            ev.preventDefault();
             $('#btn-login').html("<i class='fas fa-circle-notch fa-spin text-white'></i>")
 
             var username = $('#uname').val();

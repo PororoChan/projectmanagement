@@ -11,6 +11,7 @@ class Board extends BaseController
 {
     public function __construct()
     {
+        helper('string');
         helper('form');
         $this->model = new MUser();
         $this->board = new Mboard();
@@ -52,12 +53,18 @@ class Board extends BaseController
 
     public function switch()
     {
-        $id = $this->request->getPost('id');
-        $status = $this->request->getPost('sts');
+        $code = $this->request->getPost('code');
+        $status = $this->request->getPost('status');
 
-        if ($id != '') {
-            $this->board->switchSts($status, $id);
-            $dt['success'] = 1;
+        if ($code != '') {
+
+            $q = $this->board->switchSts($status, $code);
+
+            if ($q) {
+                $dt['success'] = 1;
+            } else {
+                $dt['success'] = 0;
+            }
         } else {
             $dt['success'] = 0;
         }
@@ -75,6 +82,7 @@ class Board extends BaseController
         $tstatus = $this->request->getPost('taskstatus');
 
         $data = [
+            'taskcode' => substr(md5(time()), 0, 8),
             'taskname' => $tname,
             'taskdesc' => $tdesc,
             'taskbadge' => $tbadge,

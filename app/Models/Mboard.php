@@ -29,7 +29,7 @@ class Mboard extends Model
 
     public function switchSts($data, $id)
     {
-        return $this->builder->update(['taskstatus' => $data], ['idtask' => $id]);
+        return $this->builder->update(['taskstatus' => $data], ['taskcode' => $id]);
     }
 
     public function tambah($data)

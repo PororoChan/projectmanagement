@@ -27,6 +27,10 @@ class Mboard extends Model
             ->get()->getResultArray();
     }
 
+    public function getTitle()
+    {
+    }
+
     public function switchSts($data, $id)
     {
         return $this->builder->update(['taskstatus' => $data], ['taskcode' => $id]);

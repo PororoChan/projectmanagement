@@ -44,6 +44,12 @@ $routes->add('logout', 'user_auth\Login::logout');
 // Form
 $routes->add('board/form', 'master\Board::form');
 
+// Append List
+$routes->add('board/formAddList', 'master\Board::formList');
+$routes->add('board/formAddList/(:any)', 'master\Board::formList/$1');
+$routes->add('list/addList', 'master\Board::addList');
+$routes->add('board/editList', 'master\Board::editList');
+$routes->add('board/deleteList', 'master\Board::deleteList');
 
 // Submit Form Process
 // Board

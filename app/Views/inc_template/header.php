@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://kit.fontawesome.com/9cc02ff3df.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url('public/assets/js/notify.js') ?>"></script>
 
     <!-- Base CSS -->
@@ -57,7 +58,7 @@
                                 </a>
                             </li>
                             <li class="nav-item nav-profile dropdown">
-                                <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="nav-profile-img">
                                         <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" />
                                     </div>
@@ -103,4 +104,4 @@
                 </div>
             </nav>
         </div>
-        <div class="container-fluid page-body-wrapper">
+        <div class="container-fluid page-body-wrapper w-100">

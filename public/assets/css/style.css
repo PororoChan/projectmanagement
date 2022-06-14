@@ -15341,6 +15341,7 @@ dl {
             width: calc(100% - 40px); } }
       .horizontal-menu .top-navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu {
         border: none;
+        background-color: #000;
         -webkit-box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2);
         box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2); }
         @media (min-width: 992px) {

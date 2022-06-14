@@ -1,120 +1,120 @@
 <?= $this->include('inc_template/header') ?>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
+
 <div class="content-wrapper pb-0">
     <div class="main-panel p-1">
         <div class="main-content">
-            <section class="section">
-                <div class="dropdown-menu">
-                    <ul class="drop"></ul>
-                </div>
-                <div class="row p-0 w-75 text-start">
-                    <div class="col d-flex justify-content-start">
-                        <button id="list-board" class="btn btn-inverse-primary me-4">
-                            <i class="fas fa-project-diagram fs-7 me-2"></i>
-                            <span class="text-center">Board</span>
-                        </button>
+            <div class="container">
+                <section class="section col-lg-4 w-100">
+                    <div class="section-header pb-3 pt-2">
+                        <h2 class="text-dark text-start">
+                            Board
+                        </h2>
                     </div>
-                </div>
-                <div class="pt-4">
-                    <div class="row board-list" style="height: max-content;">
-                        <?php foreach ($list as $l) : ?>
-                            <div class="col-lg-3 col-md-4 list">
-                                <div id="row-<?= $l['titleid'] ?>" class="board-portlet bg-white shadow p-3 rounded">
-                                    <div class="row">
-                                        <div class="col text-start">
-                                            <div id="title" class="fs-7 fw-bold text-dark">
-                                                <span class="me-2 sts"><?= $l['titlename'] ?></span>
-                                                <span id="<?= $l['titleid'] ?>-count" class="badge badge-light shadow-sm count">
-                                                    0
-                                                </span>
+                    <div class="section-body p-4 bg-white border border-opacity-25 rounded">
+                        <div class="board">
+                            <div class="board-head">
+                                <span class="text-secondary fs-7 font-weight-normal">Showing <span class="count"></span> of <span class="count"></span> boards</span>
+                            </div>
+                            <div class="board-body">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4">
+                                        <div class="board-card-add pt-4">
+                                            <div class="card bg-secondary bg-opacity-25 btn btn-secondary" id="create_board" style="min-height: 85px;">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-plus fs-7 fw-bold text-secondary me-2"></i><span class="text-secondary fs-7 fw-bold">Create New Board</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col text-end">
-                                            <a href="#" id="dropdownlist" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-h text-secondary"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownlist">
-                                                <li><a href="<?= base_url('board/formAddList') . '/' . $l['titleid'] ?>" role="button" class="dropdown-item edit" id="<?= $l['titleid'] ?>"><i class="fas fa-pencil-alt fs-7 me-2"></i><span class="text-secondary fs-7">Edit</span></a></li>
-                                                <li><a href="#" role="button" class="dropdown-item delete" id="<?= $l['titleid'] ?>"><i class="fas fa-trash-alt fs-7 me-2"></i><span class="text-secondary fs-7">Delete</span></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
-                                    <hr class="text-secondary fw-bolder rounded" style="height: 0.1rem;">
-                                    <button class="btn btn-inverse-light mb-2 shadow-sm border w-100" style="min-height: 45px;">
-                                        <i class="fas fa-plus fs-7 text-primary me-2"></i>
-                                        <span class="text-primary text-center fs-7 font-weight-bold new">
-                                            New Task
-                                        </span>
-                                    </button>
-                                    <div id="task-list-<?= $l['titlename'] ?>" style="height: max-content;">
-                                        <ul id="list-<?= $l['titlename'] ?>" class="portlet-card-list ui-sortable list-unstyled" sts="<?= $l['titlename'] ?>" style="min-height: 75px;">
-                                            <?php foreach ($dtlist as $dt) : ?>
-                                                <li class="portlet-card ui-sortable-handle" data-id="<?= $dt['taskcode'] ?>">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <h5 class="text-start"><?= $dt['taskname'] ?></h5>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <span><?= $dt['taskdesc'] ?></span>
-                                                        </div>
-                                                        <div class="card-footer">
-                                                            <span class="badge badge-success badge-sm rounded fs-8"><?= $dt['taskbadge'] ?></span>
-                                                        </div>
+                                    <?php foreach ($board as $b) : ?>
+                                        <div class="col-lg-3 col-md-4">
+                                            <div class="board-card pt-4">
+                                                <div role="button" class="card btn btn-secondary bg-light w-100 board_each" data-bid="<?= $b['boardid'] ?>" style="min-height: 85px; border-left: 5px solid #3D722B;" id="board">
+                                                    <div class="card-body text-start" id="board_each">
+                                                        <span class="text-secondary fs-7 fw-semibold"><?= $b['boardname'] ?></span>
                                                     </div>
-                                                </li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                        <div class="col-lg-3 col-md-4 add">
-                            <div id="row" class="board-portlet bg-white shadow p-3 rounded">
-                                <button class="btn btn-inverse-secondary w-100" style="height: 40px;" id="add_list">
-                                    <i class="fas fa-plus fs-7 me-2"></i>
-                                    <span class="text-center font-weight-bold">Add List</span>
-                                </button>
-                                <div class="mt-4 w-100" style="height: max-content;" id="list-append">
-
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="formboard" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+                <span class="text-dark fs-7"> --- Create Board --- </span>
+            </div>
+            <div class="modal-body">
+                <?= $this->include('master/board/v_form') ?>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="add_board">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?= $this->include('inc_template/footer') ?>
-<script>
-    // Edit List
-    $('.edit').each(function() {
-        $(this).on('click', function() {
-            $.notify($(this).attr('id'), 'warn');
-        });
+<script type="text/javascript">
+    function count() {
+        $.ajax({
+            url: "<?= base_url('board/count') ?>",
+            type: 'post',
+            success: function(res) {
+                $('.count').each(function() {
+                    $(this).html(res);
+                })
+            }
+        })
+    }
+
+    $(window).on('load', function() {
+        count();
     });
 
-    // Delete List
-    $('.delete').each(function() {
-        $(this).on('click', function() {
-            var id = $(this).attr('id');
+    $('#create_board').on('click', function() {
+        $('#formboard').modal('toggle')
+    });
 
+    $('.board_each').each(function() {
+        $(this).on('click', function() {
+            var bid = $(this).attr('data-bid');
             $.ajax({
-                url: "<?= base_url('board/deleteList') ?>",
-                type: 'post',
-                dataType: 'json',
+                url: '<?= base_url('board/bid') ?>' + '/' + bid,
                 data: {
-                    id: id,
+                    bid: bid,
                 },
-                success: function(res) {
-                    if (res == 1) {
-
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    $.notify(thrownError, 'error');
-                }
+                type: 'post'
             })
-        });
+        })
     });
+
+    $('#add_board').on('click', function() {
+        var link = "<?= base_url('board/addBoard') ?>",
+            form = $('#boardtitle').val();
+
+        $.ajax({
+            url: link,
+            type: 'post',
+            data: {
+                dt: form,
+            },
+            success: function(res) {
+                $('#formboard').modal('toggle');
+                setTimeout(() => {
+                    count();
+                }, 500);
+            }
+        })
+    })
 </script>

@@ -97,7 +97,7 @@
                 },
                 dataType: 'json',
                 success: function(res) {
-                    $(res.view).insertBefore('.board-list .add');
+                    // Refresh Content
                     setTimeout(() => {
                         sort();
                         $('#formlist')[0].reset();
@@ -109,8 +109,10 @@
             })
         });
 
-        $('#btn-close-list').on('click', function() {
-            $('#formlist').remove();
+        $('#btn-close-list').each(function() {
+            $(this).on('click', function() {
+                $('#formlist').remove();
+            })
         })
     })
 </script>

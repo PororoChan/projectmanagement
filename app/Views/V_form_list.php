@@ -1,5 +1,6 @@
 <form id="formlist" method="POST">
     <div class="form-group">
+        <input type="hidden" name="titleid" id="titleid" value="<?= (($form_type == 'Edit') ? $row['titleid'] : '') ?>">
         <input type="text" class="form-control form-control-sm" name="titlelist" placeholder="Title" id="titlelist" value="<?= (($form_type == 'Edit') ? $row['titlename'] : '') ?>">
     </div>
     <div class="form-group d-flex justify-content-end">

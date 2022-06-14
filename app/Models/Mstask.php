@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Mboard extends Model
+class Mstask extends Model
 {
-    protected $table = 'msboard as b';
+    protected $table = 'mstask as t';
 
     public function __construct()
     {
@@ -20,13 +20,10 @@ class Mboard extends Model
             ->get()->getResultArray();
     }
 
-    public function count()
+    public function getTask($boardid)
     {
-        return $this->builder->countAll();
-    }
-
-    public function tambah($data)
-    {
-        return $this->builder->insert($data);
+        return $this->builder
+            ->where('t.boardid', $boardid)
+            ->get()->getResultArray();
     }
 }

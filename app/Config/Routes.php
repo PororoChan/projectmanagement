@@ -36,6 +36,7 @@ $routes->setAutoRoute(true);
 $routes->add('login', 'user_auth\Login::index');
 $routes->add('home', 'Dashboard::index');
 $routes->add('board', 'master\Board::index');
+$routes->add('list', 'master\Lists::index');
 
 // Login Process
 $routes->add('auth', 'user_auth\Login::auth');
@@ -53,8 +54,13 @@ $routes->add('board/deleteList', 'master\Board::deleteList');
 
 // Submit Form Process
 // Board
-$routes->add('board/addData', 'master\Board::addData');
+$routes->add('board/bid/(:any)', 'master\Board::goList/$1');
+$routes->add('board/count', 'master\Board::countBoard');
+$routes->add('board/addBoard', 'master\Board::addBoard');
 $routes->add('board/switch', 'master\Board::switch');
+
+// Select2
+$routes->add('list/getList', 'master\Board::getList');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

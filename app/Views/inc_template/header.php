@@ -69,9 +69,13 @@
                                         <span class="font-12 online-color me-3">Online <i class="fas fa-chevron-down fs-8"></i></span>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                                <div class="dropdown-menu bg-white navbar-dropdown" aria-labelledby="profileDropdown">
                                     <a class="dropdown-item" href="<?= base_url('logout') ?>">
-                                        <i class="fas fa-sign-out-alt fs-7 me-2 text-danger"></i> <span class="fs-7">Log Out</span> </a>
+                                        <i class="fas fa-sign-out-alt fs-7 me-2 text-danger"></i>
+                                        <span class="fs-7">
+                                            Log Out
+                                        </span>
+                                    </a>
                                 </div>
                             </li>
                         </ul>
@@ -92,7 +96,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('board') ?>">
-                                <i class="far fa-clipboard fs-6 menu-icon"></i>
+                                <i class="fas fa-chart-bar fs-6 menu-icon"></i>
                                 <span class="menu-title">Board</span>
                             </a>
                         </li>

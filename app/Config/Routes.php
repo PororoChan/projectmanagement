@@ -54,7 +54,7 @@ $routes->add('board/deleteList', 'master\Board::deleteList');
 
 // Submit Form Process
 // Board
-$routes->add('board/bid/(:any)', 'master\Board::goList/$1');
+$routes->add('board/b/(:any)', 'master\Board::goList/$1');
 $routes->add('board/count', 'master\Board::countBoard');
 $routes->add('board/addBoard', 'master\Board::addBoard');
 $routes->add('board/switch', 'master\Board::switch');

@@ -20,6 +20,13 @@ class Mboard extends Model
             ->get()->getResultArray();
     }
 
+    public function getOne($boardid)
+    {
+        return $this->builder
+            ->where('boardid', $boardid)
+            ->get()->getRowArray();
+    }
+
     public function count()
     {
         return $this->builder->countAll();

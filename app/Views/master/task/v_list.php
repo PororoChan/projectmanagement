@@ -9,9 +9,9 @@
                 </div>
                 <div class="row p-0 w-75 text-start">
                     <div class="col d-flex justify-content-start">
-                        <button id="list-board" class="btn btn-inverse-primary me-4">
-                            <i class="fas fa-project-diagram fs-7 me-2"></i>
-                            <span class="text-center">Board</span>
+                        <button id="list-board" class="btn btn-inverse-primary me-4" disabled>
+                            <i class="fas fa-project-diagram fs-6 me-2"></i><span class="fs-7 text-dark font-weight-bold"><?= session()->get('bname') ?></span>
+                            <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
                         </button>
                     </div>
                 </div>

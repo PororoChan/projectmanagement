@@ -20,6 +20,13 @@ class Mstask extends Model
             ->get()->getResultArray();
     }
 
+    public function getOne($boardid)
+    {
+        return $this->builder
+            ->where('t.boardid', $boardid)
+            ->get()->getRowArray();
+    }
+
     public function getTask($boardid)
     {
         return $this->builder

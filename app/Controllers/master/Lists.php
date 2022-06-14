@@ -17,18 +17,6 @@ class Lists extends BaseController
         $this->session = session();
     }
 
-    public function index()
-    {
-        if ($this->session->get('id_user') == NULL) {
-            return redirect()->to('login');
-        }
-        $data = [
-            'title' => 'Lists',
-            'list' => $this->task->getAll(),
-        ];
-        return view('master/task/v_list', $data);
-    }
-
     public function formList($id = '')
     {
         $ftype = 'Add';

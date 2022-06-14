@@ -17,6 +17,7 @@ class Board extends BaseController
         helper('form');
         $this->board = new Mboard();
         $this->task = new Mstask();
+        $this->list = new Mslist();
     }
 
     public function index()
@@ -43,14 +44,20 @@ class Board extends BaseController
         echo json_encode($q);
     }
 
-    public function goList()
+    public function goList($boardid)
     {
-        $boardid = $this->request->getPost('bid');
-        $q = [
-            'title' => 'Task List',
-            'task' => $this->task->getTask($boardid),
-        ];
-        echo view('master/task/v_list', $q);
+        if (session()->get('id_user') == NULL) {
+            return redirect()->to('login');
+        } else {
+            $board = $this->board->getOne($boardid);
+            $q = [
+                'title' => 'Task List',
+                'task' => $this->task->getTask($boardid),
+                session()->set('idb', $board['boardid']),
+                session()->set('bname', $board['boardname']),
+            ];
+        }
+        return view('master/task/v_list', $q);
     }
 
     public function FormView($id = '')

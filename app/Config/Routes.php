@@ -33,7 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 // Display Index
-$routes->add('login', 'user_auth\Login::index');
+$routes->add('/', 'user_auth\Login::index');
 $routes->add('home', 'Dashboard::index');
 $routes->add('board', 'master\Board::index');
 $routes->add('list', 'master\Lists::index');
@@ -48,16 +48,22 @@ $routes->add('board/form', 'master\Board::form');
 // Append List
 $routes->add('board/formAddList', 'master\Board::formList');
 $routes->add('board/formAddList/(:any)', 'master\Board::formList/$1');
-$routes->add('list/addList', 'master\Board::addList');
 $routes->add('board/editList', 'master\Board::editList');
 $routes->add('board/deleteList', 'master\Board::deleteList');
 
-// Submit Form Process
+// Form Process
 // Board
 $routes->add('board/b/(:any)', 'master\Board::goList/$1');
 $routes->add('board/count', 'master\Board::countBoard');
 $routes->add('board/addBoard', 'master\Board::addBoard');
+$routes->add('board/b', 'master\Board::board');
 $routes->add('board/switch', 'master\Board::switch');
+
+// Task
+$routes->add('task/formAdd', 'master\Tasks::FormViews');
+$routes->add('task/addTask', 'master\Tasks::addTask');
+$routes->add('task/t', 'master\Tasks::task');
+$routes->add('task/a', 'master\Tasks::addF');
 
 // Select2
 $routes->add('list/getList', 'master\Board::getList');

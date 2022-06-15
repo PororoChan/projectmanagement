@@ -20,10 +20,10 @@ class Mstask extends Model
             ->get()->getResultArray();
     }
 
-    public function getOne($boardid)
+    public function getOne($id = 0)
     {
         return $this->builder
-            ->where('t.boardid', $boardid)
+            ->where('t.taskid', $id)
             ->get()->getRowArray();
     }
 
@@ -32,5 +32,10 @@ class Mstask extends Model
         return $this->builder
             ->where('t.boardid', $boardid)
             ->get()->getResultArray();
+    }
+
+    public function addTask($data)
+    {
+        return $this->builder->insert($data);
     }
 }

@@ -38,10 +38,20 @@ class Board extends BaseController
         if (session()->get('id_user') == NULL) {
             return redirect()->to('login');
         }
-
         $q = $this->board->count();
 
         echo json_encode($q);
+    }
+
+    public function board()
+    {
+        if (session()->get('id_user') == NULL) {
+            return redirect()->to('login');
+        }
+        $data = [
+            'board' => $this->board->getAll(),
+        ];
+        return view('master/board/v_card', $data);
     }
 
     public function goList($boardid)
@@ -49,13 +59,17 @@ class Board extends BaseController
         if (session()->get('id_user') == NULL) {
             return redirect()->to('login');
         } else {
-            $board = $this->board->getOne($boardid);
-            $q = [
-                'title' => 'Task List',
-                'task' => $this->task->getTask($boardid),
-                session()->set('idb', $board['boardid']),
-                session()->set('bname', $board['boardname']),
-            ];
+            if ($boardid == '') {
+                return view('master/board/v_board');
+            } else {
+                $board = $this->board->getOne($boardid);
+                $q = [
+                    'title' => 'Task List',
+                    'task' => $this->task->getTask($boardid),
+                    session()->set('idb', $board['boardid']),
+                    session()->set('bname', $board['boardname']),
+                ];
+            }
         }
         return view('master/task/v_list', $q);
     }
@@ -78,12 +92,10 @@ class Board extends BaseController
     public function addBoard()
     {
         $btitle = $this->request->getPost('dt');
-
         $data = [
             'boardid' => random_int(1000000, 9999999),
             'boardname' => $btitle
         ];
-
         $this->board->tambah($data);
         echo 1;
     }

@@ -20,7 +20,7 @@ class Mboard extends Model
             ->get()->getResultArray();
     }
 
-    public function getOne($boardid)
+    public function getOne($boardid = 0)
     {
         return $this->builder
             ->where('boardid', $boardid)
@@ -35,5 +35,15 @@ class Mboard extends Model
     public function tambah($data)
     {
         return $this->builder->insert($data);
+    }
+
+    public function edit($data, $id)
+    {
+        return $this->builder->update($data, ['boardid' => $id]);
+    }
+
+    public function hapus($id)
+    {
+        return $this->builder->delete(['boardid' => $id]);
     }
 }

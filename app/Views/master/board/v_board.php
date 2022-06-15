@@ -33,24 +33,7 @@
         </div>
     </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="formboard" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header d-flex justify-content-center">
-                <span class="text-dark fs-7"> --- Create Board --- </span>
-            </div>
-            <div class="modal-body">
-                <?= $this->include('master/board/v_form') ?>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" id="add_board">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+<?= $this->include('inc_template/footer') ?>
 <script type="text/javascript">
     function count() {
         $.ajax({
@@ -65,10 +48,6 @@
                 })
             }
         })
-    }
-
-    function modalB() {
-        $('#formboard').modal('toggle');
     }
 
     function scaleCard() {
@@ -92,30 +71,23 @@
     $(document).ready(function() {
         scaleCard();
         $('#create_board').on('click', function() {
-            modalB();
-        });
-
-        $('#add_board').on('click', function() {
-            var link = "<?= base_url('board/addBoard') ?>",
-                form = $('#boardtitle').val();
+            var link = "<?= base_url('board/FormViews') ?>",
+                type = 'Add',
+                pros = 'added',
+                form = $('#form_board')[0],
+                dt = new FormData(form);
 
             $.ajax({
                 url: link,
                 type: 'post',
-                data: {
-                    dt: form,
-                },
+                dataType: 'json',
+                contentType: false,
+                processData: false,
                 success: function(res) {
-                    setTimeout(() => {
-                        $('#bbody').load('<?= base_url('board/b') ?>', function() {
-                            scaleCard();
-                        })
-                    }, 300);
-                    $('#form_board')[0].reset();
                     modalB();
-                    count();
+                    $('#mobody').html(res.view);
                 }
             })
-        })
+        });
     })
 </script>

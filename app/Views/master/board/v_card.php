@@ -11,17 +11,28 @@
         </div>
     </div>
 <?php endforeach; ?>
-<div class="dropdown-menu dropdown-menu-sm" id="context-menu">
-    <a class="dropdown-item btne" bid="<?= session()->get('idb') ?>" href="#">Edit</a>
-    <a class="dropdown-item btne" bid="<?= session()->get('idb') ?>" href="#">Delete</a>
+<div class="dropdown-menu dropdown-menu-sm" style="width: 100px;" id="context-menu">
+    <a class="dropdown-item btned" href="#">
+        <i class="fas fa-pencil-alt fs-7 me-2"></i>
+        <input type="hidden" id="bed">
+        <span class="text-dark fs-7 fw-semibold">Edit</span>
+    </a>
+    <a class="dropdown-item btndel" href="#">
+        <i class="fas fa-trash-alt fs-7 me-2"></i>
+        <input type="hidden" id="bde">
+        <span class="text-dark fs-7 fw-semibold">Delete</span>
+    </a>
 </div>
 <script>
+    var id = '';
     $('.board_each').each(function() {
         $(this).on('contextmenu', function(ev) {
             ev.preventDefault();
+            id = $(this).attr('bid')
+            $('#bed').val(id)
+            $('#bde').val(id)
             var top = ev.pageY,
                 left = ev.pageX;
-            console.log($('#btn').attr('bid'))
             $('#context-menu').css({
                 display: "block",
                 top: top,
@@ -39,5 +50,28 @@
         $('#context-menu a').on('click', function() {
             $(this).parent().removeClass("show").hide();
         });
+    });
+
+    $('.btned').each(function() {
+        $(this).on('click', function() {
+            $.ajax({
+                url: '<?= base_url('board/EditViews') ?>' + '/' + $("#bed").val(),
+                type: 'post',
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    modalB();
+                    $('#mobody').html(res.view)
+                }
+            })
+        })
+    });
+
+    $('.btndel').each(function() {
+        $(this).on('click', function() {
+            modalDel('Board Workspace', 'Anda yakin ingin hapus board ini ?', '<?= base_url('board/delBoard') ?>', $('#bde').val());
+            $('#text-del').html("Anda yakin ingin hapus board ini ?");
+        })
     })
 </script>

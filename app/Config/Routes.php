@@ -45,19 +45,17 @@ $routes->add('logout', 'user_auth\Login::logout');
 // Form
 $routes->add('board/form', 'master\Board::form');
 
-// Append List
-$routes->add('board/formAddList', 'master\Board::formList');
-$routes->add('board/formAddList/(:any)', 'master\Board::formList/$1');
-$routes->add('board/editList', 'master\Board::editList');
-$routes->add('board/deleteList', 'master\Board::deleteList');
-
 // Form Process
 // Board
 $routes->add('board/b/(:any)', 'master\Board::goList/$1');
 $routes->add('board/count', 'master\Board::countBoard');
 $routes->add('board/addBoard', 'master\Board::addBoard');
+$routes->add('board/editBoard', 'master\Board::editBoard');
+$routes->add('board/delBoard', 'master\Board::deleteBoard');
 $routes->add('board/b', 'master\Board::board');
 $routes->add('board/switch', 'master\Board::switch');
+$routes->add('board/FormViews', 'master\Board::FormViews');
+$routes->add('board/EditViews/(:any)', 'master\Board::FormViews/$1');
 
 // Task
 $routes->add('task/formAdd', 'master\Tasks::FormViews');

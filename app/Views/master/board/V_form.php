@@ -1,6 +1,37 @@
 <form method="POST" id="form_board">
     <div class="form-group">
-        <label for="boardtitle">Board Title</label>
-        <input type="text" class="form-control form-control-sm" id="boardtitle" name="boardtitle">
+        <input type="hidden" id="idboard" name="idboard" value="<?= $id ?>">
+        <input type="text" class="form-control form-control-sm" id="boardtitle" placeholder="Enter board name" name="boardtitle" value="<?= (($form_type == 'Edit') ? $row['boardname'] : '') ?>">
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary w-100" id="pros"><?= (($form_type == 'Edit') ? 'Update' : 'Save') ?></button>
     </div>
 </form>
+<script>
+    $('#pros').on('click', function() {
+        console.log($('#titlemod').val())
+        var link = "<?= base_url('board/addBoard') ?>",
+            ftype = "<?= $form_type ?>",
+            form = $('#form_board').serialize();
+
+        if (ftype == 'Edit') {
+            link = "<?= base_url('board/editBoard') ?>"
+        }
+
+        $.ajax({
+            url: link,
+            type: 'post',
+            data: form,
+            success: function(res) {
+                setTimeout(() => {
+                    $('#bbody').load('<?= base_url('board/b') ?>', function() {
+                        scaleCard();
+                    })
+                }, 300);
+                $('#form_board')[0].reset();
+                modalB()
+                count();
+            }
+        })
+    })
+</script>

@@ -74,14 +74,14 @@ class Board extends BaseController
         return view('master/task/v_list', $q);
     }
 
-    public function FormView($id = '')
+    public function FormViews($id = 0)
     {
         $ftype = 'Add';
-        if ($id != '') {
+        if ($id != 0) {
             $ftype = 'Edit';
         }
         $data = [
-            'row' => $this->board->getAll(),
+            'row' => $this->board->getOne($id),
             'form_type' => $ftype,
             'id' => $id,
         ];
@@ -91,12 +91,34 @@ class Board extends BaseController
 
     public function addBoard()
     {
-        $btitle = $this->request->getPost('dt');
+        $btitle = $this->request->getPost('boardtitle');
         $data = [
             'boardid' => random_int(1000000, 9999999),
             'boardname' => $btitle
         ];
         $this->board->tambah($data);
         echo 1;
+    }
+
+    public function editBoard()
+    {
+        $title = $this->request->getPost('boardtitle');
+        $id = $this->request->getPost('idboard');
+        $dt = [
+            'boardname' => $title,
+        ];
+        $this->board->edit($dt, $id);
+        echo 1;
+    }
+
+    public function deleteBoard()
+    {
+        $id = $this->request->getPost('id');
+        if ($id != 0) {
+            $this->board->hapus($id);
+            echo 1;
+        } else {
+            echo 0;
+        }
     }
 }

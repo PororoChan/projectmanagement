@@ -19,8 +19,8 @@
             type: 'post',
             data: dt,
             dataType: 'json',
-            processData: false,
             contentType: false,
+            processData: false,
             success: function(res) {
                 if (res == 1) {
                     $.notify('Added new list', 'success');
@@ -40,8 +40,8 @@
                                     }
                                 }
                             })
-                        }, 70);
-                    }, 50);
+                        }, 200);
+                    }, 100);
                 } else {
                     $.notify('Process data failed', 'error');
                 }

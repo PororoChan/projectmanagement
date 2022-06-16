@@ -8,9 +8,9 @@
                     <div class="section-header pb-3 pt-2">
                         <div class="d-flex justify-content-between">
                             <h2 class="text-dark fs-5 text-start">
-                                <i class="fas fa-chalkboard-teacher me-2"></i> Board
+                                <i class="fas fa-chalkboard-teacher text-primary me-2"></i> Board
                             </h2>
-                            <button class="btn btn-inverse-secondary shadow-sm" id="create_board">
+                            <button class="btn btn-primary shadow-sm" id="create_board">
                                 <i class="fas fa-plus fs-7 fw-bold me-2"></i>
                                 <span class="text-center">Create New Board</span>
                             </button>
@@ -22,7 +22,7 @@
                                 <span class="text-secondary fs-7 font-weight-normal">Showing <span class="count"></span> of <span class="count"></span> boards</span>
                             </div>
                             <div class="board-body">
-                                <div class="row" id="bbody">
+                                <div class="row" id="bbody" draggable="false">
                                     <?= $this->include('master/board/v_card') ?>
                                 </div>
                             </div>

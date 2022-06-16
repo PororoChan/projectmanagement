@@ -40,6 +40,7 @@ $routes->add('list', 'master\Lists::index');
 
 // Login Process
 $routes->add('auth', 'user_auth\Login::auth');
+$routes->add('login', 'user_auth\Login::index');
 $routes->add('logout', 'user_auth\Login::logout');
 
 // Form
@@ -56,12 +57,20 @@ $routes->add('board/b', 'master\Board::board');
 $routes->add('board/switch', 'master\Board::switch');
 $routes->add('board/FormViews', 'master\Board::FormViews');
 $routes->add('board/EditViews/(:any)', 'master\Board::FormViews/$1');
+$routes->add('board/cleanUser', 'master\Board::clean');
 
 // Task
 $routes->add('task/formAdd', 'master\Tasks::FormViews');
 $routes->add('task/addTask', 'master\Tasks::addTask');
 $routes->add('task/t', 'master\Tasks::task');
 $routes->add('task/a', 'master\Tasks::addF');
+$routes->add('task/delete', 'master\Tasks::deleteData');
+
+// TaskList
+$routes->add('list/load', 'master\Tasklist::item');
+$routes->add('list/formAdd', 'master\Tasklist::FormViews');
+$routes->add('list/addData', 'master\Tasklist::addData');
+$routes->add('list/delete', 'master\Tasklist::deleteData');
 
 // Select2
 $routes->add('list/getList', 'master\Board::getList');

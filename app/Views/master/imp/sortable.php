@@ -7,7 +7,6 @@
 
     $('.list').sortable({
         placeholder: "bg-secondary bg-opacity-10 rounded",
-        connectWith: $('.list'),
         cursor: 'grabbing',
         start: function(ev, ui) {
             // Rotate
@@ -20,6 +19,7 @@
             ui.item.css('transform', 'rotate(0deg)')
         }
     });
+    $('.list').disableSelection();
 
     $('.portlet-card-list').sortable({
         placeholder: "bg-secondary bg-opacity-10 rounded",

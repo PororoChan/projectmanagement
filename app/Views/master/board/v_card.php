@@ -1,11 +1,9 @@
 <?php foreach ($board as $b) : ?>
     <div class="col-lg-3 col-md-4">
         <div class="board-card pt-2 pb-2" id="board-pit">
-            <a role="button" href="<?= base_url('board/b/' . $b['boardid'] . '') ?>" bid="<?= $b['boardid'] ?>" class="card btn btn-secondary bg-light w-100 board_each" style="min-height: 85px; border-left: 5px solid #0033C4;" id="boardbtn">
+            <a role="button" href="<?= base_url('board/b/' . $b['boardid'] . '') ?>" bid="<?= $b['boardid'] ?>" class="card text-start pt-0 p-0 btn btn-secondary bg-light w-100 board_each" style="min-height: 85px; border-left: 5px solid #0033C4;" id="boardbtn">
                 <div class="card-body" id="board_each">
-                    <div class="d-flex justify-content-between">
-                        <span class="text-start text-secondary fs-7 fw-semibold"><?= $b['boardname'] ?></span>
-                    </div>
+                    <span class="text-start text-secondary font-14 font-weight-semibold"><?= $b['boardname'] ?></span>
                 </div>
             </a>
         </div>
@@ -71,7 +69,6 @@
     $('.btndel').each(function() {
         $(this).on('click', function() {
             modalDel('Board Workspace', 'Anda yakin ingin hapus board ini ?', '<?= base_url('board/delBoard') ?>', $('#bde').val());
-            $('#text-del').html("Anda yakin ingin hapus board ini ?");
         })
     })
 </script>

@@ -44,6 +44,8 @@ class Mboard extends Model
 
     public function hapus($id)
     {
-        return $this->builder->delete(['boardid' => $id]);
+        $this->db->table('msboard')->delete(['boardid' => $id]);
+        $this->db->table('mstask')->delete(['boardid' => $id]);
+        return;
     }
 }

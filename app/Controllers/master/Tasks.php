@@ -50,15 +50,34 @@ class Tasks extends BaseController
         $tasktitle = $this->request->getPost('taskname');
         $boardid = $this->request->getPost('bid');
 
-        $data = [
-            'taskid' => random_int(100000, 999999),
-            'taskname' => $tasktitle,
-            'boardid' => $boardid,
-            'seq' => 1,
-        ];
+        if ($tasktitle != '') {
+            $data = [
+                'taskid' => random_int(100000, 999999),
+                'taskname' => $tasktitle,
+                'boardid' => $boardid,
+                'seq' => 1,
+            ];
 
-        $q = $this->task->addTask($data);
-        if ($q) {
+            $q = $this->task->addTask($data);
+            if ($q) {
+                $data['success'] = 1;
+            } else {
+                $data['success'] = 0;
+                $msg['msg'] = 'Data not added';
+            }
+        } else {
+            $data['success'] = 0;
+            $data['msg'] = 'Taskname cannot be empty';
+        }
+        echo json_encode($data);
+    }
+
+    public function deleteData()
+    {
+        $id = $this->request->getPost('id');
+
+        if ($id != 0) {
+            $this->task->hapus($id);
             echo 1;
         } else {
             echo 0;

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title><?= $title ?></title>
+    <link rel="icon" href="<?= base_url('public/assets/images/logo.ico') ?>" />
 
     <?= $this->include('v_script') ?>
 </head>
@@ -16,7 +17,6 @@
                 <div class="container-fluid">
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
-                            <!-- <img src="#" /> -->
                             <span class="font-16 d-block font-weight-bold">Project Management</span>
                         </a>
                         <a class="navbar-brand brand-logo-mini" href="#"><img src="<?= base_url('public/assets/images/logo-mini.svg') ?>" /></a>
@@ -48,7 +48,7 @@
                             <li class="nav-item nav-profile dropdown">
                                 <a class="nav-link" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="nav-profile-img">
-                                        <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" />
+                                        <img src="<?= base_url('public/assets/images/faces/avatar.png') ?>" />
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black font-weight-semibold m-0"> <?= session()->get('name') ?> </p>

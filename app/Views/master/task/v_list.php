@@ -4,9 +4,9 @@
     <div class="main-panel p-0">
         <div class="main-content">
             <section class="section">
-                <div class="dropdown-menu">
-                    <ul class="drop"></ul>
-                </div>
+                <a class="btn btn-inverse-primary me-2" id="bt-board" href="<?= base_url('board/cleanUser') ?>">
+                    <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-bold fs-7">BOARD</span>
+                </a>
                 <button class="btn btn-inverse-primary" disabled>
                     <i class="fas fa-fire fs-7 me-2"></i><span class="text-start fs-7"><?= session()->get('bname') ?></span>
                     <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
@@ -14,7 +14,6 @@
                 <div class="pt-4">
                     <div class="row board-list flex-nowrap" style="height: max-content;" id="list-board">
                         <?= $this->include('master/task/v_card') ?>
-                        <?= $this->include('master/task/v_add') ?>
                     </div>
                 </div>
             </section>

@@ -38,4 +38,11 @@ class Mstask extends Model
     {
         return $this->builder->insert($data);
     }
+
+    public function hapus($id)
+    {
+        $this->db->table('mstask')->delete(['taskid' => $id]);
+        $this->db->table('mstasklist')->delete(['taskid' => $id]);
+        return;
+    }
 }

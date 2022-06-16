@@ -60,15 +60,19 @@ class Board extends BaseController
             return redirect()->to('login');
         } else {
             if ($boardid == '') {
-                return view('master/board/v_board');
+                return redirect()->to('board');
             } else {
                 $board = $this->board->getOne($boardid);
-                $q = [
-                    'title' => 'Task List',
-                    'task' => $this->task->getTask($boardid),
-                    session()->set('idb', $board['boardid']),
-                    session()->set('bname', $board['boardname']),
-                ];
+                if ($board != '') {
+                    $q = [
+                        'title' => 'Task List',
+                        'task' => $this->task->getTask($boardid),
+                        session()->set('idb', $board['boardid']),
+                        session()->set('bname', $board['boardname']),
+                    ];
+                } else {
+                    return redirect()->to('board');
+                }
             }
         }
         return view('master/task/v_list', $q);
@@ -120,5 +124,10 @@ class Board extends BaseController
         } else {
             echo 0;
         }
+    }
+
+    public function clean()
+    {
+        return redirect()->to('board');
     }
 }

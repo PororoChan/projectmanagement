@@ -1,14 +1,15 @@
 <form method="POST" id="form_board">
-    <div class="form-group">
+    <div class="form-group mb-3">
         <input type="hidden" id="idboard" name="idboard" value="<?= $id ?>">
         <input type="text" class="form-control form-control-sm" id="boardtitle" placeholder="Enter board name" name="boardtitle" value="<?= (($form_type == 'Edit') ? $row['boardname'] : '') ?>">
     </div>
-    <div class="form-group">
-        <button type="button" class="btn btn-primary w-100" id="pros"><?= (($form_type == 'Edit') ? 'Update' : 'Save') ?></button>
+    <div class="form-group mb-0">
+        <button type="submit" class="btn btn-primary w-100 mb-1" id="pros"><?= (($form_type == 'Edit') ? 'Update' : 'Save') ?></button>
     </div>
 </form>
 <script>
-    $('#pros').on('click', function() {
+    $('#form_board').on('submit', function(ev) {
+        ev.preventDefault()
         console.log($('#titlemod').val())
         var link = "<?= base_url('board/addBoard') ?>",
             ftype = "<?= $form_type ?>",
@@ -27,7 +28,7 @@
                     $('#bbody').load('<?= base_url('board/b') ?>', function() {
                         scaleCard();
                     })
-                }, 300);
+                }, 500);
                 $('#form_board')[0].reset();
                 modalB()
                 count();

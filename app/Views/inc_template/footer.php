@@ -64,7 +64,6 @@
 </body>
 
 <!-- Additional JS -->
-<script src="<?= base_url('public/assets/js/custom.js') ?>"></script>
 <?= $this->include('master/imp/sortable') ?>
 
 <script>
@@ -121,7 +120,7 @@
             },
             success: function(res) {
                 if (res == 1) {
-                    $.notify("Deleted Successfully!", "success");
+                    $.notify("Deleted!", "success");
                     setTimeout(() => {
                         $('#bbody').load('<?= base_url('board/b') ?>', function() {
                             scaleCard();

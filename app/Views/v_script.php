@@ -11,7 +11,6 @@
 <!-- Base CSS -->
 <link rel="stylesheet" href="<?= base_url('public/assets/css/style.css') ?>" />
 <link rel="stylesheet" href="<?= base_url('public/assets/css/select2.min.css') ?>" />
-<link rel="stylesheet" href="<?= base_url('public/assets/vendors/css/vendor.bundle.base.css') ?>">
 <!-- Additional JS -->
 <script src="<?= base_url('public/assets/js/off-canvas.js') ?>"></script>
 

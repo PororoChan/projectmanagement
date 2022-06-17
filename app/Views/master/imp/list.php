@@ -1,14 +1,4 @@
 <script>
-    $('#add_list').on('click', function() {
-        $.ajax({
-            url: '<?= base_url('task/formAdd') ?>',
-            type: 'post',
-            success: function(res) {
-                $('#list-append').html(res);
-            }
-        })
-    });
-
     function addList() {
         var link = "<?= base_url('task/addTask') ?>",
             form = $('#formlist')[0],
@@ -23,14 +13,12 @@
             processData: false,
             success: function(res) {
                 if (res.success == 1) {
-                    $.notify('Added new list', 'success');
+                    $.notify('New list added', 'success');
                     $('#formlist')[0].reset();
-                    $('#formlist').remove();
-                    setTimeout(() => {
-                        $('#list-board').load('<?= base_url('task/t') ?>')
-                    }, 100);
+                    setTimeout(() => {}, 50);
+                    $('#list-board').load('<?= base_url('task/t') ?>')
                 } else {
-                    $.notify(res.msg, 'error');
+                    $.notify(res.msg, 'warn');
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {
@@ -52,10 +40,18 @@
             contentType: false,
             data: dt,
             success: function(res) {
-                setTimeout(() => {
-                    $.notify("Added new task", "success")
+                if (res == 1) {
+                    setTimeout(() => {
+                        $.notify("New task added", "success")
+                        $('#form-tlist')[0].reset();
+                        setTimeout(() => {
+                            $('#list-board').load('<?= base_url('task/t') ?>')
+                        }, 55);
+                    }, 50);
+                } else {
+                    $.notify("Taskname cannot be empty", "warn");
                     $('#form-tlist')[0].reset();
-                }, 50);
+                }
             }
         })
     }

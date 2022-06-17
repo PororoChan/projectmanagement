@@ -80,37 +80,6 @@ class Lists extends BaseController
         }
     }
 
-    public function form($idt = '')
-    {
-        $ftype = 'Add';
-        if ($idt != '') {
-            $ftype = 'Edit';
-        }
-        $data = [
-            'title' => 'PM | Board Form',
-            'form_type' => $ftype,
-            'id' => $idt
-        ];
-        return view('master/board/V_form', $data);
-    }
-
-    public function switch()
-    {
-        $code = $this->request->getPost('code');
-        $status = $this->request->getPost('status');
-        if ($code != '') {
-            $q = $this->board->switchSts($status, $code);
-            if ($q) {
-                $dt['success'] = 1;
-            } else {
-                $dt['success'] = 0;
-            }
-        } else {
-            $dt['success'] = 0;
-        }
-        echo json_encode($dt);
-    }
-
     public function addData()
     {
         $date = new DateTime('NOW');

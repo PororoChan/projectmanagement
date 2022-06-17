@@ -13,10 +13,10 @@ class Mstasklist extends Model
         $this->builder = $this->db->table($this->table);
     }
 
-    public function getAll($taskid)
+    public function getAll($id)
     {
         return $this->builder
-            ->where('s.taskid', $taskid)
+            ->where('s.taskid', $id)
             ->get()->getResultArray();
     }
 
@@ -27,6 +27,11 @@ class Mstasklist extends Model
             ->get()->getRowArray();
     }
 
+    public function updateList($data, $tid)
+    {
+        return $this->builder->update($data, ['id' => $tid]);
+    }
+
     public function tambah($data)
     {
         return $this->builder->insert($data);
@@ -34,6 +39,6 @@ class Mstasklist extends Model
 
     public function hapus($id)
     {
-        return $this->builder->delete(['taskid' => $id]);
+        return $this->builder->delete(['id' => $id]);
     }
 }

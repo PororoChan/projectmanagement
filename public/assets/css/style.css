@@ -14839,8 +14839,8 @@ dl {
   margin-right: auto;
   margin-left: auto;
   margin: auto;
-  padding: 22px 0.937rem;
-  min-height: calc(100vh - 161px); }
+  padding: 22px 22px;
+  min-height: 85vh; }
 
 .container-scroller .page-body-wrapper {
   background: #f8f9fb;
@@ -15687,13 +15687,5 @@ dl {
     top: 0;
     left: 0;
     right: 0; } }
-
-    .hover-board {
-      cursor: grab;
-    }
-
-    .grab-board {
-      cursor: grab;
-    }
 
 /*# sourceMappingURL=style.css.map */

@@ -3,19 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PM | Login</title>
+    <title>PoMan | Login</title>
 
     <!-- CSS Import -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <script src="https://kit.fontawesome.com/9cc02ff3df.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9cc02ff3df.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Additional CSS -->
     <link rel="stylesheet" href="<?= base_url('public/assets/css/login/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('public/assets/css/login/vendor.bundle.base.css') ?>">
-    <link rel="icon" href="<?= base_url('public/assets/images/favicon.png') ?>" />
+    <link rel="icon" href="<?= base_url('public/assets/images/logo.ico') ?>" />
 </head>
 
 <body>
@@ -79,49 +79,51 @@
     $(document).ready(function() {
         $('#btn-login').on('click', function(ev) {
             ev.preventDefault();
-            $('#btn-login').html("<i class='fas fa-circle-notch fa-spin text-white'></i>")
+            $('#btn-login').html("<i class='fas fa-spinner fa-spin-pulse text-white'></i>")
 
             var username = $('#uname').val();
             var password = $('#pass').val();
             var link = "<?= base_url('auth') ?>";
             var msg = '';
 
-            if (username != '' && password != '') {
-                $.ajax({
-                    url: link,
-                    type: 'post',
-                    dataType: 'json',
-                    data: {
-                        uname: username,
-                        passw: password,
-                    },
-                    success: function(res) {
-                        if (res.success == 1) {
-                            msg = "Login berhasil"
-                            $('#warn').removeClass('alert alert-danger');
-                            $('#warn').addClass('alert alert-success');
+            setTimeout(() => {
+                if (username != '' && password != '') {
+                    $.ajax({
+                        url: link,
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            uname: username,
+                            passw: password,
+                        },
+                        success: function(res) {
+                            if (res.success == 1) {
+                                msg = "Login berhasil"
+                                $('#warn').removeClass('alert alert-danger');
+                                $('#warn').addClass('alert alert-success');
+                                setTimeout(() => {
+                                    window.location.href = "<?= base_url('home') ?>"
+                                }, 700);
+                            } else {
+                                msg = "Username atau Password salah"
+                                $('#warn').addClass('alert alert-danger');
+                            }
+                            $('#warn').html(msg);
+                            $('#warn').show();
                             setTimeout(() => {
-                                window.location.href = "<?= base_url('home') ?>"
-                            }, 700);
-                        } else {
-                            msg = "Username atau Password salah"
-                            $('#warn').addClass('alert alert-danger');
+                                $('#btn-login').html("Login");
+                            }, 500);
                         }
-                        $('#warn').html(msg);
-                        $('#warn').show();
-                        setTimeout(() => {
-                            $('#btn-login').html("Login");
-                        }, 500);
-                    }
-                })
-            } else {
-                msg = "Username dan Password dibutuhkan!"
-                $('#warn').addClass('alert alert-danger');
-                $('#warn').show();
-                setTimeout(() => {
-                    $('#btn-login').html("Login");
-                }, 500);
-            }
+                    })
+                } else {
+                    msg = "Username dan Password dibutuhkan!"
+                    $('#warn').addClass('alert alert-danger');
+                    $('#warn').show();
+                    setTimeout(() => {
+                        $('#btn-login').html("Login");
+                    }, 500);
+                }
+            }, 500);
             $('#form-log')[0].reset();
             $('#warn').html(msg);
             setTimeout(() => {

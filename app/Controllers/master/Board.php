@@ -7,6 +7,7 @@ use App\Models\Mboard;
 use App\Models\Mlist;
 use App\Models\Mslist;
 use App\Models\Mstask;
+use App\Models\Mstasklist;
 use App\Models\MUser;
 use DateTime;
 
@@ -17,7 +18,7 @@ class Board extends BaseController
         helper('form');
         $this->board = new Mboard();
         $this->task = new Mstask();
-        $this->list = new Mslist();
+        $this->tasklist = new Mstasklist();
     }
 
     public function index()
@@ -27,7 +28,7 @@ class Board extends BaseController
             return redirect()->to('login');
         }
         $data = [
-            'title' => 'Board',
+            'title' => 'PoMan | Board',
             'board' => $this->board->getAll(),
         ];
         return view('master/board/v_board', $data);
@@ -65,8 +66,9 @@ class Board extends BaseController
                 $board = $this->board->getOne($boardid);
                 if ($board != '') {
                     $q = [
-                        'title' => 'Task List',
+                        'title' => 'PoMan | Task List',
                         'task' => $this->task->getTask($boardid),
+                        'tasklist' => $this->tasklist,
                         session()->set('idb', $board['boardid']),
                         session()->set('bname', $board['boardname']),
                     ];
@@ -128,6 +130,9 @@ class Board extends BaseController
 
     public function clean()
     {
+        session()->set('idb', null);
+        session()->set('bname', null);
+
         return redirect()->to('board');
     }
 }

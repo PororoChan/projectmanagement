@@ -30,11 +30,28 @@ class Tasklist extends BaseController
         echo json_encode($vw);
     }
 
+    public function switch()
+    {
+        $listid = $this->request->getPost('listid');
+        $taskid = $this->request->getPost('taskid');
+        if ($taskid != '' && $listid != '') {
+            $data = [
+                'taskid' => $taskid,
+            ];
+            $this->tasklist->updateList($data, $listid);
+            $b['success'] = 1;
+        } else {
+            $b['success'] = 0;
+            $b['msg'] = 'Null Data!';
+        }
+
+        echo json_encode($b);
+    }
+
     public function addData()
     {
         $tname = $this->request->getPost('taskname');
         $taskid = $this->request->getPost('tid');
-
         if ($tname != '') {
             $data = [
                 'taskid' => $taskid,
@@ -50,23 +67,9 @@ class Tasklist extends BaseController
         }
     }
 
-    public function item()
-    {
-        $taskid = $this->request->getPost('tid');
-
-        $data = [
-            'task' => $this->task->getAll(),
-            'list' => $this->tasklist->getAll($taskid),
-        ];
-
-        $vw['view'] = view('master/tasklist/v_taskitem', $data);
-        echo json_encode($vw);
-    }
-
     public function deleteData()
     {
         $id = $this->request->getPost('id');
-
         if ($id != 0) {
             $this->tasklist->hapus($id);
             echo 1;

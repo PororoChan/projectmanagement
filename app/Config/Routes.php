@@ -54,7 +54,6 @@ $routes->add('board/addBoard', 'master\Board::addBoard');
 $routes->add('board/editBoard', 'master\Board::editBoard');
 $routes->add('board/delBoard', 'master\Board::deleteBoard');
 $routes->add('board/b', 'master\Board::board');
-$routes->add('board/switch', 'master\Board::switch');
 $routes->add('board/FormViews', 'master\Board::FormViews');
 $routes->add('board/EditViews/(:any)', 'master\Board::FormViews/$1');
 $routes->add('board/cleanUser', 'master\Board::clean');
@@ -71,6 +70,7 @@ $routes->add('list/load', 'master\Tasklist::item');
 $routes->add('list/formAdd', 'master\Tasklist::FormViews');
 $routes->add('list/addData', 'master\Tasklist::addData');
 $routes->add('list/delete', 'master\Tasklist::deleteData');
+$routes->add('list/switch', 'master\Tasklist::switch');
 
 // Select2
 $routes->add('list/getList', 'master\Board::getList');

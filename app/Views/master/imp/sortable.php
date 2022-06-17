@@ -1,13 +1,13 @@
 <script>
-    var sts = '',
-        ids = '';
+    var idt = '',
+        idl = '';
 
-    $('.portlet-card').addClass('pb-1 pt-1');
-    $('.list').addClass('pb-1 pt-1');
+    $('.portlet-card').addClass('mt-2')
 
     $('.list').sortable({
         placeholder: "bg-secondary bg-opacity-10 rounded",
         cursor: 'grabbing',
+        connectWith: '.list',
         start: function(ev, ui) {
             // Rotate
             ui.item.css('transform', 'rotate(3deg)');
@@ -19,13 +19,12 @@
             ui.item.css('transform', 'rotate(0deg)')
         }
     });
-    $('.list').disableSelection();
 
     $('.portlet-card-list').sortable({
-        placeholder: "bg-secondary bg-opacity-10 rounded",
-        connectWith: $('.portlet-card-list'),
+        placeholder: "bg-secondary bg-opacity-10 mt-2 rounded",
+        cursor: 'grabbing',
+        connectWith: '.portlet-card-list',
         items: ".portlet-card",
-        cursor: "grabbing",
         start: function(ev, ui) {
             // Rotate
             ui.item.css('transform', 'rotate(3deg)');
@@ -34,28 +33,35 @@
             ui.placeholder.height(ui.item.height());
             ui.placeholder.css('visibility', 'visible');
 
-            sts = $(this).attr('sts');
+            idt = $(this).attr('sts');
         },
         stop: function(ev, ui) {
             ui.item.css('transform', 'rotate(0deg)');
 
-            code = ui.item.attr('data-id');
+            idl = ui.item.attr('tlid')
 
             $.ajax({
-                url: "<?= base_url('board/switch') ?>",
+                url: '<?= base_url('list/switch') ?>',
                 type: 'post',
-                data: {
-                    code: code,
-                    status: sts,
-                },
                 dataType: 'json',
+                data: {
+                    listid: idl,
+                    taskid: idt
+                },
+                success: function(res) {
+                    if (res.success = 1) {
+                        $('#list-board').load('<?= base_url('task/t') ?>')
+                    } else {
+                        $.notify(res.msg, "error");
+                    }
+                },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    $.notify(thrownError, 'error')
+                    $.notify(thrownError, "error");
                 }
             });
         },
         receive: function(ev, ui) {
-            sts = $(this).attr('sts');
+            idt = $(this).attr('sts');
         }
-    });
+    }).disableSelection();
 </script>

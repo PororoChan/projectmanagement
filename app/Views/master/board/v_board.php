@@ -1,5 +1,4 @@
 <?= $this->include('inc_template/header') ?>
-
 <div class="content-wrapper pb-0">
     <div class="main-panel p-1">
         <div class="main-content" id="loadcont">

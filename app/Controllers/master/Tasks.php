@@ -4,6 +4,7 @@ namespace App\Controllers\master;
 
 use App\Controllers\BaseController;
 use App\Models\Mstask;
+use App\Models\Mstasklist;
 
 class Tasks extends BaseController
 {
@@ -11,6 +12,7 @@ class Tasks extends BaseController
     {
         helper('form');
         $this->task = new Mstask();
+        $this->tasklist = new Mstasklist();
     }
 
     public function task()
@@ -20,6 +22,7 @@ class Tasks extends BaseController
         }
         $bid = session()->get('idb');
         $data = [
+            'tasklist' => $this->tasklist,
             'task' => $this->task->getTask($bid),
         ];
         return view('master/task/v_card', $data);
@@ -36,7 +39,6 @@ class Tasks extends BaseController
         if ($id != '') {
             $ftype = 'Edit';
         }
-
         $data = [
             'id' => $id,
             'form_type' => $ftype,
@@ -49,15 +51,13 @@ class Tasks extends BaseController
     {
         $tasktitle = $this->request->getPost('taskname');
         $boardid = $this->request->getPost('bid');
-
         if ($tasktitle != '') {
             $data = [
                 'taskid' => random_int(100000, 999999),
                 'taskname' => $tasktitle,
                 'boardid' => $boardid,
-                'seq' => 1,
+                'seq' => $this->task->getSeq($boardid) + 1,
             ];
-
             $q = $this->task->addTask($data);
             if ($q) {
                 $data['success'] = 1;
@@ -67,7 +67,7 @@ class Tasks extends BaseController
             }
         } else {
             $data['success'] = 0;
-            $data['msg'] = 'Taskname cannot be empty';
+            $data['msg'] = 'Listname cannot be empty';
         }
         echo json_encode($data);
     }
@@ -75,7 +75,6 @@ class Tasks extends BaseController
     public function deleteData()
     {
         $id = $this->request->getPost('id');
-
         if ($id != 0) {
             $this->task->hapus($id);
             echo 1;

@@ -24,11 +24,9 @@
             type: 'post',
             data: form,
             success: function(res) {
-                setTimeout(() => {
-                    $('#bbody').load('<?= base_url('board/b') ?>', function() {
-                        scaleCard();
-                    })
-                }, 500);
+                $('#bbody').load('<?= base_url('board/b') ?>', function() {
+                    scaleCard();
+                })
                 $('#form_board')[0].reset();
                 modalB()
                 count();

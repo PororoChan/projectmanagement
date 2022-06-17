@@ -1,6 +1,6 @@
 <?= $this->include('inc_template/header') ?>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
-<div class="content-wrapper pb-0">
+<div class="content-wrapper pb-0" style="max-height: 100vh;">
     <div class="main-panel p-0">
         <div class="main-content">
             <section class="section">
@@ -22,26 +22,3 @@
 </div>
 <?= $this->include('inc_template/footer') ?>
 <?= $this->include('master/imp/list') ?>
-<script>
-    // Delete List
-    $('.delete').each(function() {
-        $(this).on('click', function() {
-            var id = $(this).attr('id');
-
-            $.ajax({
-                url: "<?= base_url('board/deleteList') ?>",
-                type: 'post',
-                dataType: 'json',
-                data: {
-                    id: id,
-                },
-                success: function(res) {
-                    // Refresh Content
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    $.notify(thrownError, 'error');
-                }
-            })
-        });
-    });
-</script>

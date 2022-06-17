@@ -20,6 +20,13 @@ class Mstask extends Model
             ->get()->getResultArray();
     }
 
+    public function getSeq($bid)
+    {
+        return $this->builder->selectCount('t.seq')
+            ->where('t.boardid', $bid)
+            ->countAllResults();
+    }
+
     public function getOne($id = 0)
     {
         return $this->builder
@@ -31,6 +38,7 @@ class Mstask extends Model
     {
         return $this->builder
             ->where('t.boardid', $boardid)
+            ->orderBy('t.seq', 'asc')
             ->get()->getResultArray();
     }
 

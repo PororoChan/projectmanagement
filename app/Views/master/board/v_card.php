@@ -1,9 +1,9 @@
 <?php foreach ($board as $b) : ?>
     <div class="col-lg-3 col-md-4">
         <div class="board-card pt-2 pb-2" id="board-pit">
-            <a role="button" href="<?= base_url('board/b/' . $b['boardid'] . '') ?>" bid="<?= $b['boardid'] ?>" class="card text-start pt-0 p-0 btn btn-secondary bg-light w-100 board_each" style="min-height: 85px; border-left: 5px solid #0033C4;" id="boardbtn">
+            <a role="button" href="<?= base_url('board/b/' . $b['boardid'] . '') ?>" bid="<?= $b['boardid'] ?>" class="card text-start p-0 btn btn-secondary bg-light w-100 board_each" style="min-height: 85px; border-left: 5px solid #0033C4;" id="boardbtn">
                 <div class="card-body" id="board_each">
-                    <span class="text-start text-secondary font-14 font-weight-semibold"><?= $b['boardname'] ?></span>
+                    <span class="text-start text-secondary font-14 font-weight-bolder"><?= $b['boardname'] ?></span>
                 </div>
             </a>
         </div>
@@ -11,14 +11,14 @@
 <?php endforeach; ?>
 <div class="dropdown-menu dropdown-menu-sm" style="width: 100px;" id="context-menu">
     <a class="dropdown-item btned" href="#">
-        <i class="fas fa-pencil-alt fs-7 me-2"></i>
+        <i class="fas fa-pencil-alt text-warning fs-7 me-2"></i>
         <input type="hidden" id="bed">
-        <span class="text-dark fs-7 fw-semibold">Edit</span>
+        <span class="text-dark fs-7 fw-bold">Edit</span>
     </a>
     <a class="dropdown-item btndel" href="#">
-        <i class="fas fa-trash-alt fs-7 me-2"></i>
+        <i class="fas fa-trash-alt text-danger fs-7 me-2"></i>
         <input type="hidden" id="bde">
-        <span class="text-dark fs-7 fw-semibold">Delete</span>
+        <span class="text-dark fs-7 fw-bold">Delete</span>
     </a>
 </div>
 <script>

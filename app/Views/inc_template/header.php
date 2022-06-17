@@ -5,6 +5,30 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title><?= $title ?></title>
+    <style>
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar:horizontal {
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background: #f2f2f2;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background: #A6A6A6;
+        }
+
+        ::-webkit-scrollbar-thumb:horizontal {
+            border-radius: 10px;
+            background: #A6A6A6;
+        }
+    </style>
     <link rel="icon" href="<?= base_url('public/assets/images/logo.ico') ?>" />
 
     <?= $this->include('v_script') ?>
@@ -90,4 +114,4 @@
                 </div>
             </nav>
         </div>
-        <div class="container-fluid page-body-wrapper" style="overflow-x: scroll;">
+        <div class="container-fluid page-body-wrapper" style="overflow-x: scroll; overflow-y: hidden;">

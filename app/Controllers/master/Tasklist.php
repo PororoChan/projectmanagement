@@ -22,9 +22,9 @@ class Tasklist extends BaseController
             $ftype = 'Edit';
         }
         $data = [
-            'row' => $this->tasklist->getOne($id),
-            'form_type' => $ftype,
             'id' => $id,
+            'form_type' => $ftype,
+            'row' => $this->tasklist->getOne($id),
         ];
         $vw['view'] = view('master/tasklist/v_form', $data);
         echo json_encode($vw);
@@ -61,6 +61,27 @@ class Tasklist extends BaseController
             ];
 
             $this->tasklist->tambah($data);
+            echo 1;
+        } else {
+            echo 0;
+        }
+    }
+
+    public function editData()
+    {
+        $tname = $this->request->getPost('taskname');
+        $tdesc = $this->request->getPost('desc');
+        $taskid = $this->request->getPost('id');
+
+        if ($tname != '' && $tdesc != '') {
+            $data = [
+                'tasklistname' => $tname,
+                'description' => $tdesc,
+                'updateddate' => date('Y-m-d H:i:s'),
+                'updatedby' => session()->get('name'),
+            ];
+
+            $this->tasklist->edit($data, $taskid);
             echo 1;
         } else {
             echo 0;

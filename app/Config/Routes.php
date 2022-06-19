@@ -68,7 +68,9 @@ $routes->add('task/delete', 'master\Tasks::deleteData');
 // TaskList
 $routes->add('list/load', 'master\Tasklist::item');
 $routes->add('list/formAdd', 'master\Tasklist::FormViews');
+$routes->add('list/editView/(:any)', 'master\Tasklist::FormViews/$1');
 $routes->add('list/addData', 'master\Tasklist::addData');
+$routes->add('list/editData', 'master\Tasklist::editData');
 $routes->add('list/delete', 'master\Tasklist::deleteData');
 $routes->add('list/switch', 'master\Tasklist::switch');
 

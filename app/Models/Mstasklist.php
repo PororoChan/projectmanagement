@@ -20,7 +20,7 @@ class Mstasklist extends Model
             ->get()->getResultArray();
     }
 
-    public function getOne($id)
+    public function getOne($id = 0)
     {
         return $this->builder
             ->where('s.id', $id)
@@ -35,6 +35,11 @@ class Mstasklist extends Model
     public function tambah($data)
     {
         return $this->builder->insert($data);
+    }
+
+    public function edit($data, $id)
+    {
+        return $this->builder->update($data, ['id' => $id]);
     }
 
     public function hapus($id)

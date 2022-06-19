@@ -11,6 +11,19 @@
     </div>
 </div>
 
+<!-- Modal Global -->
+<div class="modal fade" id="modalcrud" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+                <span class="text-dark fs-7"> -- Project Management -- </span>
+            </div>
+            <div class="modal-body" id="modalbody">
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Board -->
 <div class="modal fade" id="deleteBoard" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">

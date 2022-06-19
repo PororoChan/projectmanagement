@@ -49,10 +49,8 @@
                     taskid: idt
                 },
                 success: function(res) {
-                    if (res.success = 1) {
-                        $('#list-board').load('<?= base_url('task/t') ?>')
-                    } else {
-                        $.notify(res.msg, "error");
+                    if (res.success == 0) {
+                        $.notify(res.msg, 'error');
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

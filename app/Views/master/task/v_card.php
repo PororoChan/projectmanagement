@@ -23,8 +23,8 @@
                     New Task
                 </span>
             </button>
-            <div id="task-list-<?= $t['taskname'] ?>" tid="<?= $t['taskid'] ?>" class="task-item">
-                <ul id="list-<?= $t['taskname'] ?>" class="portlet-card-list ui-sortable list-unstyled p-1" sts="<?= $t['taskid'] ?>" style="min-height: 75px; max-height: 400px; overflow-y: auto;">
+            <div id="task-list-<?= $t['taskname'] ?>" tid="<?= $t['taskid'] ?>" class="task-item" style="overflow-y: auto;">
+                <ul id="list-<?= $t['taskname'] ?>" class="portlet-card-list ui-sortable list-unstyled p-1" sts="<?= $t['taskid'] ?>" style="min-height: 75px; max-height: 400px;">
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
                         <div class="portlet-card bg-white border shadow-sm p-3 rounded" tlid="<?= $list['id'] ?>">
                             <div class="portlet-card-header mb-1">
@@ -34,15 +34,15 @@
                                         <a href="" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenu">
                                             <i class="fas fa-ellipsis-v fs-6 text-secondary"></i>
                                         </a>
-                                        <ul class="dropdown-menu position-absolute" aria-labelledby="dropdownMenu">
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-pencil-alt text-warning fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Edit</span></a></li>
+                                        <ul class="dropdown-menu position-absolute shadow-lg" aria-labelledby="dropdownMenu">
+                                            <li><a class="dropdown-item taskedit" taskid="<?= $list['id'] ?>" href="#"><i class="fas fa-pencil-alt text-warning fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Edit</span></a></li>
                                             <li><a class="dropdown-item deltasklist" dtid="<?= $list['id'] ?>" href="#"><i class="fas fa-trash text-danger fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Delete</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="portlet-card-body pt-3">
-                                <div class="text-secondary fw-semibold font-13">
+                                <div class="text-secondary fw-semibold font-13" style="overflow-wrap: break-word;">
                                     <?= $list['description'] ?>
                                 </div>
                             </div>
@@ -84,11 +84,12 @@
     });
 
     $('.btn-add').each(function() {
-        var id = '';
         $(this).on('click', function(ev) {
-            var did = $(this).attr('tsid');
+            var did = $(this).attr('tsid'),
+                link = '<?= base_url('list/formAdd') ?>';
+
             $.ajax({
-                url: '<?= base_url('list/formAdd') ?>',
+                url: link,
                 type: 'post',
                 dataType: 'json',
                 success: function(res) {
@@ -101,6 +102,23 @@
             })
         });
     });
+
+    $('.taskedit').each(function() {
+        $(this).on('click', function() {
+            var did = $(this).attr('taskid'),
+                link = "<?= base_url('list/editView') ?>" + '/' + did;
+
+            $.ajax({
+                url: link,
+                type: 'post',
+                dataType: 'json',
+                success: function(res) {
+                    $('#modalcrud').modal('toggle');
+                    $('#modalbody').html(res.view);
+                }
+            })
+        })
+    })
 
     $('.delist').each(function() {
         $(this).on('click', function() {

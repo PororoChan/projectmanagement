@@ -73,7 +73,7 @@ class Tasklist extends BaseController
         $tdesc = $this->request->getPost('desc');
         $taskid = $this->request->getPost('id');
 
-        if ($tname != '' && $tdesc != '') {
+        if ($tname != '') {
             $data = [
                 'tasklistname' => $tname,
                 'description' => $tdesc,

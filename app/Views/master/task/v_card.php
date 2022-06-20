@@ -1,6 +1,6 @@
 <?php foreach ($task as $t) : ?>
     <div class="col-md-4 col-lg-3 col-xl-3 list" seq="<?= $t['seq'] ?>">
-        <div id=" row-<?= $t['taskid'] ?>" class="bg-white shadow p-3 rounded">
+        <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-3 rounded">
             <div class="row d-flex justify-content-between">
                 <div class="col-lg-10 text-start">
                     <div id="taskid" class="font-14 fw-bold text-dark tsid" tsid="<?= $t['taskid'] ?>">
@@ -24,17 +24,17 @@
                 </span>
             </button>
             <div id="task-list-<?= $t['taskname'] ?>" tid="<?= $t['taskid'] ?>" class="task-item" style="overflow-y: auto;">
-                <ul id="list-<?= $t['taskname'] ?>" class="portlet-card-list ui-sortable list-unstyled p-1" sts="<?= $t['taskid'] ?>" style="min-height: 75px; max-height: 400px;">
+                <ul id="list-<?= $t['taskname'] ?>" class="portlet-card-list list-unstyled p-1" sts="<?= $t['taskid'] ?>" style="min-height: 75px; max-height: 400px;">
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
                         <div class="portlet-card bg-white border shadow-sm p-3 rounded" tlid="<?= $list['id'] ?>">
                             <div class="portlet-card-header mb-1">
-                                <div class="text-dark fw-semibold font-14 d-flex justify-content-between">
+                                <div class="text-dark fw-semibold font-14 me-2 d-flex justify-content-between">
                                     <?= $list['tasklistname'] ?>
                                     <div class="dropstart">
                                         <a href="" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenu">
-                                            <i class="fas fa-ellipsis-v fs-6 text-secondary"></i>
+                                            <i class="fas fa-ellipsis-v fs-5 text-secondary"></i>
                                         </a>
-                                        <ul class="dropdown-menu position-absolute shadow-lg" aria-labelledby="dropdownMenu">
+                                        <ul class="dropdown-menu position-absolute shadow-sm" aria-labelledby="dropdownMenu">
                                             <li><a class="dropdown-item taskedit" taskid="<?= $list['id'] ?>" href="#"><i class="fas fa-pencil-alt text-warning fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Edit</span></a></li>
                                             <li><a class="dropdown-item deltasklist" dtid="<?= $list['id'] ?>" href="#"><i class="fas fa-trash text-danger fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Delete</span></a></li>
                                         </ul>
@@ -55,7 +55,7 @@
 <?php endforeach; ?>
 <div class="col-md-4 col-lg-3 col-xl-3 add">
     <div id="row" class="board-portlet bg-white shadow p-3 rounded">
-        <button class="btn btn-success w-100" style="height: 40px;" id="add_list">
+        <button class="btn btn-success w-100 add_list" style="height: 40px;" id="add_list">
             <i class="fas fa-plus fs-7 me-2"></i>
             <span class="text-center font-weight-bold">Add List</span>
         </button>
@@ -94,7 +94,7 @@
                 dataType: 'json',
                 success: function(res) {
                     $('#form-tlist').remove();
-                    $(res.view).insertAfter(ev.currentTarget)
+                    $(res.view).insertAfter(ev.currentTarget).msmarv
                     setTimeout(() => {
                         $('.tid').val(did);
                     }, 50);

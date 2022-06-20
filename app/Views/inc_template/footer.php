@@ -113,7 +113,7 @@
             success: function(res) {
                 if (res == 1) {
                     setTimeout(() => {
-                        $('#list-board').load('<?= base_url('task/t') ?>')
+                        $('#list_board').load('<?= base_url('task/t') ?>')
                         $('#deleteTask').modal('toggle')
                     }, 50);
                 }

@@ -16,7 +16,7 @@
                     $.notify('New list added', 'success');
                     $('#formlist')[0].reset();
                     setTimeout(() => {}, 50);
-                    $('#list-board').load('<?= base_url('task/t') ?>')
+                    $('#list_board').load('<?= base_url('task/t') ?>')
                 } else {
                     $.notify(res.msg, 'warn');
                 }
@@ -53,7 +53,7 @@
                         $('#form-tlist')[0].reset();
                         $('#modalcrud').modal('hide')
                         setTimeout(() => {
-                            $('#list-board').load('<?= base_url('task/t') ?>')
+                            $('#list_board').load('<?= base_url('task/t') ?>')
                         }, 55);
                     }, 50);
                 } else {

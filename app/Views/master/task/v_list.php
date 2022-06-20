@@ -12,7 +12,7 @@
                     <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
                 </button>
                 <div class="pt-4">
-                    <div class="row board-list flex-nowrap" style="height: max-content;" id="list-board">
+                    <div class="row board-list flex-nowrap" style="height: max-content;" id="list_board">
                         <?= $this->include('master/task/v_card') ?>
                     </div>
                 </div>

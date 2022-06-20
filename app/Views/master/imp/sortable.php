@@ -5,24 +5,17 @@
 
     var sort = new Sortable(list_board, {
         draggable: '.list',
-        swapThreshold: 0.50,
+        swapThreshold: 1,
         animation: 100,
         onStart: function(evt) {
-            console.log(evt)
+            console.log(evt.item)
+        },
+        onEnd: function(evt) {
+            alert("sampun");
         }
     })
 
     $('.portlet-card').addClass('mt-2');
-
-    // $('.list').sortable({
-    //     placeholder: "bg-secondary bg-opacity-10 mt-2 rounded",
-    //     connectWith: '.list',
-    //     start: function(ev, ui) {
-    //         // Placeholder
-    //         ui.placeholder.height(ui.item.height());
-    //         ui.placeholder.css('visibility', 'visible');
-    //     },
-    // })
 
     $('.portlet-card-list').sortable({
         placeholder: "bg-secondary bg-opacity-10 mt-2 rounded",

@@ -1,3 +1,12 @@
+<style>
+    .tsid {
+        cursor: pointer;
+    }
+
+    .edit-active {
+        cursor: text;
+    }
+</style>
 <?php foreach ($task as $t) : ?>
     <div class="col-md-4 col-lg-3 col-xl-3 list" tasid="<?= $t['taskid'] ?>" seq="<?= $t['seq'] ?>">
         <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-3 rounded">
@@ -59,7 +68,7 @@
             <i class="fas fa-plus fs-7 me-2"></i>
             <span class="text-center font-weight-bold">Add List</span>
         </button>
-        <div class="mt-4 w-100" style="height: max-content;" id="list-append">
+        <div class="mt-4 w-100" style="height: max-content; display: none;" id="list-append">
 
         </div>
     </div>
@@ -72,12 +81,26 @@
             url: '<?= base_url('task/formAdd') ?>',
             type: 'POST',
             success: function(res) {
-                $('#list-append').html(res);
+                $('#list-append').fadeToggle('fast', function() {
+                    $(this).html(res);
+                })
             }
         })
     });
 
     $('.tsid').each(function() {
+        var self = $(this);
+        $(this).select()
+        $(this).focusin(function(elem) {
+            elem.currentTarget.classList.add('edit-active');
+            // Select All
+            setTimeout(function() {
+                document.execCommand('selectAll', false, null)
+            }, 0);
+        });
+        $(this).focusout(function(el) {
+            el.currentTarget.classList.remove('edit-active');
+        });
         $(this).keydown(function(e) {
             if (e.keyCode == 13) {
                 e.preventDefault()
@@ -95,6 +118,7 @@
                     success: function(res) {
                         if (res.success == 1) {
                             // FocusOut 
+                            self.blur();
                         } else {
                             $.notify(res.msg, 'error')
                         }
@@ -108,6 +132,7 @@
     })
 
     $('.btn-add').each(function() {
+        var self = $(this);
         $(this).on('click', function(ev) {
             var did = $(this).attr('tsid'),
                 link = '<?= base_url('list/formAdd') ?>';
@@ -118,7 +143,7 @@
                 dataType: 'json',
                 success: function(res) {
                     $('#form-tlist').remove();
-                    $(res.view).insertAfter(ev.currentTarget)
+                    $(res.view).insertAfter(self)
                     setTimeout(() => {
                         $('.tid').val(did);
                     }, 50);

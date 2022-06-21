@@ -37,9 +37,6 @@
         onChoose: function(evt) {
             oldSeq = evt.oldIndex;
         },
-        onMove: function(evt) {
-            console.log(evt)
-        },
         onChange: function(evt) {
             newSeq = evt.newIndex;
             id = evt.item.getAttribute('tasid');

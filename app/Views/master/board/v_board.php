@@ -40,7 +40,7 @@
             type: 'post',
             success: function(res) {
                 $('.count').each(function() {
-                    $(this).html('...');
+                    $(this).html('. . .');
                     setTimeout(() => {
                         $(this).html(res);
                     }, 200);

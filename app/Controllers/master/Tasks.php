@@ -47,6 +47,21 @@ class Tasks extends BaseController
         return view('master/task/V_form_list', $data);
     }
 
+    public function swap()
+    {
+        $id = $this->request->getPost('tsid');
+        $seq['seq'] = $this->request->getPost('seq');
+
+        if ($id != '') {
+            $this->task->swap($seq, $id);
+            $dt['success'] = 1;
+        } else {
+            $dt['success'] = 0;
+        }
+
+        echo json_encode($dt);
+    }
+
     public function addTask()
     {
         $tasktitle = $this->request->getPost('taskname');
@@ -70,6 +85,25 @@ class Tasks extends BaseController
             $data['msg'] = 'Listname cannot be empty';
         }
         echo json_encode($data);
+    }
+
+    public function editData()
+    {
+        $id = $this->request->getPost('id');
+        $data = $this->request->getPost('dt');
+
+        if ($id != '') {
+            $data = [
+                'taskname' => $data
+            ];
+            $this->task->edit($data, $id);
+            $res['success'] = 1;
+        } else {
+            $res['success'] = 0;
+            $res['msg'] = 'Id not Defined';
+        }
+
+        echo json_encode($res);
     }
 
     public function deleteData()

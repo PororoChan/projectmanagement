@@ -9,7 +9,7 @@
         </div>
     </div>
 <?php endforeach; ?>
-<div class="dropdown-menu dropdown-menu-sm" style="width: 100px;" id="context-menu">
+<div class="dropdown-menu dropdown-menu-sm shadow-sm" style="width: 100px;" id="context-menu">
     <a class="dropdown-item btned" href="#">
         <i class="fas fa-pencil-alt text-warning fs-7 me-2"></i>
         <input type="hidden" id="bed">

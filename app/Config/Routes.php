@@ -32,21 +32,19 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-// Display Index
+// *Display Index
 $routes->add('/', 'user_auth\Login::index');
 $routes->add('home', 'Dashboard::index');
 $routes->add('board', 'master\Board::index');
-$routes->add('list', 'master\Lists::index');
 
-// Login Process
+// *Login Process
 $routes->add('auth', 'user_auth\Login::auth');
 $routes->add('login', 'user_auth\Login::index');
 $routes->add('logout', 'user_auth\Login::logout');
 
-// Form
+// *Form
 $routes->add('board/form', 'master\Board::form');
-
-// Form Process
+// *Form Process
 // Board
 $routes->add('board/b/(:any)', 'master\Board::goList/$1');
 $routes->add('board/count', 'master\Board::countBoard');
@@ -57,14 +55,14 @@ $routes->add('board/b', 'master\Board::board');
 $routes->add('board/FormViews', 'master\Board::FormViews');
 $routes->add('board/EditViews/(:any)', 'master\Board::FormViews/$1');
 $routes->add('board/cleanUser', 'master\Board::clean');
-
 // Task
 $routes->add('task/formAdd', 'master\Tasks::FormViews');
 $routes->add('task/addTask', 'master\Tasks::addTask');
+$routes->add('task/editData', 'master\Tasks::editData');
+$routes->add('task/swap', 'master\Tasks::swap');
 $routes->add('task/t', 'master\Tasks::task');
 $routes->add('task/a', 'master\Tasks::addF');
 $routes->add('task/delete', 'master\Tasks::deleteData');
-
 // TaskList
 $routes->add('list/load', 'master\Tasklist::item');
 $routes->add('list/formAdd', 'master\Tasklist::FormViews');
@@ -73,9 +71,6 @@ $routes->add('list/addData', 'master\Tasklist::addData');
 $routes->add('list/editData', 'master\Tasklist::editData');
 $routes->add('list/delete', 'master\Tasklist::deleteData');
 $routes->add('list/switch', 'master\Tasklist::switch');
-
-// Select2
-$routes->add('list/getList', 'master\Board::getList');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

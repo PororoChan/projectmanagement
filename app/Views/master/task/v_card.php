@@ -1,10 +1,10 @@
 <?php foreach ($task as $t) : ?>
-    <div class="col-md-4 col-lg-3 col-xl-3 list" seq="<?= $t['seq'] ?>">
+    <div class="col-md-4 col-lg-3 col-xl-3 list" tasid="<?= $t['taskid'] ?>" seq="<?= $t['seq'] ?>">
         <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-3 rounded">
-            <div class="row d-flex justify-content-between">
+            <div class="row d-flex handle justify-content-between">
                 <div class="col-lg-10 text-start">
-                    <div id="taskid" class="font-14 fw-bold text-dark tsid" tsid="<?= $t['taskid'] ?>">
-                        <span id="taskname" class="me-2 sts"><?= $t['taskname'] ?></span>
+                    <div id="taskid" class="font-14 fw-bold p-1 text-dark tsid" tsid="<?= $t['taskid'] ?>" spellcheck="false" contenteditable="true">
+                        <span id="taskname" class="me-2 sts" spellcheck="false"><?= $t['taskname'] ?></span>
                     </div>
                 </div>
                 <div class="col-lg-1 d-flex justify-content-end dropstart">
@@ -23,8 +23,8 @@
                     New Task
                 </span>
             </button>
-            <div id="task-list-<?= $t['taskname'] ?>" tid="<?= $t['taskid'] ?>" class="task-item" style="overflow-y: auto;">
-                <ul id="list-<?= $t['taskname'] ?>" class="portlet-card-list list-unstyled p-1" sts="<?= $t['taskid'] ?>" style="min-height: 75px; max-height: 400px;">
+            <div tid="<?= $t['taskid'] ?>" class="task-item" style="overflow-y: auto;">
+                <ul class="portlet-card-list list-unstyled" sts="<?= $t['taskid'] ?>" style="min-height: 75px; max-height: 50vh;">
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
                         <div class="portlet-card bg-white border shadow-sm p-3 rounded" tlid="<?= $list['id'] ?>">
                             <div class="portlet-card-header mb-1">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="portlet-card-body pt-3">
-                                <div class="text-secondary fw-semibold font-13" style="overflow-wrap: break-word;">
+                                <div class="text-secondary text-start fw-semibold font-13" style="overflow-wrap: break-word;">
                                     <?= $list['description'] ?>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
     $('#add_list').on('click', function() {
         $.ajax({
             url: '<?= base_url('task/formAdd') ?>',
-            type: 'post',
+            type: 'POST',
             success: function(res) {
                 $('#list-append').html(res);
             }
@@ -78,10 +78,34 @@
     });
 
     $('.tsid').each(function() {
-        $(this).dblclick(function() {
-            $.notify($(this).attr('tsid'))
-        })
-    });
+        $(this).keydown(function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault()
+                var id = $(this).attr('tsid'),
+                    dt = $(this).text().trim();
+
+                $.ajax({
+                    url: '<?= base_url('task/editData') ?>',
+                    type: 'post',
+                    data: {
+                        id: id,
+                        dt: dt,
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        if (res.success == 1) {
+                            // FocusOut 
+                        } else {
+                            $.notify(res.msg, 'error')
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        $.notify(thrownError, 'error');
+                    }
+                })
+            }
+        });
+    })
 
     $('.btn-add').each(function() {
         $(this).on('click', function(ev) {
@@ -94,7 +118,7 @@
                 dataType: 'json',
                 success: function(res) {
                     $('#form-tlist').remove();
-                    $(res.view).insertAfter(ev.currentTarget).msmarv
+                    $(res.view).insertAfter(ev.currentTarget)
                     setTimeout(() => {
                         $('.tid').val(did);
                     }, 50);

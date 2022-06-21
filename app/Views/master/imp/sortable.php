@@ -1,19 +1,6 @@
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <script>
     var idt = '',
         idl = '';
-
-    var sort = new Sortable(list_board, {
-        draggable: '.list',
-        swapThreshold: 1,
-        animation: 100,
-        onStart: function(evt) {
-            console.log(evt.item)
-        },
-        onEnd: function(evt) {
-            alert("sampun");
-        }
-    })
 
     $('.portlet-card').addClass('mt-2');
 

@@ -42,9 +42,19 @@ class Mstask extends Model
             ->get()->getResultArray();
     }
 
+    public function swap($data, $taskid = 0)
+    {
+        return $this->builder->update($data, ['taskid' => $taskid]);
+    }
+
     public function addTask($data)
     {
         return $this->builder->insert($data);
+    }
+
+    public function edit($data, $id)
+    {
+        return $this->builder->update($data, ['taskid' => $id]);
     }
 
     public function hapus($id)

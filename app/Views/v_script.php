@@ -15,4 +15,5 @@
 <script src="<?= base_url('public/assets/js/off-canvas.js') ?>"></script>
 
 <!-- Import JS -->
+<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>

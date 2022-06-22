@@ -1,9 +1,9 @@
 <!-- Modal Board -->
 <div class="modal fade" id="formboard" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header d-flex justify-content-center">
-                <span class="text-dark fs-7"> --- Board Workspace --- </span>
+            <div class="modal-header d-flex justify-content-start font-16">
+                <i class="fas fa-chalkboard-teacher text-dark me-2"></i><span class="text-dark fw-bold">Board Workspace</span>
             </div>
             <div class="modal-body" id="mobody">
             </div>
@@ -13,10 +13,10 @@
 
 <!-- Modal Global -->
 <div class="modal fade" id="modalcrud" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header d-flex justify-content-center">
-                <span class="text-dark fs-7"> -- Project Management -- </span>
+            <div class="modal-header font-18 d-flex justify-content-start">
+                <i class="fas fa-project-diagram me-2 text-secondary"></i> <span class="text-secondary fw-bold" id="title-del"></span>
             </div>
             <div class="modal-body" id="modalbody">
             </div>
@@ -26,15 +26,15 @@
 
 <!-- Modal Board -->
 <div class="modal fade" id="deleteBoard" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="text-center" id="titledel"></h5>
             </div>
             <div class="modal-body">
-                <span class="text-secondary font-weight-semibold fs-7" id="text-del">
+                <div id="text-del" class="fw-normal font-14">
 
-                </span>
+                </div>
                 <div id="data-id">
 
                 </div>
@@ -51,7 +51,7 @@
 
 <!-- Modal Global -->
 <div class="modal fade" id="deleteTask" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="text-center" id="deltask"></h5>
@@ -80,6 +80,10 @@
 <?= $this->include('master/imp/sortable') ?>
 
 <script>
+    $('#btn-drop').click(function() {
+        $('#nav-drop').toggleClass('rotate_elem');
+    });
+
     function modalB() {
         $('#formboard').modal('toggle');
     }

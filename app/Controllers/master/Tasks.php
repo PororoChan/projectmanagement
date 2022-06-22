@@ -42,6 +42,7 @@ class Tasks extends BaseController
         $data = [
             'id' => $id,
             'form_type' => $ftype,
+            'data' => $this->task,
             'row' => $this->task->getOne($id),
         ];
         return view('master/task/V_form_list', $data);
@@ -71,7 +72,7 @@ class Tasks extends BaseController
                 'taskid' => random_int(100000, 999999),
                 'taskname' => $tasktitle,
                 'boardid' => $boardid,
-                'seq' => $this->task->getSeq($boardid) + 1,
+                'seq' => intval($this->task->getSeq($boardid)) + 1,
             ];
             $q = $this->task->addTask($data);
             if ($q) {

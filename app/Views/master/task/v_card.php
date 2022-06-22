@@ -1,12 +1,3 @@
-<style>
-    .tsid {
-        cursor: pointer;
-    }
-
-    .edit-active {
-        cursor: text;
-    }
-</style>
 <?php foreach ($task as $t) : ?>
     <div class="col-md-4 col-lg-3 col-xl-3 list" tasid="<?= $t['taskid'] ?>" seq="<?= $t['seq'] ?>">
         <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-3 rounded">
@@ -38,13 +29,13 @@
                         <div class="portlet-card bg-white border shadow-sm p-3 rounded" tlid="<?= $list['id'] ?>">
                             <div class="portlet-card-header mb-1">
                                 <div class="text-dark fw-semibold font-14 me-2 d-flex justify-content-between">
-                                    <?= $list['tasklistname'] ?>
+                                    <span class="w-100" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
                                     <div class="dropstart">
                                         <a href="" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenu">
                                             <i class="fas fa-ellipsis-v fs-5 text-secondary"></i>
                                         </a>
                                         <ul class="dropdown-menu position-absolute shadow-sm" aria-labelledby="dropdownMenu">
-                                            <li><a class="dropdown-item taskedit" taskid="<?= $list['id'] ?>" href="#"><i class="fas fa-pencil-alt text-warning fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Edit</span></a></li>
+                                            <li><a class="dropdown-item taskedit" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>" href="#"><i class="fas fa-pencil-alt text-warning fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Edit</span></a></li>
                                             <li><a class="dropdown-item deltasklist" dtid="<?= $list['id'] ?>" href="#"><i class="fas fa-trash text-danger fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Delete</span></a></li>
                                         </ul>
                                     </div>
@@ -118,6 +109,7 @@
                     success: function(res) {
                         if (res.success == 1) {
                             // FocusOut 
+                            $.notify('Taskname Updated', 'success');
                             self.blur();
                         } else {
                             $.notify(res.msg, 'error')
@@ -153,6 +145,7 @@
     });
 
     $('.taskedit').each(function() {
+        var self = $(this);
         $(this).on('click', function() {
             var did = $(this).attr('taskid'),
                 link = "<?= base_url('list/editView') ?>" + '/' + did;
@@ -163,6 +156,7 @@
                 dataType: 'json',
                 success: function(res) {
                     $('#modalcrud').modal('toggle');
+                    $('#title-del').text(self.attr('tname'));
                     $('#modalbody').html(res.view);
                 }
             })

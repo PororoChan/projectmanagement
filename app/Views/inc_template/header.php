@@ -30,7 +30,6 @@
         }
     </style>
     <link rel="icon" href="<?= base_url('public/assets/images/logo.ico') ?>" />
-
     <?= $this->include('v_script') ?>
 </head>
 
@@ -72,7 +71,7 @@
                             <li class="nav-item nav-profile dropdown">
                                 <a class="nav-link" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="nav-profile-img">
-                                        <img src="<?= base_url('public/assets/images/faces/avatar.png') ?>" />
+                                        <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" />
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black font-weight-semibold m-0"> <?= session()->get('name') ?> </p>

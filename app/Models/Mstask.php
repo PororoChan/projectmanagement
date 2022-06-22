@@ -22,9 +22,16 @@ class Mstask extends Model
 
     public function getSeq($bid)
     {
-        return $this->builder->selectCount('t.seq')
+        $dt = $this->builder
+            ->orderBy('t.seq', 'asc')
             ->where('t.boardid', $bid)
-            ->countAllResults();
+            ->get()->getLastRow();
+
+        if ($dt == null) {
+            return 0;
+        } else {
+            return $dt->seq;
+        }
     }
 
     public function getOne($id = 0)
@@ -45,6 +52,11 @@ class Mstask extends Model
     public function swap($data, $taskid = 0)
     {
         return $this->builder->update($data, ['taskid' => $taskid]);
+    }
+
+    public function reorder($seq, $taskid = 0)
+    {
+        return $this->builder->update();
     }
 
     public function addTask($data)

@@ -1,13 +1,31 @@
+<style>
+    .nav-items:hover {
+        background-color: #E9E9EB;
+        transition: 100ms ease-in-out;
+    }
+
+    #nav-drop {
+        transition: 0.2s ease-in-out;
+    }
+
+    .rotate_elem {
+        transform: rotate(-180deg);
+        transition: 0.2s ease-in-out;
+    }
+</style>
 <?= $this->include('inc_template/header') ?>
 <div class="content-wrapper pb-0">
     <div class="main-panel p-1">
         <div class="main-content" id="loadcont">
-            <div class="container">
-                <section class="section col-lg-4 w-100">
+            <div class="container d-flex">
+                <!-- Board Sidebar -->
+                <?= $this->include('inc_template/sidebar') ?>
+                <!-- Board -->
+                <section class="section w-100">
                     <div class="section-header pb-3 pt-2">
                         <div class="d-flex justify-content-between">
                             <h2 class="text-dark fs-5 text-start">
-                                <i class="fas fa-chalkboard-teacher text-primary me-2"></i> Board
+                                <i class="fas fa-chalkboard-teacher text-dark me-2"></i> Board
                             </h2>
                             <button class="btn btn-primary shadow-sm" id="create_board">
                                 <i class="fas fa-plus fs-7 fw-bold me-2"></i>
@@ -15,7 +33,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="section-body p-4 bg-white border border-opacity-25 rounded">
+                    <div class="section-body p-4 bg-white shadow-sm border-opacity-25 rounded">
                         <div class="board">
                             <div class="board-head">
                                 <span class="text-secondary fs-7 font-weight-normal">Showing <span class="count"></span> of <span class="count"></span> boards</span>

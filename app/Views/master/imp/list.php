@@ -30,13 +30,13 @@
     function addTask() {
         var link = '<?= base_url('list/addData') ?>',
             ftype = $('#form-tlist').attr('ftype'),
-            pros = 'added',
+            pros = 'Added',
             form = $('#form-tlist')[0],
             dt = new FormData(form);
 
         if (ftype == 'Edit') {
             link = '<?= base_url('list/editData') ?>';
-            pros = "updated"
+            pros = "Updated"
         }
 
         $.ajax({
@@ -49,7 +49,7 @@
             success: function(res) {
                 if (res == 1) {
                     setTimeout(() => {
-                        $.notify(pros + " task", "success")
+                        $.notify("Task " + pros, "success")
                         $('#form-tlist')[0].reset();
                         $('#modalcrud').modal('hide')
                         setTimeout(() => {

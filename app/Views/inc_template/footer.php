@@ -12,13 +12,16 @@
 </div>
 
 <!-- Modal Global -->
-<div class="modal fade" id="modalcrud" aria-hidden="true" tabindex="-1">
+<div class="modal h-100 fade" id="modalcrud" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header font-18 d-flex justify-content-start">
-                <i class="fas fa-project-diagram me-2 text-secondary"></i> <span class="text-secondary fw-bold" id="title-del"></span>
+            <div class="modal-header font-18 d-flex justify-content-between">
+                <div>
+                    <i class="fas fa-project-diagram me-2 text-secondary"></i> <span class="text-secondary fw-bold" id="title-del"></span>
+                </div>
+                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
             </div>
-            <div class="modal-body" id="modalbody">
+            <div class="modal-body m-2" id="modalbody">
             </div>
         </div>
     </div>

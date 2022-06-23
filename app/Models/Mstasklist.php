@@ -44,6 +44,9 @@ class Mstasklist extends Model
 
     public function hapus($id)
     {
-        return $this->builder->delete(['id' => $id]);
+        $this->builder->delete(['id' => $id]);
+        $this->db->table('mscomment')->delete(['taskid' => $id]);
+
+        return;
     }
 }

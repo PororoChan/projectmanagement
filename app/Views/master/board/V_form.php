@@ -7,10 +7,10 @@
         <button type="submit" class="btn btn-primary w-100 mb-1" id="pros"><?= (($form_type == 'Edit') ? 'Update' : 'Save') ?></button>
     </div>
 </form>
+<?= $this->include('master/imp/list') ?>
 <script>
     $('#form_board').on('submit', function(ev) {
         ev.preventDefault()
-        console.log($('#titlemod').val())
         var link = "<?= base_url('board/addBoard') ?>",
             ftype = "<?= $form_type ?>",
             form = $('#form_board').serialize();
@@ -22,14 +22,19 @@
         $.ajax({
             url: link,
             type: 'post',
+            dataType: 'json',
             data: form,
             success: function(res) {
-                $('#bbody').load('<?= base_url('board/b') ?>', function() {
-                    scaleCard();
-                })
-                $('#form_board')[0].reset();
-                modalB()
-                count();
+                if (res.success == 1) {
+                    $('#bbody').load('<?= base_url('board/b') ?>', function() {
+                        scaleCard();
+                    })
+                    $('#form_board')[0].reset();
+                    modalB()
+                    count();
+                } else {
+                    $.notify(res.msg, 'error');
+                }
             }
         })
     })

@@ -30,7 +30,7 @@ class Login extends BaseController
             if (password_verify($pass, rtrim($data['password']))) {
                 $session->set('name', $data['name']);
                 $session->set('id_user', $data['userid']);
-                -$res['success'] = 1;
+                $res['success'] = 1;
             } else {
                 $res['success'] = 0;
             }

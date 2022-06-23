@@ -1,9 +1,9 @@
 <?php foreach ($task as $t) : ?>
-    <div class="col-md-4 col-lg-3 col-xl-3 list" tasid="<?= $t['taskid'] ?>" seq="<?= $t['seq'] ?>">
+    <div class="col-md-4 scol-lg-3 list" tasid="<?= $t['taskid'] ?>" seq="<?= $t['seq'] ?>">
         <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-3 rounded">
             <div class="row d-flex handle justify-content-between">
                 <div class="col-lg-10 text-start">
-                    <div id="taskid" class="font-14 fw-bold p-1 text-dark tsid" tsid="<?= $t['taskid'] ?>" spellcheck="false" contenteditable="true">
+                    <div id="taskid" class="font-13 fw-bold p-1 text-dark tsid" tsid="<?= $t['taskid'] ?>" spellcheck="false" contenteditable="true">
                         <span id="taskname" class="me-2 sts" spellcheck="false"><?= $t['taskname'] ?></span>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
         </div>
     </div>
 <?php endforeach; ?>
-<div class="col-md-4 col-lg-3 col-xl-3 add">
+<div class="col-md-4 scol-lg-3 add">
     <div id="row" class="board-portlet bg-white shadow p-3 rounded">
         <button class="btn btn-success w-100 add_list" style="height: 40px;" id="add_list">
             <i class="fas fa-plus fs-7 me-2"></i>

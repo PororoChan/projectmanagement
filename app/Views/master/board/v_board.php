@@ -52,6 +52,13 @@
 </div>
 <?= $this->include('inc_template/footer') ?>
 <script type="text/javascript">
+    function reload() {
+        $('#bbody').load('<?= base_url('board/b') ?>', function() {
+            scaleCard()
+        });
+        count();
+    }
+
     function count() {
         $.ajax({
             url: "<?= base_url('board/count') ?>",

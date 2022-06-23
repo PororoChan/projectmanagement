@@ -98,12 +98,19 @@ class Board extends BaseController
     public function addBoard()
     {
         $btitle = $this->request->getPost('boardtitle');
-        $data = [
-            'boardid' => random_int(1000000, 9999999),
-            'boardname' => $btitle
-        ];
-        $this->board->tambah($data);
-        echo 1;
+        if ($btitle != '') {
+            $data = [
+                'boardid' => random_int(1000000, 9999999),
+                'boardname' => $btitle
+            ];
+            $this->board->tambah($data);
+            $dt['success'] = 1;
+        } else {
+            $dt['success'] = 0;
+            $dt['msg'] = 'Board Title cannot be empty';
+        }
+
+        echo json_encode($dt);
     }
 
     public function editBoard()

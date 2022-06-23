@@ -102,7 +102,7 @@
                                 $('#warn').removeClass('alert alert-danger');
                                 $('#warn').addClass('alert alert-success');
                                 setTimeout(() => {
-                                    window.location.href = "<?= base_url('home') ?>"
+                                    window.location.href = "<?= base_url('board') ?>"
                                 }, 700);
                             } else {
                                 msg = "Username atau Password salah"

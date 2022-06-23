@@ -69,15 +69,19 @@
                                 </a>
                             </li>
                             <li class="nav-item nav-profile dropdown">
-                                <a class="nav-link" role="button" aria-expanded="false">
+                                <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="nav-profile-img">
                                         <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" />
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black font-weight-semibold m-0"> <?= session()->get('name') ?> </p>
-                                        <span class="font-12 online-color me-3 text-success">Online</span>
+                                        <span class="font-13 online-color">Online <i class="fas fa-chevron-down fs-8"></i></span>
                                     </div>
                                 </a>
+                                <div class="dropdown-menu navbar-dropdown bg-white" aria-labelledby="profileDropdown">
+                                    <a class="dropdown-item fs-7" href="<?= base_url('logout') ?>">
+                                        <i class="fas fa-sign-out-alt fs-7 me-2 text-danger"></i> Log Out </a>
+                                </div>
                             </li>
                         </ul>
                         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">

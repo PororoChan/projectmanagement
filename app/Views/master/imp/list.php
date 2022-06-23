@@ -50,8 +50,7 @@
                 if (res == 1) {
                     setTimeout(() => {
                         $.notify("Task " + pros, "success")
-                        $('#form-tlist')[0].reset();
-                        $('#modalcrud').modal('hide')
+                        $('#form-tlist')[0].reset()
                         setTimeout(() => {
                             $('#list_board').load('<?= base_url('task/t') ?>')
                         }, 55);
@@ -64,13 +63,41 @@
         })
     }
 
+    function addComment() {
+        var link = '<?= base_url('comment/add') ?>',
+            pros = 'Added',
+            tid = $('#task').val(),
+            comm = comment.getData();
+
+        $.ajax({
+            url: link,
+            type: 'post',
+            dataType: 'json',
+            data: {
+                task: tid,
+                comment: comm,
+            },
+            success: function(res) {
+                comment.setData("")
+                $('#com-load').html(res.view)
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $.notify(thrownError, 'error');
+            }
+        })
+    }
+
     $('#formlist').on('submit', function(ev) {
         ev.preventDefault()
         addList();
     });
 
-    $('#form-tlist').on('submit', function(ev) {
+    $('#btn-upt').on('click', function(ev) {
         ev.preventDefault()
         addTask();
+    })
+
+    $('#btn-com').on('click', function(ev) {
+        addComment();
     })
 </script>

@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Mscomment;
 use App\Models\Mstask;
 use App\Models\Mstasklist;
+use DateTime;
 
 class Tasklist extends BaseController
 {
@@ -105,6 +106,7 @@ class Tasklist extends BaseController
 
     public function addComment()
     {
+        $date = new DateTime('now');
         $taskid = $this->request->getPost('task');
         $comment = $this->request->getPost('comment');
 
@@ -112,7 +114,7 @@ class Tasklist extends BaseController
             $data = [
                 'taskid' => $taskid,
                 'message' => $comment,
-                'createddate' => date('Y-m-d H:i:s'),
+                'createddate' => $date->format('Y-m-d H:i:s.u'),
                 'createdby' => session()->get('name'),
             ];
 
@@ -129,5 +131,26 @@ class Tasklist extends BaseController
         }
 
         echo json_encode($dt);
+    }
+
+    public function deleteComment()
+    {
+        $id = $this->request->getPost('id');
+        $taskid = $this->request->getPost('taskid');
+
+        if ($id != '') {
+            $this->comment->hapus($id);
+
+            $data = [
+                'count' => $this->comment->comCount($taskid),
+                'comment' => $this->comment->getComment($taskid),
+            ];
+
+            $vw['view'] = view('master/comment/v_comment', $data);
+        } else {
+            $vw['success'] = 0;
+        }
+
+        echo json_encode($vw);
     }
 }

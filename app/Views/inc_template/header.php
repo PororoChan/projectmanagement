@@ -40,7 +40,7 @@
                 <div class="container-fluid">
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
-                            <span class="font-16 d-block font-weight-bold">Project Management</span>
+                            <span class="fs-6 d-block font-weight-bold">Project Management</span>
                         </a>
                         <a class="navbar-brand brand-logo-mini" href="#"><img src="<?= base_url('public/assets/images/logo-mini.svg') ?>" /></a>
                     </div>
@@ -74,8 +74,8 @@
                                         <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" />
                                     </div>
                                     <div class="nav-profile-text">
-                                        <p class="text-black font-weight-semibold m-0"> <?= session()->get('name') ?> </p>
-                                        <span class="font-13 online-color">Online <i class="fas fa-chevron-down fs-8"></i></span>
+                                        <p class="text-black fs-7 font-weight-semibold m-0"> <?= session()->get('name') ?> </p>
+                                        <span class="fs-7 online-color">Online <i class="fas fa-chevron-down fs-8"></i></span>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu navbar-dropdown bg-white" aria-labelledby="profileDropdown">
@@ -96,13 +96,13 @@
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('home') ?>">
                                 <i class="far fa-compass menu-icon"></i>
-                                <span class="menu-title">Dashboard</span>
+                                <span class="fs-7 menu-title">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('board') ?>">
                                 <i class="fas fa-chart-bar fs-6 menu-icon"></i>
-                                <span class="menu-title">Board</span>
+                                <span class="fs-7 menu-title">Board</span>
                             </a>
                         </li>
                     </ul>

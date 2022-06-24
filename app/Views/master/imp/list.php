@@ -50,7 +50,6 @@
                 if (res == 1) {
                     setTimeout(() => {
                         $.notify("Task " + pros, "success")
-                        $('#form-tlist')[0].reset()
                         setTimeout(() => {
                             $('#list_board').load('<?= base_url('task/t') ?>')
                         }, 55);
@@ -87,17 +86,19 @@
         })
     }
 
-    $('#formlist').on('submit', function(ev) {
-        ev.preventDefault()
-        addList();
+    $(document).ready(function() {
+        $('#formlist').on('submit', function(ev) {
+            ev.preventDefault()
+            addList();
+        });
+
+        $('#btn-upt').on('click', function(ev) {
+            ev.preventDefault()
+            addTask();
+        })
+
+        $('#btn-com').on('click', function(ev) {
+            addComment();
+        })
     });
-
-    $('#btn-upt').on('click', function(ev) {
-        ev.preventDefault()
-        addTask();
-    })
-
-    $('#btn-com').on('click', function(ev) {
-        addComment();
-    })
 </script>

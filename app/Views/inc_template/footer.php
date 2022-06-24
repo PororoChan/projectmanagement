@@ -19,7 +19,7 @@
                 <div>
                     <i class="fas fa-project-diagram me-2 text-secondary"></i> <span class="text-secondary fw-bold" id="title-del"></span>
                 </div>
-                <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+                <a href="#" class="btn-close font-13" data-bs-dismiss="modal"></a>
             </div>
             <div class="modal-body m-2" id="modalbody">
             </div>

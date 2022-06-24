@@ -73,6 +73,7 @@ $routes->add('list/delete', 'master\Tasklist::deleteData');
 $routes->add('list/switch', 'master\Tasklist::switch');
 // TaskList-Comment
 $routes->add('comment/add', 'master\Tasklist::addComment');
+$routes->add('comment/delete', 'master\Tasklist::deleteComment');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

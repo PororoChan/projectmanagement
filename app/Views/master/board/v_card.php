@@ -3,7 +3,7 @@
         <div class="board-card pt-2 pb-2" id="board-pit">
             <a role="button" href="<?= base_url('board/b/' . $b['boardid'] . '') ?>" bid="<?= $b['boardid'] ?>" class="card text-start p-0 btn btn-secondary bg-light w-100 board_each" style="min-height: 85px; border-left: 5px solid #0033C4;" id="boardbtn">
                 <div class="card-body" id="board_each">
-                    <span class="text-start text-secondary font-14 font-weight-bolder"><?= $b['boardname'] ?></span>
+                    <span class="text-start text-secondary font-13 fw-semibold"><?= $b['boardname'] ?></span>
                 </div>
             </a>
         </div>

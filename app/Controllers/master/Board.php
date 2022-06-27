@@ -28,7 +28,7 @@ class Board extends BaseController
             return redirect()->to('login');
         }
         $data = [
-            'title' => 'PoMan | Board',
+            'title' => 'PM | Board',
             'board' => $this->board->getAll(),
         ];
         return view('master/board/v_board', $data);
@@ -66,7 +66,7 @@ class Board extends BaseController
                 $board = $this->board->getOne($boardid);
                 if ($board != '') {
                     $q = [
-                        'title' => 'PoMan | Task List',
+                        'title' => 'PM | Task List',
                         'task' => $this->task->getTask($boardid),
                         'tasklist' => $this->tasklist,
                         session()->set('idb', $board['boardid']),
@@ -147,6 +147,6 @@ class Board extends BaseController
         session()->set('idb', null);
         session()->set('bname', null);
 
-        return redirect()->to('board');
+        return redirect()->to('boards');
     }
 }

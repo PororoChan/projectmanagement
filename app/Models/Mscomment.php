@@ -25,7 +25,7 @@ class Mscomment extends Model
     {
         return $this->builder
             ->where('taskid', $taskid)
-            ->orderBy('createddate', 'asc')
+            ->orderBy('commentid', 'asc')
             ->get()->getResultArray();
     }
 

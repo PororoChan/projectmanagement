@@ -40,7 +40,6 @@
 </div>
 <?= $this->include('inc_template/footer') ?>
 <?= $this->include('master/imp/list') ?>
-
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <!-- Task Draggable -->
 <script>

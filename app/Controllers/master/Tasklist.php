@@ -113,6 +113,7 @@ class Tasklist extends BaseController
         if ($taskid != null && $comment != '') {
             $data = [
                 'taskid' => $taskid,
+                'userid' => session()->get('id_user'),
                 'message' => $comment,
                 'createddate' => $date->format('Y-m-d H:i:s.u'),
                 'createdby' => session()->get('name'),
@@ -147,6 +148,7 @@ class Tasklist extends BaseController
             ];
 
             $vw['view'] = view('master/comment/v_comment', $data);
+            $vw['success'] = 1;
         } else {
             $vw['success'] = 0;
         }

@@ -21,20 +21,24 @@
                 <div class="row">
                     <div class="col-lg-12 d-flex field-hover" style="height: max-content;">
                         <div class="mb-2 me-2">
-                            <div class="col-lg-8 bg-secondary bg-opacity-10 shadow-sm com-field" style="width: max-content; max-width: 500px; height: max-content;">
+                            <div class="col-lg-8 bg-secondary bg-opacity-10 shadow-sm com-field" comid="<?= $c['commentid'] ?>" style="width: max-content; max-width: 500px; word-break: break-all; height: max-content;">
                                 <?= $c['message'] ?>
                             </div>
                         </div>
-                        <div class="act-comment mt-2" id="act-comment" style="display: none;">
-                            <div class="d-flex">
-                                <button class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center me-1">
-                                    <i class="fas fa-pencil-alt text-center fs-7"></i>
-                                </button>
-                                <button class="btn btn-sm btn-inverse-danger d-flex align-items-center text-center com-delete" cid="<?= $c['commentid'] ?>" sid="<?= $c['taskid'] ?>">
-                                    <i class="fas fa-trash-alt text-center fs-7"></i>
-                                </button>
+                        <?php if ($c['userid'] == session()->get('id_user')) { ?>
+                            <div class="act-comment mt-2" id="act-comment" style="display: none;">
+                                <div class="d-flex">
+                                    <button class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center com-edit me-1" cid="<?= $c['commentid'] ?>" sid="<?= $c['taskid'] ?>">
+                                        <i class="fas fa-pencil-alt text-center fs-7"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-inverse-danger d-flex align-items-center text-center com-delete" cid="<?= $c['commentid'] ?>" sid="<?= $c['taskid'] ?>">
+                                        <i class="fas fa-trash-alt text-center fs-7"></i>
+                                    </button>
+                                </div>
+                            <?php } else { ?>
+                                <div></div>
+                            <?php } ?>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -44,18 +48,18 @@
 <script>
     $('.field-hover').hover(
         function() {
-            $(this).closest('.field-hover').find('.act-comment').fadeIn('slow');
+            $(this).closest('.field-hover').find('.act-comment').fadeIn('fast');
         },
         function() {
-            $(this).closest('.field-hover').find('.act-comment').fadeOut('slow');
+            $(this).closest('.field-hover').find('.act-comment').fadeOut('fast');
         }
     );
 
     $('.com-edit').each(function() {
-        $(this).on('click', function() {
-
-        });
-    });
+        $(this).click(function() {
+            // Edit Data With CKEditor
+        })
+    })
 
     $('.com-delete').each(function() {
         $(this).click(function(el) {
@@ -72,7 +76,11 @@
                 },
                 dataType: 'json',
                 success: function(res) {
-                    $('#com-load').html(res.view)
+                    if (res.success == 1) {
+                        $('#com-load').html(res.view);
+                    } else {
+                        $.notify('Data not loaded!', 'error');
+                    }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     $.notify(thrownError, 'error');

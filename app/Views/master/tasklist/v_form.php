@@ -2,6 +2,8 @@
     .ck-editor__editable {
         min-height: 50px;
         min-width: 650px;
+        max-width: 650px;
+        word-wrap: break-word;
     }
 </style>
 <div id="form-load">
@@ -16,7 +18,7 @@
             <?php if ($form_type == 'Edit') { ?>
                 <div class="form-group col-lg-8">
                     <i class="fas fa-align-left fs-6 text-dark me-2"></i><label class="mt-1 fw-semibold fs-7 text-secondary" for="desc">Description</label>
-                    <textarea rows="10" cols="6" class="form-control form-control-sm mx-4 mt-2 pt-3 pb-3 rounded" name="desc" id="desc" spellcheck="false" placeholder="Task Description"><?= (($form_type == 'Edit') ? $row['description'] : '') ?></textarea>
+                    <textarea rows="10" cols="6" class="col-lg-8 form-control form-control-sm mx-4 mt-2 pt-3 pb-3 rounded" name="desc" id="desc" spellcheck="false" placeholder="Task Description"><?= (($form_type == 'Edit') ? $row['description'] : '') ?></textarea>
                 </div>
             <?php } ?>
             <div class="form-group mb-1 <?= (($form_type == 'Edit') ? 'col-lg-8 mx-4' : '') ?> d-flex align-items-center justify-content-end">
@@ -66,7 +68,7 @@
     if (type == 'Edit') {
         ClassicEditor
             .create(document.querySelector('#comment-input'), {
-                toolbar: ['bold', 'italic', '|', 'undo', 'redo', '|', 'numberedList', 'bulletedList']
+                toolbar: ['bold', 'italic', '|', 'undo', 'redo', '|', 'numberedList', 'bulletedList'],
             })
             .then(editor => {
                 comment = editor;

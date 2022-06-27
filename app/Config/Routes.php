@@ -35,7 +35,7 @@ $routes->setAutoRoute(true);
 // *Display Index
 $routes->add('/', 'user_auth\Login::index');
 $routes->add('home', 'Dashboard::index');
-$routes->add('board', 'master\Board::index');
+$routes->add('boards', 'master\Board::index');
 
 // *Login Process
 $routes->add('auth', 'user_auth\Login::auth');
@@ -73,6 +73,7 @@ $routes->add('list/delete', 'master\Tasklist::deleteData');
 $routes->add('list/switch', 'master\Tasklist::switch');
 // TaskList-Comment
 $routes->add('comment/add', 'master\Tasklist::addComment');
+$routes->add('comment/edit', 'master\Tasklist::editComment');
 $routes->add('comment/delete', 'master\Tasklist::deleteComment');
 /*
  * --------------------------------------------------------------------

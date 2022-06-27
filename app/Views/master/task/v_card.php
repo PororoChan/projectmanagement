@@ -26,15 +26,15 @@
             <div tid="<?= $t['taskid'] ?>" class="task-item">
                 <ul class="portlet-card-list list-unstyled overflow-auto mt-1 mb-0" sts="<?= $t['taskid'] ?>" style="min-height: 35px; max-height: 55vh;">
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
-                        <div class="portlet-card bg-white border p-3 rounded" tlid="<?= $list['id'] ?>">
+                        <li class="portlet-card bg-white border p-3 rounded" tlid="<?= $list['id'] ?>">
                             <div class="portlet-card-header mb-0">
                                 <div class="text-dark fw-semibold font-14 me-2 d-flex justify-content-between">
                                     <span class="w-100 fs-7" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
                                     <div class="dropstart">
-                                        <a href="#" data-bs-toggle="dropdown" id="dropdownMenu">
+                                        <a href="#" data-bs-toggle="dropdown" id="dropdownMenu" data-target="#dropdownMenu">
                                             <i class="fas fa-ellipsis-v fs-5 text-secondary"></i>
                                         </a>
-                                        <ul class="dropdown-menu position-absolute shadow-sm">
+                                        <ul class="dropdown-menu shadow-sm" id="dropdownMenu">
                                             <li><a class="dropdown-item taskedit" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>" href="#"><i class="fas fa-pencil-alt text-warning fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Edit</span></a></li>
                                             <li><a class="dropdown-item deltasklist" dtid="<?= $list['id'] ?>" href="#"><i class="fas fa-trash text-danger fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Delete</span></a></li>
                                         </ul>
@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                             <?php } ?>
-                        </div>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -83,7 +83,6 @@
 
     $('.tsid').each(function() {
         var self = $(this);
-        $(this).select()
         $(this).focusin(function(elem) {
             elem.currentTarget.classList.add('edit-active');
             // Select All

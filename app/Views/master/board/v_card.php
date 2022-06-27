@@ -13,12 +13,12 @@
     <a class="dropdown-item btned" href="#">
         <i class="fas fa-pencil-alt text-warning fs-7 me-2"></i>
         <input type="hidden" id="bed">
-        <span class="text-dark fs-7 fw-bold">Edit</span>
+        <span class="text-secondary fs-7 fw-bold">Edit</span>
     </a>
     <a class="dropdown-item btndel" href="#">
         <i class="fas fa-trash-alt text-danger fs-7 me-2"></i>
         <input type="hidden" id="bde">
-        <span class="text-dark fs-7 fw-bold">Delete</span>
+        <span class="text-secondary fs-7 fw-bold">Delete</span>
     </a>
 </div>
 <script>

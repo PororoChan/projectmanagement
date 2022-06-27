@@ -120,8 +120,15 @@ class Board extends BaseController
         $dt = [
             'boardname' => $title,
         ];
-        $this->board->edit($dt, $id);
-        echo 1;
+        if ($title != '') {
+            $this->board->edit($dt, $id);
+            $res['success'] = 1;
+        } else {
+            $res['success'] = 0;
+            $res['msg'] = 'Boardname cannot empty';
+        }
+
+        echo json_encode($res);
     }
 
     public function deleteBoard()

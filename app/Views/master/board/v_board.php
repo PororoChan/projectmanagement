@@ -24,7 +24,7 @@
                 <section class="section w-100">
                     <div class="section-header pb-3 pt-2">
                         <div class="d-flex justify-content-between">
-                            <h2 class="text-dark fs-5 text-start">
+                            <h2 class="text-dark fs-6 text-start">
                                 <i class="fas fa-chalkboard-teacher text-dark me-2"></i> Board
                             </h2>
                             <button class="btn btn-primary shadow-sm" id="create_board">

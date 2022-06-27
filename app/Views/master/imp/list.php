@@ -86,19 +86,17 @@
         })
     }
 
-    $(document).ready(function() {
-        $('#formlist').on('submit', function(ev) {
-            ev.preventDefault()
-            addList();
-        });
-
-        $('#btn-upt').on('click', function(ev) {
-            ev.preventDefault()
-            addTask();
-        })
-
-        $('#btn-com').on('click', function(ev) {
-            addComment();
-        })
+    $('#formlist').on('submit', function(ev) {
+        ev.preventDefault()
+        addList();
     });
+
+    $('#btn-upt').on('click', function(ev) {
+        ev.preventDefault()
+        addTask();
+    })
+
+    $('#btn-com').on('click', function(ev) {
+        addComment();
+    })
 </script>

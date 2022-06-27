@@ -30,6 +30,7 @@
                         scaleCard();
                     })
                     $('#form_board')[0].reset();
+                    $('#formboard').modal('toggle')
                     modalB()
                     count();
                 } else {

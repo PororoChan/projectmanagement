@@ -1,7 +1,7 @@
 <style>
     .com-field p {
-        padding: 0;
-        margin: 0;
+        padding: 5px;
+        margin: 5px;
     }
 </style>
 <?php if ($count > 0) { ?>
@@ -19,16 +19,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="mt-1 mb-3">
-                        <div class="bg-secondary position-relative bg-opacity-10 shadow-sm d-flex rounded" id="com-field" style="width: max-content; height: max-content;" spellcheck="false">
-                            <div class="text-start m-2 fs-5 com-field">
+                    <div class="col-lg-12 d-flex field-hover" style="height: max-content;">
+                        <div class="mb-2 me-2">
+                            <div class="col-lg-8 bg-secondary bg-opacity-10 shadow-sm com-field" style="width: max-content; max-width: 500px; height: max-content;">
                                 <?= $c['message'] ?>
                             </div>
                         </div>
-                        <div class="act-comment mt-1" style="width: max-content; height: max-content;">
-                            <div class="row d-flex text-center" style="width: max-content;">
-                                <a href="#" role="button" cid="<?= $c['commentid'] ?>" class="col-sm-1 fs-7 com-edit">Edit</a>
-                                <a href="#" role="button" cid="<?= $c['commentid'] ?>" sid="<?= $c['taskid'] ?>" class="col-sm-1 fs-7 com-delete">Delete</a>
+                        <div class="act-comment mt-2" id="act-comment" style="display: none;">
+                            <div class="d-flex">
+                                <button class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center me-1">
+                                    <i class="fas fa-pencil-alt text-center fs-7"></i>
+                                </button>
+                                <button class="btn btn-sm btn-inverse-danger d-flex align-items-center text-center com-delete" cid="<?= $c['commentid'] ?>" sid="<?= $c['taskid'] ?>">
+                                    <i class="fas fa-trash-alt text-center fs-7"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -38,11 +42,20 @@
     <?php endforeach; ?>
 <?php } ?>
 <script>
+    $('.field-hover').hover(
+        function() {
+            $(this).closest('.field-hover').find('.act-comment').fadeIn('slow');
+        },
+        function() {
+            $(this).closest('.field-hover').find('.act-comment').fadeOut('slow');
+        }
+    );
+
     $('.com-edit').each(function() {
         $(this).on('click', function() {
 
-        })
-    })
+        });
+    });
 
     $('.com-delete').each(function() {
         $(this).click(function(el) {
@@ -65,6 +78,6 @@
                     $.notify(thrownError, 'error');
                 }
             })
-        })
-    })
+        });
+    });
 </script>

@@ -7,7 +7,7 @@
         <button type="submit" class="btn btn-primary w-100 mb-1" id="pros"><?= (($form_type == 'Edit') ? 'Update' : 'Save') ?></button>
     </div>
 </form>
-<?= $this->include('master/imp/list') ?>
+<?= $this->include('master/imp/process') ?>
 <script>
     $('#form_board').on('submit', function(ev) {
         ev.preventDefault()

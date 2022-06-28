@@ -25,13 +25,18 @@ class Mscomment extends Model
     {
         return $this->builder
             ->where('taskid', $taskid)
-            ->orderBy('commentid', 'asc')
+            ->orderBy('commentid', 'desc')
             ->get()->getResultArray();
     }
 
     public function tambah($data)
     {
         return $this->builder->insert($data);
+    }
+
+    public function edit($data, $id)
+    {
+        return $this->builder->update($data, ['commentid' => $id]);
     }
 
     public function hapus($id)

@@ -9,7 +9,7 @@
     </div>
 </form>
 
-<?= $this->include('master/imp/list') ?>
+<?= $this->include('master/imp/process') ?>
 <script>
     $('#btn-close-list').each(function() {
         $(this).on('click', function() {

@@ -1,8 +1,8 @@
 <style>
     .ck-editor__editable {
         min-height: 50px;
-        min-width: 650px;
-        max-width: 650px;
+        min-width: 665px;
+        max-width: 665px;
         word-wrap: break-word;
     }
 </style>
@@ -32,12 +32,14 @@
         <div class="col-lg-8 mt-0">
             <i class="fas fa-list-check fs-6 me-2 text-dark"></i><label class="m-1 fw-semibold fs-7 text-secondary" for="comment">Activity</label>
         </div>
-        <div class="form-group col-lg-8 mx-3 mt-2 d-flex justify-content-between">
-            <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" class="rounded-circle shadow-sm mx-1" width="35" height="35">
+        <div class="form-group col-lg-8 mx-3 me-1 mt-3 d-flex justify-content-between">
+            <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" class="rounded-circle shadow-sm" width="35" height="35">
             <input type="hidden" id="task" name="task" value="<?= $row['id'] ?>">
             <textarea class="form-control" spellcheck="false" name="comment-input" id="comment-input" placeholder="Write a comment"></textarea>
         </div>
         <div class="form-group col-lg-8 d-flex justify-content-end mx-3 mb-0">
+            <input type="hidden" name="comid" id="comid" value="">
+            <button type="button" id="btn-cancel" style="display: none;" class="btn btn-inverse-warning me-1">Cancel</button>
             <button type="button" id="btn-com" style="display: none;" class="btn btn-inverse-primary">Send</button>
         </div>
     </form>
@@ -48,7 +50,7 @@
     </div>
 <?php } ?>
 </div>
-<?= $this->include('master/imp/list') ?>
+<?= $this->include('master/imp/process') ?>
 <script>
     var type = '<?= $form_type ?>',
         comment;
@@ -76,7 +78,11 @@
                     if (isFocused) {
                         $('#btn-com').fadeIn('fast')
                     } else if (!isFocused) {
-                        $('#btn-com').fadeOut('fast')
+                        if ($('#btn-com').html() == 'Send') {
+                            $('#btn-com').fadeOut('fast')
+                        } else if ($('#btn-com').html() == 'Edit') {
+                            // Do Nothing
+                        }
                     }
                 })
             })

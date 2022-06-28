@@ -77,8 +77,46 @@
                 comment: comm,
             },
             success: function(res) {
-                comment.setData("")
-                $('#com-load').html(res.view)
+                if (res.success == 1) {
+                    comment.setData("");
+                    $('#com-load').html(res.view);
+                } else {
+                    $.notify(res.msg, 'warn');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $.notify(thrownError, 'error');
+            }
+        })
+    }
+
+    function editComment() {
+        var link = '<?= base_url('comment/edit') ?>',
+            pros = 'Updated',
+            taskid = $('#task').val(),
+            id = $('#comid').val(),
+            com = comment.getData();
+
+        $.ajax({
+            url: link,
+            type: 'post',
+            dataType: 'json',
+            data: {
+                id: id,
+                task: taskid,
+                com: com,
+            },
+            success: function(res) {
+                if (res.success == 1) {
+                    comment.setData("");
+                    $('#btn-cancel').fadeOut('fast');
+                    $('#btn-com').fadeOut('fast');
+                    setTimeout(({}, 50))
+                    $('#btn-com').html('Send');
+                    $('#com-load').html(res.view);
+                } else {
+                    $.notify('Data not Updated', 'error');
+                }
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 $.notify(thrownError, 'error');
@@ -97,6 +135,10 @@
     })
 
     $('#btn-com').on('click', function(ev) {
-        addComment();
+        if ($(this).html() == 'Send') {
+            addComment();
+        } else if ($(this).html() == 'Edit') {
+            editComment();
+        }
     })
 </script>

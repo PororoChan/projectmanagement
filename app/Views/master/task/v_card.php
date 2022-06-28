@@ -30,7 +30,7 @@
                             <div class="portlet-card-header mb-0">
                                 <div class="text-dark fw-semibold font-14 me-2 d-flex justify-content-between">
                                     <span class="w-100 fs-7" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
-                                    <div class="dropstart">
+                                    <div>
                                         <a href="#" data-bs-toggle="dropdown" id="dropdownMenu" data-target="#dropdownMenu">
                                             <i class="fas fa-ellipsis-v fs-5 text-secondary"></i>
                                         </a>
@@ -66,7 +66,7 @@
         </div>
     </div>
 </div>
-<?= $this->include('master/imp/list') ?>
+<?= $this->include('master/imp/process') ?>
 <?= $this->include('master/imp/sortable') ?>
 <script>
     $('#add_list').on('click', function() {

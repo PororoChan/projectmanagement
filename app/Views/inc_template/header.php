@@ -38,7 +38,7 @@
     <div class="container-scroller">
         <div class="horizontal-menu">
             <nav class="navbar top-navbar col-lg-12 col-12 p-0">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
                             <span class="fs-6 d-block font-weight-bold">Project Management</span>
@@ -101,7 +101,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link justify-content-center" href="<?= base_url('board') ?>">
+                            <a class="nav-link justify-content-center" href="<?= base_url('boards') ?>">
                                 <i class="fas fa-chart-bar fs-6 menu-icon"></i>
                                 <span class="fs-7 menu-title">Board</span>
                             </a>

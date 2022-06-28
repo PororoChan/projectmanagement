@@ -110,7 +110,7 @@ class Tasklist extends BaseController
         $taskid = $this->request->getPost('task');
         $comment = $this->request->getPost('comment');
 
-        if ($taskid != null && $comment != '') {
+        if ($comment != '') {
             $data = [
                 'taskid' => $taskid,
                 'userid' => session()->get('id_user'),
@@ -127,11 +127,36 @@ class Tasklist extends BaseController
             ];
             $dt['view'] = view('master/comment/v_comment', $vd);
         } else {
-            $dt['msg'] = 'Fill the form first!';
+            $dt['msg'] = 'Comment cannot be empty';
             $dt['success'] = 0;
         }
 
         echo json_encode($dt);
+    }
+
+    public function editComment()
+    {
+        $id = $this->request->getPost('id');
+        $task = $this->request->getPost('task');
+        $newcom = $this->request->getPost('com');
+
+        if ($id != '') {
+            $data = [
+                'message' => $newcom,
+            ];
+
+            $this->comment->edit($data, $id);
+            $res['success'] = 1;
+            $vw = [
+                'count' => $this->comment->comCount($task),
+                'comment' => $this->comment->getComment($task),
+            ];
+            $res['view'] = view('master/comment/v_comment', $vw);
+        } else {
+            $res['success'] = 0;
+        }
+
+        echo json_encode($res);
     }
 
     public function deleteComment()

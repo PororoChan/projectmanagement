@@ -15397,7 +15397,8 @@ dl {
       align-items: center; }
     @media (min-width: 992px) {
       .horizontal-menu .top-navbar .navbar-menu-wrapper .navbar-nav.navbar-nav-right {
-        margin-left: auto; }
+        margin-left: auto;
+        margin-right: 0%; }
         .rtl .horizontal-menu .top-navbar .navbar-menu-wrapper .navbar-nav.navbar-nav-right {
           margin-left: 0;
           margin-right: auto; } }

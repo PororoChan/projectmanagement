@@ -36,7 +36,7 @@
 
         if (ftype == 'Edit') {
             link = '<?= base_url('list/editData') ?>';
-            pros = "Updated"
+            pros = "Updated";
         }
 
         $.ajax({
@@ -49,9 +49,9 @@
             success: function(res) {
                 if (res == 1) {
                     setTimeout(() => {
-                        $.notify("Task " + pros, "success")
+                        $.notify("Task " + pros, "success");
                         setTimeout(() => {
-                            $('#list_board').load('<?= base_url('task/t') ?>')
+                            $('#list_board').load('<?= base_url('task/t') ?>');
                         }, 55);
                     }, 50);
                 } else {
@@ -111,7 +111,7 @@
                     comment.setData("");
                     $('#btn-cancel').fadeOut('fast');
                     $('#btn-com').fadeOut('fast');
-                    setTimeout(({}, 50))
+                    setTimeout(({}, 50));
                     $('#btn-com').html('Send');
                     $('#com-load').html(res.view);
                 } else {
@@ -125,12 +125,12 @@
     }
 
     $('#formlist').on('submit', function(ev) {
-        ev.preventDefault()
+        ev.preventDefault();
         addList();
     });
 
     $('#btn-upt').on('click', function(ev) {
-        ev.preventDefault()
+        ev.preventDefault();
         addTask();
     })
 

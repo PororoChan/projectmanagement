@@ -38,7 +38,7 @@
     <div class="container-scroller">
         <div class="horizontal-menu">
             <nav class="navbar top-navbar col-lg-12 col-12 p-0">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                         <a class="navbar-brand brand-logo" href="#">
                             <span class="fs-6 d-block font-weight-bold">Project Management</span>
@@ -58,7 +58,7 @@
                                 </div>
                             </li>
                         </ul>
-                        <ul class="navbar-nav navbar-nav-right">
+                        <ul class="navbar-nav navbar-nav-right mx-5">
                             <li class="nav-item">
                                 <a class="text-secondary" href="#">
                                     <i class="far fa-envelope fs-6"></i>

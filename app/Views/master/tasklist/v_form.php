@@ -55,16 +55,16 @@
     var type = '<?= $form_type ?>',
         comment;
     $('#btn-close').on('click', function() {
-        $('#modalcrud').hide()
-        $('#form-tlist').remove()
+        $('#modalcrud').hide();
+        $('#form-tlist').remove();
     });
 
     $('#desc').focusin(function() {
-        $('#btn-upt').fadeIn('fast')
+        $('#btn-upt').fadeIn('fast');
     })
 
     $('#desc').focusout(function() {
-        $('#btn-upt').fadeOut('fast')
+        $('#btn-upt').fadeOut('fast');
     })
 
     if (type == 'Edit') {
@@ -76,10 +76,10 @@
                 comment = editor;
                 editor.ui.focusTracker.on('change:isFocused', (evt, name, isFocused) => {
                     if (isFocused) {
-                        $('#btn-com').fadeIn('fast')
+                        $('#btn-com').fadeIn('fast');
                     } else if (!isFocused) {
                         if ($('#btn-com').html() == 'Send') {
-                            $('#btn-com').fadeOut('fast')
+                            $('#btn-com').fadeOut('fast');
                         } else if ($('#btn-com').html() == 'Edit') {
                             // Do Nothing
                         }

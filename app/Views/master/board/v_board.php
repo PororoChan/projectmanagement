@@ -65,7 +65,7 @@
             type: 'post',
             success: function(res) {
                 $('.count').each(function() {
-                    $(this).html('. . .');
+                    $(this).html('...');
                     setTimeout(() => {
                         $(this).html(res);
                     }, 200);
@@ -77,12 +77,12 @@
     function scaleCard() {
         $('.board-card').each(function() {
             $(this).on('mouseenter', function() {
-                $(this).css('transition', 'all 0.2s ease-in-out')
-                $(this).css('transform', 'scale(1.02)')
+                $(this).css('transition', 'all 0.2s ease-in-out');
+                $(this).css('transform', 'scale(1.02)');
             })
             $(this).on('mouseleave', function() {
-                $(this).css('transition', 'all 0.2s ease-in-out')
-                $(this).css('transform', 'scale(1)')
+                $(this).css('transition', 'all 0.2s ease-in-out');
+                $(this).css('transform', 'scale(1)');
             })
         })
     }

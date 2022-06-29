@@ -29,6 +29,7 @@ class Tasklist extends BaseController
             'form_type' => $ftype,
             'count' => $this->comment->comCount($id),
             'comment' => $this->comment->getComment($id),
+            'reply' => $this->comment,
             'row' => $this->tasklist->getOne($id),
         ];
         $vw['view'] = view('master/tasklist/v_form', $data);
@@ -124,6 +125,7 @@ class Tasklist extends BaseController
             $vd = [
                 'count' => $this->comment->comCount($taskid),
                 'comment' => $this->comment->getComment($taskid),
+                'reply' => $this->comment,
             ];
             $dt['view'] = view('master/comment/v_comment', $vd);
         } else {
@@ -150,6 +152,7 @@ class Tasklist extends BaseController
             $vw = [
                 'count' => $this->comment->comCount($task),
                 'comment' => $this->comment->getComment($task),
+                'reply' => $this->comment,
             ];
             $res['view'] = view('master/comment/v_comment', $vw);
         } else {
@@ -170,6 +173,7 @@ class Tasklist extends BaseController
             $data = [
                 'count' => $this->comment->comCount($taskid),
                 'comment' => $this->comment->getComment($taskid),
+                'reply' => $this->comment,
             ];
 
             $vw['view'] = view('master/comment/v_comment', $data);
@@ -179,5 +183,9 @@ class Tasklist extends BaseController
         }
 
         echo json_encode($vw);
+    }
+
+    public function addReply()
+    {
     }
 }

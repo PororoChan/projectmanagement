@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class Mscomment extends Model
 {
-    protected $table = 'mscomment';
+    protected $table = 'mscomment as s';
 
     public function __construct()
     {
@@ -17,15 +17,25 @@ class Mscomment extends Model
     public function comCount($taskid = '')
     {
         return $this->builder
-            ->where('taskid', $taskid)
+            ->where('s.taskid', $taskid)
             ->countAll();
     }
 
     public function getComment($taskid = '')
     {
         return $this->builder
-            ->where('taskid', $taskid)
-            ->orderBy('commentid', 'desc')
+            ->where('s.taskid', $taskid)
+            ->where('s.headerid', null)
+            ->orderBy('s.commentid', 'desc')
+            ->get()->getResultArray();
+    }
+
+    public function getReply($hid = '')
+    {
+        return $this->builder->distinct()
+            ->select('s.commentid, s.taskid, s.message, s.userid, s.headerid, s.createdby, c.headerid as hid')
+            ->join('mscomment as c', 's.headerid = c.headerid')
+            ->where('s.headerid', $hid)
             ->get()->getResultArray();
     }
 

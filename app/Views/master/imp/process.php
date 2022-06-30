@@ -48,15 +48,11 @@
             data: dt,
             success: function(res) {
                 if (res == 1) {
-                    setTimeout(() => {
-                        $.notify("Task " + pros, "success");
-                        setTimeout(() => {
-                            $('#list_board').load('<?= base_url('task/t') ?>');
-                        }, 55);
-                    }, 50);
+                    $.notify("Task " + pros, "success");
+                    $('#list_board').load('<?= base_url('task/t') ?>');
                 } else {
                     $.notify("Taskname cannot be empty", "warn");
-                    $('#form-tlist')[0].reset();
+                    form.reset();
                 }
             }
         })
@@ -126,19 +122,23 @@
 
     $('#formlist').on('submit', function(ev) {
         ev.preventDefault();
+        ev.stopImmediatePropagation();
         addList();
     });
 
     $('#btn-upt').on('click', function(ev) {
         ev.preventDefault();
+        ev.stopImmediatePropagation();
         addTask();
-    })
+    });
 
     $('#btn-com').on('click', function(ev) {
+        ev.preventDefault();
+        ev.stopImmediatePropagation();
         if ($(this).html() == 'Send') {
             addComment();
         } else if ($(this).html() == 'Edit') {
             editComment();
         }
-    })
+    });
 </script>

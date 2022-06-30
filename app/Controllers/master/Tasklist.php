@@ -13,6 +13,7 @@ class Tasklist extends BaseController
     public function __construct()
     {
         helper('form');
+        $this->date = new DateTime('now');
         $this->task = new Mstask();
         $this->comment = new Mscomment();
         $this->tasklist = new Mstasklist();
@@ -107,7 +108,6 @@ class Tasklist extends BaseController
 
     public function addComment()
     {
-        $date = new DateTime('now');
         $taskid = $this->request->getPost('task');
         $comment = $this->request->getPost('comment');
 
@@ -116,7 +116,7 @@ class Tasklist extends BaseController
                 'taskid' => $taskid,
                 'userid' => session()->get('id_user'),
                 'message' => $comment,
-                'createddate' => $date->format('Y-m-d H:i:s.u'),
+                'createddate' => $this->date->format('Y-m-d H:i:s.u'),
                 'createdby' => session()->get('name'),
             ];
 
@@ -187,5 +187,33 @@ class Tasklist extends BaseController
 
     public function addReply()
     {
+        $commentid = $this->request->getPost('id');
+        $taskid = $this->request->getPost('taskid');
+        $reply = $this->request->getPost('reply');
+
+        if ($commentid != '' && $reply != '') {
+            $data = [
+                'taskid' => $taskid,
+                'message' => $reply,
+                'createddate' => $this->date->format('Y-m-d H:i:s.u'),
+                'createdby' => session()->get('name'),
+                'userid' => session()->get('id_user'),
+                'headerid' => $commentid,
+            ];
+
+            $dv = [
+                'count' => $this->comment->comCount($taskid),
+                'comment' => $this->comment->getComment($taskid),
+                'reply' => $this->comment,
+            ];
+
+            $this->comment->tambahReply($data);
+            $res['success'] = 1;
+            $res['view'] = view('master/comment/v_comment', $dv);
+        } else {
+            $res['success'] = 0;
+        }
+
+        echo json_encode($res);
     }
 }

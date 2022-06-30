@@ -60,11 +60,11 @@
     });
 
     $('#desc').focusin(function() {
-        $('#btn-upt').fadeIn('fast');
+        $('#btn-upt').slideDown('fast');
     })
 
     $('#desc').focusout(function() {
-        $('#btn-upt').fadeOut('fast');
+        $('#btn-upt').slideUp('fast');
     })
 
     if (type == 'Edit') {
@@ -76,10 +76,10 @@
                 comment = editor;
                 editor.ui.focusTracker.on('change:isFocused', (evt, name, isFocused) => {
                     if (isFocused) {
-                        $('#btn-com').fadeIn('fast');
+                        $('#btn-com').slideDown('fast');
                     } else if (!isFocused) {
                         if ($('#btn-com').html() == 'Send') {
-                            $('#btn-com').fadeOut('fast');
+                            $('#btn-com').slideUp('fast');
                         } else if ($('#btn-com').html() == 'Edit') {
                             // Do Nothing
                         }

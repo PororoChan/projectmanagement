@@ -21,6 +21,15 @@ class Mscomment extends Model
             ->countAll();
     }
 
+    public function repCount($hid = '')
+    {
+        return $this->builder
+            ->select('*')
+            ->join('mscomment as c', 's.headerid = c.headerid')
+            ->where('s.headerid', $hid)
+            ->countAllResults();
+    }
+
     public function getComment($taskid = '')
     {
         return $this->builder
@@ -36,10 +45,16 @@ class Mscomment extends Model
             ->select('s.commentid, s.taskid, s.message, s.userid, s.headerid, s.createdby, c.headerid as hid')
             ->join('mscomment as c', 's.headerid = c.headerid')
             ->where('s.headerid', $hid)
+            ->orderBy('s.commentid', 'desc')
             ->get()->getResultArray();
     }
 
     public function tambah($data)
+    {
+        return $this->builder->insert($data);
+    }
+
+    public function tambahReply($data)
     {
         return $this->builder->insert($data);
     }

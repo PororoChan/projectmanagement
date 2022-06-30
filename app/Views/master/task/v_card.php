@@ -74,7 +74,7 @@
             url: '<?= base_url('task/formAdd') ?>',
             type: 'POST',
             success: function(res) {
-                $('#list-append').fadeToggle('fast', function() {
+                $('#list-append').slideToggle('fast', function() {
                     $(this).html(res);
                 })
             }

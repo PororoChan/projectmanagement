@@ -21,15 +21,6 @@ class Mscomment extends Model
             ->countAll();
     }
 
-    public function repCount($hid = '')
-    {
-        return $this->builder
-            ->select('*')
-            ->join('mscomment as c', 's.headerid = c.headerid')
-            ->where('s.headerid', $hid)
-            ->countAllResults();
-    }
-
     public function getComment($taskid = '')
     {
         return $this->builder
@@ -66,6 +57,9 @@ class Mscomment extends Model
 
     public function hapus($id)
     {
-        return $this->builder->delete(['commentid' => $id]);
+        $this->builder->delete(['commentid' => $id]);
+        $this->builder->delete(['headerid' => $id]);
+
+        return;
     }
 }

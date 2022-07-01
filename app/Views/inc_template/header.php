@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title><?= $title ?></title>
+    <link rel="icon" href="<?= base_url('public/assets/images/logo.ico') ?>" />
     <style>
         ::-webkit-scrollbar {
             width: 5px;
@@ -30,7 +31,6 @@
             background: #A6A6A6;
         }
     </style>
-    <link rel="icon" href="<?= base_url('public/assets/images/logo.ico') ?>" />
     <?= $this->include('v_script') ?>
 </head>
 
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black fs-7 font-weight-semibold m-0"> <?= session()->get('name') ?> </p>
-                                        <span class="fs-7 online-color">Online <i class="fas fa-chevron-down fs-8"></i></span>
+                                        <span class="fs-7 text-success">Online <i class="fas fa-chevron-down fs-8"></i></span>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu navbar-dropdown bg-white" aria-labelledby="profileDropdown">

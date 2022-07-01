@@ -7797,6 +7797,7 @@ textarea.is-invalid.tt-hint {
   display: inline-block;
   -ms-flex-item-align: stretch;
   align-self: stretch;
+  align-items: center;
   width: 1px;
   min-height: 1em;
   background-color: currentColor;

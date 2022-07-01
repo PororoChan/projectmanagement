@@ -27,7 +27,7 @@
                             <h2 class="text-dark fs-6 text-start">
                                 <i class="fas fa-chalkboard-teacher text-dark me-2"></i> Board
                             </h2>
-                            <button class="btn btn-primary shadow-sm" id="create_board">
+                            <button class="btn btn-primary shadow-sm" style="border-radius: 25px;" id="create_board">
                                 <i class="fas fa-plus fs-7 fw-bold me-2"></i>
                                 <span class="text-center">Create New Board</span>
                             </button>
@@ -36,7 +36,7 @@
                     <div class="section-body p-4 bg-white shadow-sm border-opacity-25 rounded">
                         <div class="board">
                             <div class="board-head">
-                                <span class="text-secondary fs-7 font-weight-normal">Showing <span class="count"></span> of <span class="count"></span> boards</span>
+                                <span class="text-secondary fs-7 font-weight-normal">Showing <span class="fw-bold text-dark count"></span> of <span class="fw-bold text-dark count"></span> boards</span>
                             </div>
                             <div class="board-body">
                                 <div class="row" id="bbody" draggable="false">
@@ -91,7 +91,6 @@
         count();
     });
 
-    // Board On Hover
     $(document).ready(function() {
         scaleCard();
         $('#create_board').on('click', function() {

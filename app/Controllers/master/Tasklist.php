@@ -116,7 +116,7 @@ class Tasklist extends BaseController
                 'taskid' => $taskid,
                 'userid' => session()->get('id_user'),
                 'message' => $comment,
-                'createddate' => $this->date->format('Y-m-d H:i:s.u'),
+                'createddate' => $this->date->format('Y-m-d H:i:s'),
                 'createdby' => session()->get('name'),
             ];
 
@@ -195,7 +195,7 @@ class Tasklist extends BaseController
             $data = [
                 'taskid' => $taskid,
                 'message' => $reply,
-                'createddate' => $this->date->format('Y-m-d H:i:s.u'),
+                'createddate' => $this->date->format('Y-m-d H:i:s'),
                 'createdby' => session()->get('name'),
                 'userid' => session()->get('id_user'),
                 'headerid' => $commentid,

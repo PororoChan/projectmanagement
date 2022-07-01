@@ -9,11 +9,11 @@
 <div id="form-load">
     <form id="form-tlist" <?= (($form_type == 'Add' ? 'class="mt-2"' : '')) ?> method="POST" ftype="<?= $form_type ?>">
         <div class="row <?= (($form_type == 'Edit') ? '' : '') ?>">
-            <div class="form-group <?= (($form_type == 'Edit') ? 'col-lg-8' : '') ?>">
+            <div class="form-group mb-2 <?= (($form_type == 'Edit') ? 'col-lg-8' : '') ?>">
                 <input type="hidden" name="id" id="id" value="<?= (($form_type == 'Edit') ? $row['id'] : '') ?>">
                 <input type="hidden" class="tid" name="tid" id="tid">
                 <?= (($form_type == 'Edit') ? '<i class="fas fa-hashtag fs-6 text-dark me-2"></i><label class="mt-1 fs-7 fw-semibold text-secondary" for="taskname">Task Name <span class="text-danger">*</span></label>' : '') ?>
-                <input type="text" class="form-control form-control-sm <?= (($form_type == 'Edit') ? 'mx-4 mt-2' : '') ?> rounded" name="taskname" id="taskname" spellcheck="false" placeholder="Enter new task" value="<?= (($form_type == 'Edit') ? $row['tasklistname'] : '') ?>">
+                <input type="text" class="form-control form-control-sm <?= (($form_type == 'Edit') ? 'mx-4 mt-2' : '') ?> rounded" name="taskname" id="taskname" spellcheck="false" placeholder="Create new task" value="<?= (($form_type == 'Edit') ? $row['tasklistname'] : '') ?>">
             </div>
             <?php if ($form_type == 'Edit') { ?>
                 <div class="form-group col-lg-8">

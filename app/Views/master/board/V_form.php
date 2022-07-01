@@ -16,7 +16,7 @@
             form = $('#form_board').serialize();
 
         if (ftype == 'Edit') {
-            link = "<?= base_url('board/editBoard') ?>"
+            link = "<?= base_url('board/editBoard') ?>";
         }
 
         $.ajax({
@@ -30,8 +30,8 @@
                         scaleCard();
                     })
                     $('#form_board')[0].reset();
-                    $('#formboard').modal('toggle')
-                    modalB()
+                    $('#formboard').modal('toggle');
+                    modalB();
                     count();
                 } else {
                     $.notify(res.msg, 'error');

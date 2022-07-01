@@ -3,7 +3,7 @@
         <div class="board-card pt-2 pb-2" id="board-pit">
             <a role="button" href="<?= base_url('board/b/' . $b['boardid'] . '') ?>" bid="<?= $b['boardid'] ?>" class="card text-start p-0 btn btn-secondary bg-light w-100 board_each" style="min-height: 85px; border-left: 5px solid #0033C4;" id="boardbtn">
                 <div class="card-body" id="board_each">
-                    <span class="text-start text-secondary font-13 fw-semibold"><?= $b['boardname'] ?></span>
+                    <span class="text-start text-secondary fs-7 fw-semibold"><?= $b['boardname'] ?></span>
                 </div>
             </a>
         </div>
@@ -26,9 +26,9 @@
     $('.board_each').each(function() {
         $(this).on('contextmenu', function(ev) {
             ev.preventDefault();
-            id = $(this).attr('bid')
-            $('#bed').val(id)
-            $('#bde').val(id)
+            id = $(this).attr('bid');
+            $('#bed').val(id);
+            $('#bde').val(id);
             var top = ev.pageY,
                 left = ev.pageX;
             $('#context-menu').css({
@@ -60,7 +60,7 @@
                 processData: false,
                 success: function(res) {
                     modalB();
-                    $('#mobody').html(res.view)
+                    $('#mobody').html(res.view);
                 }
             })
         })

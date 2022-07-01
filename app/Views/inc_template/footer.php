@@ -140,7 +140,7 @@
             },
             success: function(res) {
                 if (res == 1) {
-                    $.notify("Deleted!", "success");
+                    $.notify("Board Deleted!", "success");
                     setTimeout(() => {
                         $('#bbody').load('<?= base_url('board/b') ?>', function() {
                             scaleCard();

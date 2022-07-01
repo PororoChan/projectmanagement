@@ -1,5 +1,5 @@
 <?php foreach ($task as $t) : ?>
-    <div class="col-md-4 scol-lg-3 list min-vh-100" tasid="<?= $t['taskid'] ?>" seq="<?= $t['seq'] ?>">
+    <div class="col-md-4 scol-lg-3 list min-vh-100" tasid="<?= $t['taskid'] ?>">
         <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-2 list-hover rounded">
             <div class="row d-flex handle justify-content-between">
                 <div class="col-lg-10 text-start">
@@ -26,12 +26,12 @@
             <div tid="<?= $t['taskid'] ?>" class="task-item">
                 <ul class="portlet-card-list list-unstyled overflow-auto mt-1 mb-0" sts="<?= $t['taskid'] ?>" style="min-height: 35px; max-height: 55vh;">
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
-                        <li class="portlet-card bg-white border p-3 rounded" tlid="<?= $list['id'] ?>">
+                        <li class="portlet-card task-hover bg-white p-3 border rounded" tlid="<?= $list['id'] ?>">
                             <div class="portlet-card-header mb-0">
                                 <div class="text-dark fw-semibold font-14 me-2 d-flex justify-content-between">
                                     <span class="w-100 fs-7" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
-                                    <div>
-                                        <a href="#" data-bs-toggle="dropdown" id="dropdownMenu" data-target="#dropdownMenu">
+                                    <div style="height: 0px;">
+                                        <a href="#" class="btn_options" data-bs-toggle="dropdown" id="dropdownMenu" aria-expanded="false" data-target="#dropdownMenu" style="display: none;">
                                             <i class="fas fa-ellipsis-v fs-5 text-secondary"></i>
                                         </a>
                                         <ul class="dropdown-menu shadow-sm" id="dropdownMenu">
@@ -69,6 +69,17 @@
 <?= $this->include('master/imp/process') ?>
 <?= $this->include('master/imp/sortable') ?>
 <script>
+    $('.task-hover').hover(
+        function() {
+            $(this).closest('.task-hover').find('.btn_options').fadeIn('fast');
+            $(this).addClass('task-hovered');
+        },
+        function() {
+            $(this).closest('.task-hover').find('.btn_options').fadeOut('fast');
+            $(this).removeClass('task-hovered');
+        }
+    );
+
     $('#add_list').on('click', function() {
         $.ajax({
             url: '<?= base_url('task/formAdd') ?>',
@@ -123,7 +134,6 @@
             }
         });
     })
-
     $('.btn-add').each(function() {
         var self = $(this);
         $(this).on('click', function(ev) {

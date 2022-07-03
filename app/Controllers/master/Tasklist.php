@@ -185,6 +185,15 @@ class Tasklist extends BaseController
         echo json_encode($vw);
     }
 
+    public function reply()
+    {
+        $dt = [
+            'reply' => $this->comment,
+        ];
+
+        return view('master/comment/v_replies', $dt);
+    }
+
     public function addReply()
     {
         $commentid = $this->request->getPost('id');

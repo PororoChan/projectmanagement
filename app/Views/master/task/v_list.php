@@ -25,16 +25,16 @@
             <section class="section">
                 <div class="row">
                     <div class="col-lg-6">
+                        <button class="btn btn-inverse-primary" style="border-radius: 25px;" disabled>
+                            <i class="fas fa-fire fs-7 me-2"></i><span class="text-start fs-7"><?= session()->get('bname') ?></span>
+                            <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
+                        </button>
+                        <div class="vr align-middle mx-2 me-2" style="height: 20px;"></div>
                         <a class="btn btn-inverse-primary me-auto" id="bt-board" href="<?= base_url('board/cleanUser') ?>" style="border-radius: 25px;">
                             <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-bold fs-7">BOARD</span>
                         </a>
                         <button class="btn btn-inverse-dark" style="border-radius: 25px;" title="Masih Rencana">
                             <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-semibold fs-7">Share</span>
-                        </button>
-                        <div class="vr align-middle mx-2 me-2" style="height: 20px;"></div>
-                        <button class="btn btn-inverse-primary" style="border-radius: 25px;" disabled>
-                            <i class="fas fa-fire fs-7 me-2"></i><span class="text-start fs-7"><?= session()->get('bname') ?></span>
-                            <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
                         </button>
                     </div>
                 </div>

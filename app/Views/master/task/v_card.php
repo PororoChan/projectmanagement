@@ -43,7 +43,7 @@
                             </div>
                             <?php if ($list['description'] != '') { ?>
                                 <div class="portlet-card-body">
-                                    <div class="text-secondary text-start fw-semibold font-13" style="overflow-wrap: break-word;">
+                                    <div class="text-secondary text-start font-13" style="overflow-wrap: break-word;">
                                         <?= $list['description'] ?>
                                     </div>
                                 </div>

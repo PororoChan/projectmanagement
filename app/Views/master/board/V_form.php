@@ -1,10 +1,10 @@
-<form method="POST" id="form_board">
+<form method="POST" class="mb-0" id="form_board">
     <div class="form-group mb-3">
         <input type="hidden" id="idboard" name="idboard" value="<?= $id ?>">
         <input type="text" class="form-control form-control-sm" id="boardtitle" placeholder="Enter board name" name="boardtitle" value="<?= (($form_type == 'Edit') ? $row['boardname'] : '') ?>">
     </div>
     <div class="form-group mb-0">
-        <button type="submit" class="btn btn-primary w-100 mb-1" id="pros"><?= (($form_type == 'Edit') ? 'Update' : 'Save') ?></button>
+        <button type="submit" class="btn btn-primary w-100" id="pros"><?= (($form_type == 'Edit') ? 'Update' : 'Save') ?></button>
     </div>
 </form>
 <?= $this->include('master/imp/process') ?>

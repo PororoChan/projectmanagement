@@ -18,7 +18,7 @@
                     </a>
                 </div>
                 <div class="collapse" id="ui-basic">
-                    <ul class="nav flex-column sub-menu" style="float: right;">
+                    <ul class="nav d-flex justify-content-center" style="word-wrap: break-word; margin-left: 10px;">
                         <li class="nav-item rounded">
                             <a class="nav-links text-secondary fs-7" href="#">User</a>
                         </li>

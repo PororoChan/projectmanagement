@@ -23,20 +23,20 @@
                 <!-- Board -->
                 <section class="section w-100">
                     <div class="section-header pb-3 pt-2">
-                        <div class="d-flex justify-content-between">
-                            <h2 class="text-dark fs-6 text-start">
-                                <i class="fas fa-chalkboard-teacher text-dark me-2"></i> Board
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h2 class="text-dark fs-6 text-start mb-0">
+                                <i class="fas fa-chalkboard-teacher text-dark me-2"></i> Boards
                             </h2>
-                            <button class="btn btn-primary shadow-sm" style="border-radius: 25px;" id="create_board">
-                                <i class="fas fa-plus fs-7 fw-bold me-2"></i>
-                                <span class="text-center">Create New Board</span>
+                            <button class="btn btn-primary shadow-sm" id="create_board">
+                                <i class="fas fa-plus fw-semibold fs-7"></i>
+                                <span id="btn_b_new" class="text-center font-12 mx-2">Create Board</span>
                             </button>
                         </div>
                     </div>
-                    <div class="section-body p-4 bg-white shadow-sm border-opacity-25 rounded">
+                    <div class=" section-body p-4 bg-white shadow-sm border-opacity-25 rounded">
                         <div class="board">
                             <div class="board-head">
-                                <span class="text-secondary fs-7 font-weight-normal">Showing <span class="fw-bold text-dark count"></span> of <span class="fw-bold text-dark count"></span> boards</span>
+                                <span class="text-secondary fs-7 font-weight-normal">Showing <span class="fw-semibold text-dark count"></span> of <span class="fw-semibold text-dark count"></span> boards</span>
                             </div>
                             <div class="board-body">
                                 <div class="row" id="bbody" draggable="false">
@@ -112,5 +112,5 @@
                 }
             })
         });
-    })
+    });
 </script>

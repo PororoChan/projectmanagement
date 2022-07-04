@@ -3,8 +3,8 @@
         <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-2 list-hover rounded">
             <div class="row d-flex handle justify-content-between">
                 <div class="col-lg-10 text-start">
-                    <div id="taskid" class="fs-7 fw-bold p-1 text-dark tsid" tsid="<?= $t['taskid'] ?>" spellcheck="false" contenteditable="true">
-                        <span id="taskname" class="me-2 sts" spellcheck="false"><?= $t['taskname'] ?></span>
+                    <div id="taskid" class="font-12 fw-bold p-1 text-dark tsid" tsid="<?= $t['taskid'] ?>" spellcheck="false" contenteditable="true">
+                        <span id="taskname" class="font-12 me-2 sts" spellcheck="false"><?= $t['taskname'] ?></span>
                     </div>
                 </div>
                 <div class="col-lg-1 d-flex justify-content-end dropstart">
@@ -28,8 +28,8 @@
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
                         <li class="portlet-card task-hover bg-white p-3 border rounded" tlid="<?= $list['id'] ?>">
                             <div class="portlet-card-header mb-0">
-                                <div class="text-dark fw-semibold font-14 me-2 d-flex justify-content-between">
-                                    <span class="w-100 fs-7" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
+                                <div class="text-dark fw-semibold me-2 d-flex justify-content-between">
+                                    <span class="w-100 font-13" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
                                     <div style="height: 0px;">
                                         <a href="#" class="btn_options" data-bs-toggle="dropdown" id="dropdownMenu" aria-expanded="false" data-target="#dropdownMenu" style="display: none;">
                                             <i class="fas fa-ellipsis-v fs-5 text-secondary"></i>
@@ -43,7 +43,7 @@
                             </div>
                             <?php if ($list['description'] != '') { ?>
                                 <div class="portlet-card-body">
-                                    <div class="text-secondary text-start font-13" style="overflow-wrap: break-word;">
+                                    <div class="text-secondary text-start fw-semibold font-12" style="overflow-wrap: break-word;">
                                         <?= $list['description'] ?>
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
 
     $('.delist').each(function() {
         $(this).on('click', function() {
-            listDel('Task List', 'Anda yakin ingin hapus task ini ?', '<?= base_url('task/delete') ?>', $(this).attr('idt'));
+            listDel('Task List', 'Anda yakin ingin hapus list ini ?', '<?= base_url('task/delete') ?>', $(this).attr('idt'));
         })
     });
 

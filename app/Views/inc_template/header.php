@@ -43,10 +43,9 @@
                         <a class="navbar-brand brand-logo" href="#">
                             <span class="fs-6 d-block font-weight-bold">Project Management</span>
                         </a>
-                        <a class="navbar-brand brand-logo-mini" href="#"><img src="<?= base_url('public/assets/images/logo-mini.svg') ?>" /></a>
                     </div>
                     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                        <ul class="navbar-nav mr-lg-2">
+                        <ul class="navbar-nav mr-lg-2 mx-auto">
                             <li class="nav-item nav-search d-none d-lg-block">
                                 <div class="input-group">
                                     <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -58,7 +57,7 @@
                                 </div>
                             </li>
                         </ul>
-                        <ul class="navbar-nav navbar-nav-right mx-5">
+                        <ul class="navbar-nav navbar-nav-right">
                             <li class="nav-item">
                                 <a class="text-secondary" href="#">
                                     <i class="far fa-envelope fs-6"></i>
@@ -79,7 +78,7 @@
                                         <span class="fs-7 text-success">Online <i class="fas fa-chevron-down fs-8"></i></span>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu navbar-dropdown bg-white" aria-labelledby="profileDropdown">
+                                <div class="dropdown-menu navbar-dropdown mx-5 bg-white" aria-labelledby="profileDropdown">
                                     <a class="dropdown-item fs-7" href="<?= base_url('logout') ?>">
                                         <i class="fas fa-sign-out-alt fs-7 me-2 text-danger"></i> Log Out </a>
                                 </div>

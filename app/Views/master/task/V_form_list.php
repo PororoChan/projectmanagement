@@ -5,7 +5,8 @@
         <input type="text" class="form-control form-control-sm" name="taskname" placeholder="Create new list" id="taskname" value="<?= (($form_type == 'Edit') ? $row['taskname'] : '') ?>">
     </div>
     <div class="form-group mb-0 d-flex align-items-center justify-content-end">
-        <a id="btn-close-list"><i class="fas fa-close fs-5 me-4 pt-1 text-secondary"></i></a><button type="submit" class="btn btn-primary" id="savelist"><span><?= (($form_type == "Edit") ? 'Edit' : 'Save') ?></span></button>
+        <button type="button" id="btn-close-list" class="btn btn-sm me-2"><i class="fas fa-close fs-6 text-secondary"></i></button>
+        <button type="submit" class="btn btn-primary" id="savelist"><span><?= (($form_type == "Edit") ? 'Edit' : 'Save') ?></span></button>
     </div>
 </form>
 
@@ -13,7 +14,7 @@
 <script>
     $('#btn-close-list').each(function() {
         $(this).on('click', function() {
-            $('#formlist').remove();
+            $('#list-append').slideToggle('fast');
         })
     });
 </script>

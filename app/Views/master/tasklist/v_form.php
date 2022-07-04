@@ -12,25 +12,25 @@
             <div class="form-group mb-2 <?= (($form_type == 'Edit') ? 'col-lg-8' : '') ?>">
                 <input type="hidden" name="id" id="id" value="<?= (($form_type == 'Edit') ? $row['id'] : '') ?>">
                 <input type="hidden" class="tid" name="tid" id="tid">
-                <?= (($form_type == 'Edit') ? '<i class="fas fa-hashtag fs-6 text-dark me-2"></i><label class="mt-1 fs-7 fw-semibold text-secondary" for="taskname">Task Name <span class="text-danger">*</span></label>' : '') ?>
-                <input type="text" class="form-control form-control-sm <?= (($form_type == 'Edit') ? 'mx-4 mt-2' : '') ?> rounded" name="taskname" id="taskname" spellcheck="false" placeholder="Create new task" value="<?= (($form_type == 'Edit') ? $row['tasklistname'] : '') ?>">
+                <?= (($form_type == 'Edit') ? '<i class="fas fa-hashtag fs-6 text-secondary me-2"></i><label class="mt-1 fs-7 fw-semibold text-secondary" for="taskname">Task Name <span class="text-danger">*</span></label>' : '') ?>
+                <input type="text" class="form-control form-control-sm <?= (($form_type == 'Edit') ? 'mx-4' : '') ?> rounded" name="taskname" id="taskname" spellcheck="false" placeholder="Create new task" value="<?= (($form_type == 'Edit') ? $row['tasklistname'] : '') ?>">
             </div>
             <?php if ($form_type == 'Edit') { ?>
                 <div class="form-group col-lg-8">
-                    <i class="fas fa-align-left fs-6 text-dark me-2"></i><label class="mt-1 fw-semibold fs-7 text-secondary" for="desc">Description</label>
+                    <i class="fas fa-align-left fs-6 text-secondary me-2"></i><label class="mt-2 mb-0 fw-semibold fs-7 text-secondary" for="desc">Description</label>
                     <textarea rows="10" cols="6" class="col-lg-8 form-control form-control-sm mx-4 mt-2 pt-3 pb-3 rounded" name="desc" id="desc" spellcheck="false" placeholder="Task Description"><?= (($form_type == 'Edit') ? $row['description'] : '') ?></textarea>
                 </div>
             <?php } ?>
-            <div class="form-group mb-1 <?= (($form_type == 'Edit') ? 'col-lg-8 mx-4' : '') ?> d-flex align-items-center justify-content-end">
+            <div class="form-group mb-0 <?= (($form_type == 'Edit') ? 'col-lg-8 mx-4' : '') ?> d-flex align-items-center justify-content-end">
                 <?= (($form_type == 'Edit') ? '' : '<a id="btn-close" class="bc"><i class="fas fa-close fs-5 me-4 text-secondary"></i></a>') ?><button type="<?= (($form_type == 'Edit') ? 'button' : 'submit') ?>" id="btn-upt" class="btn btn-<?= (($form_type == 'Edit') ? 'inverse-primary' : 'primary') ?>" <?= (($form_type == 'Edit') ? 'style="display: none;"' : '') ?>><span><?= (($form_type == 'Edit') ? 'Update' : 'Save') ?></span></button>
             </div>
     </form>
 </div>
 <!-- Comment Form -->
 <?php if ($form_type == 'Edit') { ?>
-    <form id="form-comment" method="POST">
-        <div class="col-lg-8 mt-0">
-            <i class="fas fa-list-check fs-6 me-2 text-dark"></i><label class="m-1 fw-semibold fs-7 text-secondary" for="comment">Activity</label>
+    <form id="form-comment" class="mt-0" method="POST">
+        <div class="col-lg-8">
+            <i class="fas fa-list-check fs-6 me-2 text-secondary"></i><label class="m-1 fw-semibold fs-7 text-secondary">Activity</label>
         </div>
         <div class="form-group col-lg-8 mx-3 me-1 mt-3 d-flex justify-content-between">
             <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" class="rounded-circle shadow-sm" width="35" height="35">

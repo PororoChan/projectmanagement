@@ -209,7 +209,6 @@ class Tasklist extends BaseController
                 'userid' => session()->get('id_user'),
                 'headerid' => $commentid,
             ];
-
             $dv = [
                 'count' => $this->comment->comCount($taskid),
                 'comment' => $this->comment->getComment($taskid),

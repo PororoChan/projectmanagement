@@ -33,58 +33,78 @@
     }
 </style>
 <?php
-function comment($commentid = '', $headerid = '', $data = [])
+function getCom($commentid, $headerid, $data = [], $margin)
 {
-    if ($commentid != '' && $headerid == '') {
-        echo "
-        <div class='row mt-1'>
-            <div class='col-sm-1 mx-3 me-0'>
-                <img class='rounded-circle shadow-sm' src=" . base_url('public/assets/images/faces/avatar-1.png') . " style='width: 35px; height: 35px;'>
-            </div>
-            <div class='col-lg-7 text-start'>
-                <div class='row'>
-                    <div class='col-lg-4'>
-                        <span class='fw-bold text-dark fs-7 me-2'>
-                            " . $data['createdby'] . "
-                        </span>
-                        <span class='fw-semibold text-secondary font-11'>
-                            " . date('d M Y H:i', strtotime($data['createddate'])) . "
-                        </span>
-                    </div>
+    $html = "<div class='row mt-1' style='margin-left: " . $margin . "'>
+                <div class='col-sm-1 mx-3 me-0'>
+                    <img class='rounded-circle shadow-sm' src=" . base_url('public/assets/images/faces/avatar-1.png') . " style='width: 35px; height: 35px;'>
                 </div>
-                <div class='row'>
-                    <div class='col-lg-12 d-flex field-hover' style='height: max-content;'>
-                        <div class='mb-1 me-2'>
-                            <div class='col-lg-8 bg-secondary bg-opacity-10 com-field' id='com-field' comid=" . $data['commentid'] . " style='width: max-content; max-width: 500px; height: max-content;'>
-                            " . $data['message'] . "
-                            </div>
+                <div class='col-lg-7 text-start'>
+                    <div class='row'>
+                        <div class='col-lg-4'>
+                            <span class='fw-bold text-dark fs-7 me-2'>
+                                " . $data['createdby'] . "
+                            </span>
+                            <span class='fw-semibold text-secondary font-11'>
+                                " . date('d M Y H:i', strtotime($data['createddate'])) . "
+                            </span>
                         </div>
-                        " . (($data['userid'] == session()->get('id_user') ? '
-                            <div class="act-comment mt-1 mb-0" id="act-comment" style="display: none;">
-                                <div class="d-flex">
-                                    <button type="button" class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center com-edit me-1" msg="' . $data['message'] . '" cid="' . $data['commentid'] . '" sid="' . $data['taskid'] . '">
-                                        <i class="fas fa-pencil-alt text-center fs-7"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-inverse-danger d-flex align-items-center text-center com-delete" cid="' . $data['commentid'] . '" sid="' . $data['taskid'] . '">
-                                        <i class="fas fa-trash-alt text-center fs-7"></i>
-                                    </button>
+                    </div>
+                    <div class='row'>
+                        <div class='col-lg-12 d-flex field-hover' style='height: max-content;'>
+                            <div class='mb-1 me-2'>
+                                <div class='col-lg-8 bg-secondary bg-opacity-10 com-field' id='com-field' comid=" . $data['commentid'] . " style='width: max-content; max-width: 500px; height: max-content;'>
+                                " . $data['message'] . "
                                 </div>
                             </div>
-                        ' : '<div></div>')) . "
+                            " . (($data['userid'] == session()->get('id_user') ? '
+                                <div class="act-comment mt-1 mb-0" id="act-comment" style="display: none;">
+                                    <div class="d-flex">
+                                        <button type="button" class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center com-edit me-1" msg="' . $data['message'] . '" cid="' . $data['commentid'] . '" sid="' . $data['taskid'] . '">
+                                            <i class="fas fa-pencil-alt text-center fs-7"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-inverse-danger d-flex align-items-center text-center com-delete" cid="' . $data['commentid'] . '" sid="' . $data['taskid'] . '">
+                                            <i class="fas fa-trash-alt text-center fs-7"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            ' : '<div></div>')) . "
+                        </div>
+                        <div class='mb-3 w-100'>
+                            <div class='fs-7 text-secondary text-decoration-none mb-1'>
+                                <i class='fas fa-reply me-1'></i><a href='#' class='text-secondary btn-rep me-2'>Reply</a>
+                                <a href='#' class='text-secondary fs-7 btn-see' id='btn-see'>View Replies</a>
+                            </div>
+                        </div>
+                        <div class='replies' id='replies' style='display: none;'>
+                            <input type='hidden' class='commentid' name='commentid' id='commentid' value='" . $data['commentid'] . "'>
+                            <input type='hidden' class='idds' name='idds' id='idds' value='" . $data['taskid'] . "'>
+                            <textarea class='form-control form-control-sm replies-field' id='replies-field' name='replies-field' style='width:425px; max-width: 425px;' placeholder='Reply to this comment'></textarea>
+                            <div class='col-lg-8 d-flex justify-content-end'>
+                                <button class='btn btn-inverse-primary btn_replies mt-2' id='btn_replies'><span class='fw-semibold'>Send</span></button>
+                            </div>
+                        </div>
+                        <div class='col-lg-12 reply-load field-hover mx-5 mt-auto' id='reply-load' style='display: none;'>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        ";
-    } else if ($headerid != '') {
-        echo "samlekom";
-    }
+            ";
+
+    return $html;
 }
 ?>
 <?php if ($count > 0) { ?>
-    <?php foreach ($comment as $c) : ?>
-        <?php comment($c['commentid'], $c['headerid'], $c) ?>
-    <?php endforeach; ?>
+    <div class="row">
+        <?php
+        foreach ($comment as $c) {
+            if ($c['headerid'] == '') {
+                echo getCom($c['commentid'], $c['headerid'], $c, 50);
+            }
+        }
+        ?>
+    </div>
 <?php } ?>
 <script>
     $(document).ready(function() {
@@ -102,7 +122,6 @@ function comment($commentid = '', $headerid = '', $data = [])
                 var i = $('.btn-see').index($(this));
 
                 $('.reply-load').eq(i).slideToggle('fast');
-                $('.replies').slideUp('fast');
             })
         });
 

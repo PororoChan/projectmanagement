@@ -25,7 +25,6 @@ class Mscomment extends Model
     {
         return $this->builder
             ->where('s.taskid', $taskid)
-            ->where('s.headerid', null)
             ->orderBy('s.commentid', 'desc')
             ->get()->getResultArray();
     }
@@ -33,7 +32,7 @@ class Mscomment extends Model
     public function getReply($hid = '')
     {
         return $this->builder->distinct()
-            ->select('s.commentid, s.taskid, s.message, s.userid, s.headerid, s.createdby, c.headerid as hid')
+            ->select('s.commentid, s.taskid, s.message, s.userid, s.headerid, s.createdby, s.createddate, c.headerid as hid')
             ->join('mscomment as c', 's.headerid = c.headerid')
             ->where('s.headerid', $hid)
             ->orderBy('s.commentid', 'desc')

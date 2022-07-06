@@ -1,31 +1,23 @@
 <style>
-    .com-field,
-    .rep-field {
+    .com-field {
         border-radius: 0px 10px 10px 10px;
     }
 
-    .com-field p,
-    .rep-field p {
-        font-size: 13px;
+    .com-field p {
+        font-size: 14px;
         padding: 5px;
         margin: 5px;
     }
 
     .com-field ol,
     .com-field ul {
-        font-size: 13px;
+        font-size: 14px;
         margin: 8px;
         width: max-content;
         height: max-content;
     }
 
-
-    .ck-editor__editable {
-        min-width: 665px;
-        max-width: 665px;
-        word-wrap: break-word;
-    }
-
+    .ck-editor__editable,
     .ck-editor__top {
         min-width: 665px;
         max-width: 665px;
@@ -33,79 +25,81 @@
     }
 </style>
 <?php
-function getCom($commentid, $headerid, $data = [], $margin)
-{
-    $html = "<div class='row mt-1' style='margin-left: " . $margin . "'>
-                <div class='col-sm-1 mx-3 me-0'>
-                    <img class='rounded-circle shadow-sm' src=" . base_url('public/assets/images/faces/avatar-1.png') . " style='width: 35px; height: 35px;'>
-                </div>
-                <div class='col-lg-7 text-start'>
-                    <div class='row'>
-                        <div class='col-lg-4'>
-                            <span class='fw-bold text-dark fs-7 me-2'>
-                                " . $data['createdby'] . "
-                            </span>
-                            <span class='fw-semibold text-secondary font-11'>
-                                " . date('d M Y H:i', strtotime($data['createddate'])) . "
-                            </span>
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-lg-12 d-flex field-hover' style='height: max-content;'>
-                            <div class='mb-1 me-2'>
-                                <div class='col-lg-8 bg-secondary bg-opacity-10 com-field' id='com-field' comid=" . $data['commentid'] . " style='width: max-content; max-width: 500px; height: max-content;'>
-                                " . $data['message'] . "
-                                </div>
-                            </div>
-                            " . (($data['userid'] == session()->get('id_user') ? '
-                                <div class="act-comment mt-1 mb-0" id="act-comment" style="display: none;">
-                                    <div class="d-flex">
-                                        <button type="button" class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center com-edit me-1" msg="' . $data['message'] . '" cid="' . $data['commentid'] . '" sid="' . $data['taskid'] . '">
-                                            <i class="fas fa-pencil-alt text-center fs-7"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-inverse-danger d-flex align-items-center text-center com-delete" cid="' . $data['commentid'] . '" sid="' . $data['taskid'] . '">
-                                            <i class="fas fa-trash-alt text-center fs-7"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            ' : '<div></div>')) . "
-                        </div>
-                        <div class='mb-3 w-100'>
-                            <div class='fs-7 text-secondary text-decoration-none mb-1'>
-                                <i class='fas fa-reply me-1'></i><a href='#' class='text-secondary btn-rep me-2'>Reply</a>
-                                <a href='#' class='text-secondary fs-7 btn-see' id='btn-see'>View Replies</a>
-                            </div>
-                        </div>
-                        <div class='replies' id='replies' style='display: none;'>
-                            <input type='hidden' class='commentid' name='commentid' id='commentid' value='" . $data['commentid'] . "'>
-                            <input type='hidden' class='idds' name='idds' id='idds' value='" . $data['taskid'] . "'>
-                            <textarea class='form-control form-control-sm replies-field' id='replies-field' name='replies-field' style='width:425px; max-width: 425px;' placeholder='Reply to this comment'></textarea>
-                            <div class='col-lg-8 d-flex justify-content-end'>
-                                <button class='btn btn-inverse-primary btn_replies mt-2' id='btn_replies'><span class='fw-semibold'>Send</span></button>
-                            </div>
-                        </div>
-                        <div class='col-lg-12 reply-load field-hover mx-5 mt-auto' id='reply-load' style='display: none;'>
-                            
-                        </div>
+if ($count > 0) {
+    function loadComment($data = [], $reply, $margin)
+    {
+        echo "<div class='row' style='margin-left: " . $margin . "px;'>";
+        foreach ($data as $dt) {
+            echo "
+            <div class='col-sm-1 mx-0 me-2'>
+                <img class='rounded-circle shadow-sm' title=" . (($dt['userid'] == session()->get('id_user') ? 'You' : 'By ' . $dt['createdby'])) . " src=" . base_url('public/assets/images/faces/avatar-1.png') . " style='width: 35px; height: 35px;'>
+            </div>
+            <div class='col-lg-7 text-start'>
+                <div class='row'>
+                    <div class='col-lg-6'>
+                        <span class='fw-bold text-dark fs-7 me-2'>
+                            " . $dt['createdby'] . "
+                        </span>
+                        <span class='fw-semibold text-secondary font-11'>
+                            " . date('j F Y H:i', strtotime($dt['createddate'])) . "
+                        </span>
                     </div>
                 </div>
+                <div class='row'>
+                    <div class='col-lg-12 d-flex field-hover' style='height: max-content;'>
+                        <div class='mb-1 me-2'>
+                            <div class='col-lg-8 bg-secondary bg-opacity-10 com-field' id='com-field' comid=" . $dt['commentid'] . " style='width: max-content; max-width: 500px; word-wrap: break-word; font-size: 14px; " . (($dt['headerid'] != '' ? 'padding: 6px; margin: 6px;' : '')) . " height: max-content;'>
+                                " . $dt['message'] . "
+                            </div>
+                            </div>
+                            " . (($dt['userid'] == session()->get('id_user') ? '
+                            <div class="act-comment mt-1 mb-0" id="act-comment" style="display: none;">
+                            <div class="d-flex">
+                            ' . (($dt['headerid'] != '' ? '<div></div>' : '
+                                    <button type="button" class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center com-edit me-1" cid=' . $dt['commentid'] . '>
+                                        <input type="hidden" id="field-content" class="field-content" value="' . $dt['message'] . '">
+                                        <i class="fas fa-pencil-alt text-center fs-7"></i>
+                                    </button>
+                                    ')) . '
+                                    <button type="button" class="btn btn-sm btn-inverse-danger d-flex align-items-center text-center com-delete" cid=' . $dt['commentid'] . ' sid=' . $dt['taskid'] . '>
+                                        <i class="fas fa-trash-alt text-center fs-7"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        ' : '<div></div>')) . "
+                    </div>
+                    <div class='mb-2 w-100'>
+                        <div class='fs-7 text-secondary mb-1'>
+                            <i class='fas fa-reply me-1'></i><a href='#' class='fw-semibold text-secondary text-decoration-none btn-rep me-2'>Reply</a>
+                        </div>
+                    </div>
+                    <div class='col-lg-10 replies' id='replies' style='display: none;'>
+                        <input type='hidden' class='commentid' name='commentid' id='commentid' value='" . $dt['commentid'] . "'>
+                        <input type='hidden' class='idds' id='idds' name='idds' value='" . $dt['taskid'] . "'>
+                        <textarea class='form-control form-control-sm replies-field' spellcheck='false' id='replies-field' name='replies-field' style='max-width: 425px;' placeholder='Reply to this comment'></textarea>
+                        <div class='d-flex justify-content-end'> 
+                            <button class='btn btn-inverse-primary btn_replies mt-2 mb-1' id='btn_replies'><span class='fw-semibold'>Send</span></button>
+                        </div>
+                    </div>
+                </div>  
             </div>
             ";
-
-    return $html;
+            loadComment($reply->getReply($dt['commentid']), $reply, $margin + 15);
+        }
+        echo "</div>";
+    }
 }
 ?>
-<?php if ($count > 0) { ?>
-    <div class="row">
-        <?php
-        foreach ($comment as $c) {
-            if ($c['headerid'] == '') {
-                echo getCom($c['commentid'], $c['headerid'], $c, 50);
-            }
-        }
-        ?>
-    </div>
-<?php } ?>
+<div class="row comments__load">
+    <?php if ($count > 0) { ?>
+        <div class="col-lg-8 mb-3">
+            <i class="fas fa-comments fs-6 me-2 text-secondary"></i><label class="m-1 fw-semibold fs-7 text-secondary">Comments</label>
+        </div>
+        <?= loadComment($comment, $reply, 0) ?>
+    <?php } else { ?>
+        <div></div>
+    <?php } ?>
+</div>
 <script>
     $(document).ready(function() {
         $('.field-hover').hover(
@@ -143,8 +137,9 @@ function getCom($commentid, $headerid, $data = [], $margin)
 
         $('.com-edit').each(function() {
             $(this).on('click', function() {
-                var id = $(this).attr('cid');
-                comment.setData($(this).attr('msg'));
+                var id = $(this).attr('cid'),
+                    com = $(this).closest('.com-edit').find('.field-content').val();
+                comment.setData(com);
 
                 // Button Appear
                 $('#btn-com').slideDown('fast');
@@ -212,7 +207,7 @@ function getCom($commentid, $headerid, $data = [], $margin)
                     success: function(res) {
                         if (res.success == 1) {
                             $.notify('Reply ' + pros, 'success');
-                            $('#com-load').html(res.view);
+                            $('#com-load').html(res.view)
                         } else {
                             $.notify('Reply not ' + pros, 'error');
                         }

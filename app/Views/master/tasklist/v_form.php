@@ -45,7 +45,7 @@
     </form>
 <?php } ?>
 <?php if ($form_type == 'Edit') { ?>
-    <div id="com-load">
+    <div id="com-load" class="col-lg-8 overflow-auto">
         <?= $this->include('master/comment/v_comment') ?>
     </div>
 <?php } ?>

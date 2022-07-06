@@ -17,14 +17,16 @@ class Mscomment extends Model
     public function comCount($taskid = '')
     {
         return $this->builder
+            ->where('s.headerid', null)
             ->where('s.taskid', $taskid)
-            ->countAll();
+            ->countAllResults();
     }
 
     public function getComment($taskid = '')
     {
         return $this->builder
             ->where('s.taskid', $taskid)
+            ->where('s.headerid', null)
             ->orderBy('s.commentid', 'desc')
             ->get()->getResultArray();
     }

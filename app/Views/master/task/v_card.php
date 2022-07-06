@@ -11,7 +11,7 @@
                     <a href="" id="dropdownlist" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-ellipsis-h text-secondary"></i>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownlist">
+                    <ul class="dropdown-menu shadow-sm" aria-labelledby="dropdownlist">
                         <li><a href="#" role="button" class="dropdown-item delist" idt="<?= $t['taskid'] ?>"><i class="fas fa-trash text-danger fs-7 me-2"></i><span class="text-secondary fw-bolder fs-7">Delete</span></a></li>
                     </ul>
                 </div>

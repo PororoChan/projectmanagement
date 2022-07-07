@@ -22,6 +22,13 @@ class Mscomment extends Model
             ->countAllResults();
     }
 
+    public function countAll($taskid = '')
+    {
+        return $this->builder
+            ->where('s.taskid', $taskid)
+            ->countAllResults();
+    }
+
     public function getComment($taskid = '')
     {
         return $this->builder

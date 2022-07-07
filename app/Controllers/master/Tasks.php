@@ -3,6 +3,7 @@
 namespace App\Controllers\master;
 
 use App\Controllers\BaseController;
+use App\Models\Mscomment;
 use App\Models\Mstask;
 use App\Models\Mstasklist;
 
@@ -12,6 +13,7 @@ class Tasks extends BaseController
     {
         helper('form');
         $this->task = new Mstask();
+        $this->comment = new Mscomment();
         $this->tasklist = new Mstasklist();
     }
 
@@ -23,6 +25,7 @@ class Tasks extends BaseController
         $bid = session()->get('idb');
         $data = [
             'tasklist' => $this->tasklist,
+            'comment' => $this->comment,
             'task' => $this->task->getTask($bid),
         ];
         return view('master/task/v_card', $data);

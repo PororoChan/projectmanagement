@@ -55,7 +55,12 @@ if ($count > 0) {
                             " . (($dt['userid'] == session()->get('id_user') ? '
                             <div class="act-comment mt-1 mb-0" id="act-comment" style="display: none;">
                             <div class="d-flex">
-                            ' . (($dt['headerid'] != '' ? '<div></div>' : '
+                            ' . (($dt['headerid'] != '' ? '
+                                    <button type="button" class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center rep-edit me-1" cid=' . $dt['commentid'] . '>
+                                        <input type="hidden" class="rep_field_content" value="' . $dt['message'] . '">
+                                        <i class="fas fa-pencil-alt text-center fs-7"></i>
+                                    </button>
+                                    ' : '
                                     <button type="button" class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center com-edit me-1" cid=' . $dt['commentid'] . '>
                                         <input type="hidden" id="field-content" class="field-content" value="' . $dt['message'] . '">
                                         <i class="fas fa-pencil-alt text-center fs-7"></i>
@@ -78,10 +83,11 @@ if ($count > 0) {
                         <input type='hidden' class='idds' id='idds' name='idds' value='" . $dt['taskid'] . "'>
                         <textarea class='form-control form-control-sm replies-field' spellcheck='false' id='replies-field' name='replies-field' style='max-width: 425px;' placeholder='Reply to this comment'></textarea>
                         <div class='d-flex justify-content-end'> 
+                            <button type='button' class='btn btn-inverse-warning mt-2 mb-1 me-1 btn_replies_cancel' id='btn_replies_cancel'><span class='fw-semibold'>Cancel</span></button>
                             <button class='btn btn-inverse-primary btn_replies mt-2 mb-1' id='btn_replies'><span class='fw-semibold'>Send</span></button>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
             ";
             loadComment($reply->getReply($dt['commentid']), $reply, $margin + 15);
@@ -93,7 +99,7 @@ if ($count > 0) {
 <div class="row comments__load">
     <?php if ($count > 0) { ?>
         <div class="col-lg-8 mb-3">
-            <i class="fas fa-comments fs-6 me-2 text-secondary"></i><label class="m-1 fw-semibold fs-7 text-secondary">Comments</label>
+            <i class="far fa-comments fs-6 me-1 text-secondary"></i><label class="m-1 fw-semibold fs-7 text-secondary">Comments</label>
         </div>
         <?= loadComment($comment, $reply, 0) ?>
     <?php } else { ?>
@@ -154,7 +160,16 @@ if ($count > 0) {
 
         $('.rep-edit').each(function() {
             $(this).on('click', function() {
+                var id = $(this).attr('cid'),
+                    idx = $('.rep-edit').index($(this)),
+                    msg = $(this).closest('.rep-edit').find('.rep_field_content').val();
 
+                $('.replies').eq(idx).slideToggle('fast', function() {
+                    $(this).closest('.replies').find('.replies-field').val(msg);
+                    $(this).closest('.replies').find('.commentid').val(id);
+                });
+
+                $('.btn_replies').eq(idx).html('Edit');
             })
         });
 
@@ -175,6 +190,7 @@ if ($count > 0) {
                     success: function(res) {
                         if (res.success == 1) {
                             $('#com-load').html(res.view);
+                            $('#list_board').load('<?= base_url('task/t') ?>')
                         } else {
                             $.notify('Data not loaded!', 'error');
                         }
@@ -190,10 +206,15 @@ if ($count > 0) {
             $(this).on('click', function() {
                 var y = $('.btn_replies').index($(this)),
                     txt = $('.replies-field').eq(y).val(),
-                    taskid = $('#idds').val(),
+                    taskid = $('.idds').eq(y).val(),
                     id = $('.commentid').eq(y).val(),
                     link = '<?= base_url('comment/addReply') ?>',
                     pros = 'added';
+
+                if ($(this).html() == 'Edit') {
+                    pros = 'updated';
+                    link = '<?= base_url('comment/editReply') ?>';
+                }
 
                 $.ajax({
                     url: link,
@@ -208,8 +229,9 @@ if ($count > 0) {
                         if (res.success == 1) {
                             $.notify('Reply ' + pros, 'success');
                             $('#com-load').html(res.view)
+                            $('#list_board').load('<?= base_url('task/t') ?>')
                         } else {
-                            $.notify('Reply not ' + pros, 'error');
+                            $.notify(res.msg, 'error');
                         }
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -218,5 +240,16 @@ if ($count > 0) {
                 })
             })
         });
-    })
+
+        $('.btn_replies_cancel').each(function() {
+            $(this).on('click', function() {
+                var i = $('.btn_replies_cancel').index($(this));
+
+                $('.replies').eq(i).slideToggle('fast', function() {
+                    $('.replies-field').eq(i).val("");
+                    $('.btn_replies').eq(i).html('Send');
+                })
+            })
+        });
+    });
 </script>

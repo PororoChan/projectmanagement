@@ -99,14 +99,14 @@
                         success: function(res) {
                             if (res.success == 1) {
                                 msg = "Login berhasil"
-                                $('#warn').removeClass('alert alert-danger');
-                                $('#warn').addClass('alert alert-success');
+                                $('#warn').removeClass('alert alert-fill-danger');
+                                $('#warn').addClass('alert alert-fill-success');
                                 setTimeout(() => {
                                     window.location.href = "<?= base_url('boards') ?>"
                                 }, 700);
                             } else {
                                 msg = "Username atau Password salah"
-                                $('#warn').addClass('alert alert-danger');
+                                $('#warn').addClass('alert alert-fill-danger');
                             }
                             $('#warn').html(msg);
                             $('#warn').show();
@@ -116,8 +116,9 @@
                         }
                     })
                 } else {
-                    msg = "Username dan Password dibutuhkan!"
-                    $('#warn').addClass('alert alert-danger');
+                    msg = "Username dan Password dibutuhkan!";
+                    $('#warn').addClass('alert alert-fill-danger');
+                    $('#warn').html(msg);
                     $('#warn').show();
                     setTimeout(() => {
                         $('#btn-login').html("Login");
@@ -125,9 +126,8 @@
                 }
             }, 500);
             $('#form-log')[0].reset();
-            $('#warn').html(msg);
             setTimeout(() => {
-                $('#warn').fadeOut(500);
+                $('#warn').fadeOut(800);
             }, 1000);
         })
     });

@@ -12,7 +12,7 @@
                         <i class="fas fa-ellipsis-h text-secondary"></i>
                     </a>
                     <ul class="dropdown-menu shadow-sm" aria-labelledby="dropdownlist">
-                        <li><a href="#" role="button" class="dropdown-item delist" idt="<?= $t['taskid'] ?>"><i class="fas fa-trash text-danger fs-7 me-2"></i><span class="text-secondary fw-bolder fs-7">Delete</span></a></li>
+                        <li><a href="#" role="button" class="dropdown-item delist" idt="<?= $t['taskid'] ?>"><i class="fas fa-trash-alt text-dark fs-7 me-3"></i><span class="text-dark fw-bold fs-7">Delete</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -31,22 +31,30 @@
                                 <div class="text-dark fw-semibold me-2 d-flex justify-content-between">
                                     <span class="w-100 font-13" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
                                     <div style="height: 0px;">
-                                        <a href="#" class="btn_options" data-bs-toggle="dropdown" id="dropdownMenu" aria-expanded="false" data-target="#dropdownMenu" style="display: none;">
+                                        <a class="btn_options" data-bs-toggle="dropdown" id="dropdownMenu" aria-expanded="false" data-target="#dropdownMenu" style="display: none;">
                                             <i class="fas fa-ellipsis-v fs-5 text-secondary"></i>
                                         </a>
                                         <ul class="dropdown-menu shadow-sm" id="dropdownMenu">
-                                            <li><a class="dropdown-item taskedit" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>" href="#"><i class="fas fa-pencil-alt text-warning fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Edit</span></a></li>
-                                            <li><a class="dropdown-item deltasklist" dtid="<?= $list['id'] ?>" href="#"><i class="fas fa-trash text-danger fs-7 me-2"></i><span class="text-secondary fs-7 fw-bolder">Delete</span></a></li>
+                                            <li><a class="dropdown-item taskedit" lname="<?= $t['taskname'] ?>" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>" href="#"><i class="fas fa-pencil-alt text-dark fs-7 me-3"></i><span class="text-dark fs-7 fw-bold">Edit</span></a></li>
+                                            <li><a class="dropdown-item deltasklist" dtid="<?= $list['id'] ?>" href="#"><i class="fas fa-trash-alt text-dark fs-7 me-3"></i><span class="text-dark fs-7 fw-bold">Delete</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <?php if ($list['description'] != '') { ?>
-                                <div class="portlet-card-body">
+                                <div class="portlet-card-body mt-0">
                                     <div class="text-secondary text-start fw-semibold font-12" style="overflow-wrap: break-word;">
                                         <?= $list['description'] ?>
                                     </div>
                                 </div>
+                            <?php } ?>
+                            <?php if ($comment->countAll($list['id']) > 0) { ?>
+                                <div class="d-flex align-items-center mt-1" title="Comments" style="width: max-content;">
+                                    <i class="far fa-comment font-11 text-secondary me-1"></i>
+                                    <span class="font-11 text-dark"><?= $comment->countAll($list['id']) ?></span>
+                                </div>
+                            <?php } else { ?>
+                                <div></div>
                             <?php } ?>
                         </li>
                     <?php endforeach; ?>
@@ -168,6 +176,7 @@
                 success: function(res) {
                     $('#modalcrud').modal('toggle');
                     $('#title-del').text(self.attr('tname'));
+                    $('#title-list').text(self.attr('lname'));
                     $('#modalbody').html(res.view);
                 }
             })

@@ -2,7 +2,7 @@
     <div class="form-group mb-3 d-flex justify-content-between">
         <div class="d-flex justify-content-start align-items-center">
             <i class="fas fa-chalkboard-teacher fs-6 me-2"></i>
-            <span class="fw-bold fs-6">Board Workspaces</span>
+            <span class="fw-bold fs-6">Board Workspace</span>
         </div>
         <button type="button" class="btn btn-sm" data-bs-dismiss="modal"><i class="fas fa-close fs-7"></i></button>
     </div>

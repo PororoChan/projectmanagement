@@ -102,7 +102,7 @@
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('boards') ?>">
                                 <i class="fas fa-chart-bar fs-6 menu-icon"></i>
-                                <span class="fs-7 menu-title">Board</span>
+                                <span class="fs-7 menu-title">Boards</span>
                             </a>
                         </li>
                     </ul>

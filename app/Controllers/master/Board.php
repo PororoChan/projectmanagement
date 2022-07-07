@@ -4,6 +4,7 @@ namespace App\Controllers\master;
 
 use App\Controllers\BaseController;
 use App\Models\Mboard;
+use App\Models\Mscomment;
 use App\Models\Mstask;
 use App\Models\Mstasklist;
 
@@ -14,6 +15,7 @@ class Board extends BaseController
         helper('form');
         $this->board = new Mboard();
         $this->task = new Mstask();
+        $this->comment = new Mscomment();
         $this->tasklist = new Mstasklist();
     }
 
@@ -64,6 +66,7 @@ class Board extends BaseController
                     $q = [
                         'title' => 'PM | Task List',
                         'task' => $this->task->getTask($boardid),
+                        'comment' => $this->comment,
                         'tasklist' => $this->tasklist,
                         session()->set('idb', $board['boardid']),
                         session()->set('bname', $board['boardname']),

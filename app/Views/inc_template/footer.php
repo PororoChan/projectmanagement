@@ -14,7 +14,7 @@
         <div class="modal-content">
             <div class="modal-header font-18 d-flex justify-content-between">
                 <div>
-                    <i class="fas fa-tag fs-6 me-2 text-secondary"></i> <span class="text-secondary fw-bold" id="title-del"></span>
+                    <i class="fas fa-tag fs-6 me-2 text-secondary"></i><span class="text-secondary fw-bold" id="title-del"></span>
                 </div>
                 <button type="button" class="btn-close font-13" data-bs-dismiss="modal"></button>
             </div>

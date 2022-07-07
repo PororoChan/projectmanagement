@@ -11,14 +11,14 @@
 <?php endforeach; ?>
 <div class="dropdown-menu dropdown-menu-sm shadow-sm" style="width: 100px;" id="context-menu">
     <a class="dropdown-item btned" href="#">
-        <i class="fas fa-pencil-alt text-warning fs-7 me-2"></i>
+        <i class="fas fa-pencil-alt text-dark fs-7 me-3"></i>
         <input type="hidden" id="bed">
-        <span class="text-secondary fs-7 fw-bold">Edit</span>
+        <span class="text-dark font-12 fw-bold">Edit</span>
     </a>
     <a class="dropdown-item btndel" href="#">
-        <i class="fas fa-trash-alt text-danger fs-7 me-2"></i>
+        <i class="fas fa-trash-alt text-dark fs-7 me-3"></i>
         <input type="hidden" id="bde">
-        <span class="text-secondary fs-7 fw-bold">Delete</span>
+        <span class="text-dark font-12 fw-bold">Delete</span>
     </a>
 </div>
 <script>

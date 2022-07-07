@@ -76,6 +76,7 @@
                 if (res.success == 1) {
                     comment.setData("");
                     $('#com-load').html(res.view);
+                    $('#list_board').load('<?= base_url('task/t') ?>')
                 } else {
                     $.notify(res.msg, 'warn');
                 }

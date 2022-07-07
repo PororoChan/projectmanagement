@@ -33,7 +33,7 @@
                         <a class="btn btn-inverse-primary me-auto" id="bt-board" href="<?= base_url('board/cleanUser') ?>">
                             <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-bold fs-7">Boards</span>
                         </a>
-                        <button class="btn btn-inverse-dark" title="Masih Rencana">
+                        <button class="btn btn-inverse-dark" data-toggle="tooltip" title="On Going">
                             <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-bold fs-7">Share</span>
                         </button>
                     </div>
@@ -77,5 +77,9 @@
             })
 
         }
-    })
+    });
+
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>

@@ -211,6 +211,33 @@ class Tasklist extends BaseController
             $res['view'] = view('master/comment/v_comment', $dv);
         } else {
             $res['success'] = 0;
+            $res['msg'] = 'Reply cannot be empty';
+        }
+
+        echo json_encode($res);
+    }
+
+    public function editReply()
+    {
+        $commentid = $this->request->getPost('id');
+        $taskid = $this->request->getPost('taskid');
+        $reply = $this->request->getPost('reply');
+
+        if ($commentid != '' && $taskid != '') {
+            $data = [
+                'message' => $reply,
+            ];
+            $vw = [
+                'count' => $this->comment->comCount($taskid),
+                'comment' => $this->comment->getComment($taskid),
+                'reply' => $this->comment,
+            ];
+
+            $this->comment->edit($data, $commentid);
+            $res['success'] = 1;
+            $res['view'] = view('master/comment/v_comment', $vw);
+        } else {
+            $res['success'] = 0;
         }
 
         echo json_encode($res);

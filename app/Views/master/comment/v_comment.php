@@ -4,15 +4,15 @@
     }
 
     .com-field p {
-        font-size: 14px;
-        padding: 5px;
-        margin: 5px;
+        font-size: 13px;
+        padding: 1px;
+        margin: 1px;
     }
 
     .com-field ol,
     .com-field ul {
-        font-size: 14px;
-        margin: 8px;
+        font-size: 13px;
+        margin: 5px;
         width: max-content;
         height: max-content;
     }
@@ -23,6 +23,17 @@
         max-width: 665px;
         word-wrap: break-word;
     }
+
+    .wrapper-comment {
+        position: relative;
+        border-left: 3px solid #43AEDD;
+        word-wrap: break-word;
+        border-radius: 0px 10px 10px 0px;
+    }
+
+    .wrapper-comment:hover {
+        cursor: pointer;
+    }
 </style>
 <?php
 if ($count > 0) {
@@ -31,57 +42,57 @@ if ($count > 0) {
         echo "<div class='row' style='margin-left: " . $margin . "px;'>";
         foreach ($data as $dt) {
             echo "
-            <div class='col-sm-1 mx-0 me-2'>
-                <img class='rounded-circle shadow-sm' title=" . (($dt['userid'] == session()->get('id_user') ? 'You' : 'By ' . $dt['createdby'])) . " src=" . base_url('public/assets/images/faces/avatar-1.png') . " style='width: 35px; height: 35px;'>
+            <div class='col-sm-1 mx-0 me-4'>
+                <img class='rounded-circle shadow-sm' title=" . (($dt['userid'] == session()->get('id_user') ? 'You' : 'By ' . $dt['createdby'])) . " src=" . base_url('public/assets/images/faces/avatar-1.png') . " style='width: 40px; height: 40px;'>
             </div>
-            <div class='col-lg-7 text-start'>
+            <div class='col-lg-8 text-start wrapper-comment bg-white bg-opacity-10 shadow-sm pt-1 pb-1 px-2 mb-4 mx-2'>
                 <div class='row'>
-                    <div class='col-lg-6'>
-                        <span class='fw-bold text-dark fs-7 me-2'>
+                    <div class='d-flex justify-content-between'>
+                        <span class='fw-bold text-dark fs-7 me-5'>
                             " . $dt['createdby'] . "
                         </span>
-                        <span class='fw-semibold text-secondary font-11'>
+                        <span class='text-secondary font-11'>
                             " . date('j F Y H:i', strtotime($dt['createddate'])) . "
                         </span>
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='col-lg-12 d-flex field-hover' style='height: max-content;'>
-                        <div class='mb-1 me-2'>
-                            <div class='col-lg-8 bg-secondary bg-opacity-10 com-field' id='com-field' comid=" . $dt['commentid'] . " style='width: max-content; max-width: 500px; word-wrap: break-word; font-size: 14px; " . (($dt['headerid'] != '' ? 'padding: 6px; margin: 6px;' : '')) . " height: max-content;'>
+                    <div class='d-flex justify-content-between field-hover' style='height: max-content;'>
+                        <div class='mb-0 me-2'>
+                            <div class='com-field pt-1 pb-1' id='com-field' comid=" . $dt['commentid'] . " style='width: max-content; max-width: 350px; word-wrap: break-word; font-size: 13px; padding: 5px; margin: 5px; height: max-content;'>
                                 " . $dt['message'] . "
                             </div>
-                            </div>
+                        </div>
                             " . (($dt['userid'] == session()->get('id_user') ? '
                             <div class="act-comment mt-1 mb-0" id="act-comment" style="display: none;">
-                            <div class="d-flex">
+                            <div class="d-flex align-items-center">
                             ' . (($dt['headerid'] != '' ? '
-                                    <button type="button" class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center rep-edit me-1" cid=' . $dt['commentid'] . '>
+                                    <button type="button" class="btn btn-sm btn-warning d-flex align-items-center text-center rep-edit me-1" cid=' . $dt['commentid'] . '>
                                         <input type="hidden" class="rep_field_content" value="' . $dt['message'] . '">
-                                        <i class="fas fa-pencil-alt text-center fs-7"></i>
+                                        <i class="fas fa-pencil-alt text-center fs-7set"></i>
                                     </button>
                                     ' : '
-                                    <button type="button" class="btn btn-sm btn-inverse-warning d-flex align-items-center text-center com-edit me-1" cid=' . $dt['commentid'] . '>
+                                    <button type="button" class="btn btn-sm btn-warning d-flex align-items-center text-center com-edit me-1" cid=' . $dt['commentid'] . '>
                                         <input type="hidden" id="field-content" class="field-content" value="' . $dt['message'] . '">
-                                        <i class="fas fa-pencil-alt text-center fs-7"></i>
+                                        <i class="fas fa-pencil-alt text-center fs-7set"></i>
                                     </button>
                                     ')) . '
-                                    <button type="button" class="btn btn-sm btn-inverse-danger d-flex align-items-center text-center com-delete" cid=' . $dt['commentid'] . ' sid=' . $dt['taskid'] . '>
-                                        <i class="fas fa-trash-alt text-center fs-7"></i>
+                                    <button type="button" class="btn btn-sm btn-danger d-flex align-items-center text-center com-delete" cid=' . $dt['commentid'] . ' sid=' . $dt['taskid'] . '>
+                                        <i class="fas fa-trash text-center fs-7set"></i>
                                     </button>
                                 </div>
                             </div>
                         ' : '<div></div>')) . "
                     </div>
-                    <div class='mb-2 w-100'>
-                        <div class='fs-7 text-secondary mb-1'>
-                            <i class='fas fa-reply me-1'></i><a href='#' class='fw-semibold text-secondary text-decoration-none btn-rep me-2'>Reply</a>
+                    <div class='mb-0 mt-0 w-100'>
+                        <div class='fs-7 text-secondary d-flex justify-content-end align-items-center'>
+                            <a href='#' class='text-secondary btn-rep me-2'>Reply</a>
                         </div>
                     </div>
-                    <div class='col-lg-10 replies' id='replies' style='display: none;'>
+                    <div class='replies mt-2 w-100' id='replies' style='display: none;'>
                         <input type='hidden' class='commentid' name='commentid' id='commentid' value='" . $dt['commentid'] . "'>
                         <input type='hidden' class='idds' id='idds' name='idds' value='" . $dt['taskid'] . "'>
-                        <textarea class='form-control form-control-sm replies-field' spellcheck='false' id='replies-field' name='replies-field' style='max-width: 425px;' placeholder='Reply to this comment'></textarea>
+                        <textarea class='form-control form-control-sm replies-field' spellcheck='false' id='replies-field' name='replies-field' placeholder='Reply to this comment'></textarea>
                         <div class='d-flex justify-content-end'> 
                             <button type='button' class='btn btn-inverse-warning mt-2 mb-1 me-1 btn_replies_cancel' id='btn_replies_cancel'><span class='fw-semibold'>Cancel</span></button>
                             <button class='btn btn-inverse-primary btn_replies mt-2 mb-1' id='btn_replies'><span class='fw-semibold'>Send</span></button>

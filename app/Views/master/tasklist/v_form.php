@@ -33,7 +33,7 @@
             <i class="fas fa-list-check fs-6 me-2 text-secondary"></i><label class="m-1 fw-semibold fs-7 text-secondary">Activity</label>
         </div>
         <div class="form-group col-lg-8 mx-3 me-1 mt-3 d-flex justify-content-between">
-            <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" class="rounded-circle shadow-sm" width="35" height="35">
+            <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" class="rounded-circle shadow-sm" width="40" height="40">
             <input type="hidden" id="task" name="task" value="<?= $row['id'] ?>">
             <textarea class="form-control" spellcheck="false" name="comment-input" id="comment-input" placeholder="Write a comment"></textarea>
         </div>

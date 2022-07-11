@@ -26,7 +26,7 @@
 
     .wrapper-comment {
         position: relative;
-        border-left: 3px solid #43AEDD;
+        border-left: 3px solid #2E58CE;
         word-wrap: break-word;
         border-radius: 0px 10px 10px 0px;
     }
@@ -47,10 +47,11 @@ if ($count > 0) {
             </div>
             <div class='col-lg-8 text-start wrapper-comment bg-white bg-opacity-10 shadow-sm pt-1 pb-1 px-2 mb-4 mx-2'>
                 <div class='row'>
-                    <div class='d-flex justify-content-between'>
-                        <span class='fw-bold text-dark fs-7 me-5'>
+                    <div class='d-flex align-items-center'>
+                        <span class='fw-bold text-dark fs-7'>
                             " . $dt['createdby'] . "
                         </span>
+                        <span class='fw-bold text-secondary fs-8 me-1 mx-1'>•</span>
                         <span class='text-secondary font-11'>
                             " . date('j F Y H:i', strtotime($dt['createddate'])) . "
                         </span>

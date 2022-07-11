@@ -30,6 +30,16 @@
             border-radius: 10px;
             background: #A6A6A6;
         }
+
+        .nav_icon_hovered {
+            color: #0033C4;
+            transition: 200ms ease-in-out;
+        }
+
+        .nav-sub-menu-hovered {
+            color: #0033C4;
+            transition: 200ms ease-in-out;
+        }
     </style>
     <?= $this->include('v_script') ?>
 </head>
@@ -59,13 +69,13 @@
                         </ul>
                         <ul class="navbar-nav navbar-nav-right">
                             <li class="nav-item">
-                                <a class="text-secondary" href="#">
-                                    <i class="far fa-envelope fs-6"></i>
+                                <a class="text-secondary nav-btn" href="#">
+                                    <i class="fas fa-envelope nav-icon fs-6"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="text-secondary" href="#">
-                                    <i class="far fa-bell fs-6"></i>
+                                <a class="text-secondary nav-btn" href="#">
+                                    <i class="fas fa-bell nav-icon fs-6"></i>
                                 </a>
                             </li>
                             <li class="nav-item nav-profile dropdown">

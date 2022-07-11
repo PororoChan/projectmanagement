@@ -7,12 +7,14 @@ use App\Models\Mboard;
 use App\Models\Mscomment;
 use App\Models\Mstask;
 use App\Models\Mstasklist;
+use App\Models\MUser;
 
 class Board extends BaseController
 {
     public function __construct()
     {
         helper('form');
+        $this->user = new MUser();
         $this->board = new Mboard();
         $this->task = new Mstask();
         $this->comment = new Mscomment();
@@ -22,14 +24,18 @@ class Board extends BaseController
     public function index()
     {
         $id = session()->get('id_user');
+        $boardid = session()->get('idb');
         if ($id == null) {
             return redirect()->to('login');
+        } else if ($boardid != '') {
+            return redirect()->to('board/b/' . $boardid);
+        } else {
+            $data = [
+                'title' => 'PM | Boards',
+                'board' => $this->board->getAll(),
+            ];
+            return view('master/board/v_board', $data);
         }
-        $data = [
-            'title' => 'PM | Board',
-            'board' => $this->board->getAll(),
-        ];
-        return view('master/board/v_board', $data);
     }
 
     public function countBoard()
@@ -64,7 +70,7 @@ class Board extends BaseController
                 $board = $this->board->getOne($boardid);
                 if ($board != '') {
                     $q = [
-                        'title' => 'PM | Task List',
+                        'title' => 'PM | ' . $board['boardname'],
                         'task' => $this->task->getTask($boardid),
                         'comment' => $this->comment,
                         'tasklist' => $this->tasklist,
@@ -93,6 +99,35 @@ class Board extends BaseController
         $vw['view'] = view('master/board/v_form', $data);
         echo json_encode($vw);
     }
+
+    public function shareBoard()
+    {
+        $bid = $this->request->getPost('bid');
+
+        if ($bid != '') {
+            $data = [
+                'id' => $bid,
+                'user' => $this->user->getAll(),
+            ];
+            $res['view'] = view('master/board/v_share', $data);
+            $res['success'] = 1;
+        } else {
+            $res['success'] = 0;
+        }
+
+        echo json_encode($res);
+    }
+
+    // Select2 getUsers
+    // public function getUser()
+    // {
+    //     $data = $this->user->getUsers();
+    //     $res = array();
+    //     foreach ($data as $dt) {
+    //         $res[] = array("id" => $dt['userid'], "text" => $dt['name']);
+    //     }
+    //     echo json_encode($res);
+    // }
 
     public function addBoard()
     {

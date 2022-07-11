@@ -10,8 +10,8 @@
 
     [contenteditable]:focus {
         outline: 3px solid #8EA4E5;
-        background-color: #FFFFFF;
         border-radius: 2px;
+        background-color: #FFFFFF;
     }
 
     .task-hovered {
@@ -30,10 +30,10 @@
                             <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
                         </button>
                         <div class="vr align-middle mx-2 me-2" style="height: 20px;"></div>
-                        <a class="btn btn-inverse-primary me-auto" id="bt-board" href="<?= base_url('board/cleanUser') ?>">
+                        <a class="btn btn-inverse-primary me-auto" id="bt-board" href="<?= base_url('board/out') ?>">
                             <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-bold fs-7">Boards</span>
                         </a>
-                        <button class="btn btn-inverse-dark" data-toggle="tooltip" title="On Going">
+                        <button class="btn btn-inverse-dark" id="btn_share" idb="<?= session()->get('idb') ?>">
                             <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-bold fs-7">Share</span>
                         </button>
                     </div>
@@ -79,7 +79,28 @@
         }
     });
 
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
+    $('#btn_share').each(function() {
+        $(this).on('click', function() {
+            var id = $(this).attr('idb'),
+                link = "<?= base_url('board/share') ?>";
+
+            $.ajax({
+                url: link,
+                type: 'post',
+                data: {
+                    bid: id,
+                },
+                dataType: 'json',
+                success: function(res) {
+                    if (res.success == 1) {
+                        $('#formboard').modal('show');
+                        $('#mobody').html(res.view);
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    $.notify(thrownError, 'error');
+                }
+            })
+        })
     });
 </script>

@@ -23,6 +23,7 @@ class MUser extends Model
 
     public function getAll()
     {
-        return $this->builder->get()->getResultArray();
+        return $this->builder
+            ->get()->getResultArray();
     }
 }

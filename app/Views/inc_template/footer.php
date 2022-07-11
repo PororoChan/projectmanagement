@@ -84,6 +84,17 @@
 <?= $this->include('master/imp/sortable') ?>
 
 <script>
+    $('.nav-btn').each(function() {
+        $(this).hover(
+            function() {
+                $(this).closest('.nav-btn').find('.nav-icon').addClass('nav_icon_hovered');
+            },
+            function() {
+                $(this).closest('.nav-btn').find('.nav-icon').removeClass('nav_icon_hovered');
+            }
+        )
+    });
+
     $('#btn-drop').click(function() {
         $('#nav-drop').toggleClass('rotate_elem');
     });

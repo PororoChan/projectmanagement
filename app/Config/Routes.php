@@ -52,10 +52,12 @@ $routes->add('board/count', 'master\Board::countBoard');
 $routes->add('board/addBoard', 'master\Board::addBoard');
 $routes->add('board/editBoard', 'master\Board::editBoard');
 $routes->add('board/delBoard', 'master\Board::deleteBoard');
+$routes->add('board/getUser', 'master\Board::getUser');
 $routes->add('board/b', 'master\Board::board');
 $routes->add('board/FormViews', 'master\Board::FormViews');
 $routes->add('board/EditViews/(:any)', 'master\Board::FormViews/$1');
-$routes->add('board/cleanUser', 'master\Board::clean');
+$routes->add('board/share', 'master\Board::shareBoard');
+$routes->add('board/out', 'master\Board::clean');
 // Task
 $routes->add('task/formAdd', 'master\Tasks::FormViews');
 $routes->add('task/addTask', 'master\Tasks::addTask');

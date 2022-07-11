@@ -9,7 +9,7 @@
     }
 
     .rotate_elem {
-        transform: rotate(-180deg);
+        transform: rotate(90deg);
         transition: 0.2s ease-in-out;
     }
 </style>
@@ -78,7 +78,7 @@
         $('.board-card').each(function() {
             $(this).on('mouseenter', function() {
                 $(this).css('transition', 'all 0.2s ease-in-out');
-                $(this).css('transform', 'scale(1.03)');
+                $(this).css('transform', 'scale(1.02)');
             })
             $(this).on('mouseleave', function() {
                 $(this).css('transition', 'all 0.2s ease-in-out');

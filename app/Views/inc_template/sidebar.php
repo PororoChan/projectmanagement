@@ -13,7 +13,7 @@
                         <i class="fas fa-tasks-alt m-1 me-3" style="min-width: 15px;"></i>
                         <div class="mx-1 w-100 d-flex justify-content-between align-items-center">
                             <span class="fw-semibold fs-7">Master</span>
-                            <i class="fas fa-angle-right font-10" id="nav-drop"></i>
+                            <i class="fas fa-angle-down font-10" id="nav-drop"></i>
                         </div>
                     </a>
                 </div>

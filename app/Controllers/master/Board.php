@@ -59,19 +59,19 @@ class Board extends BaseController
         return view('master/board/v_card', $data);
     }
 
-    public function goList($boardid)
+    public function goList($bid)
     {
         if (session()->get('id_user') == NULL) {
             return redirect()->to('login');
         } else {
-            if ($boardid == '') {
+            if ($bid == '') {
                 return redirect()->to('board');
             } else {
-                $board = $this->board->getOne($boardid);
+                $board = $this->board->getOne($bid);
                 if ($board != '') {
                     $q = [
                         'title' => 'PM | ' . $board['boardname'],
-                        'task' => $this->task->getTask($boardid),
+                        'task' => $this->task->getTask($bid),
                         'comment' => $this->comment,
                         'tasklist' => $this->tasklist,
                         session()->set('idb', $board['boardid']),
@@ -100,6 +100,19 @@ class Board extends BaseController
         echo json_encode($vw);
     }
 
+    public function getUser()
+    {
+        $search = $this->request->getPost('searchTerm');
+        $data = $this->user->getUser($search);
+        $res = array();
+
+        foreach ($data as $dt) {
+            $res[] = array("id" => $dt['userid'], "text" => $dt['name']);
+        }
+
+        echo json_encode($res);
+    }
+
     public function shareBoard()
     {
         $bid = $this->request->getPost('bid');
@@ -117,17 +130,6 @@ class Board extends BaseController
 
         echo json_encode($res);
     }
-
-    // Select2 getUsers
-    // public function getUser()
-    // {
-    //     $data = $this->user->getUsers();
-    //     $res = array();
-    //     foreach ($data as $dt) {
-    //         $res[] = array("id" => $dt['userid'], "text" => $dt['name']);
-    //     }
-    //     echo json_encode($res);
-    // }
 
     public function addBoard()
     {

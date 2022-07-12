@@ -30,7 +30,7 @@
                             <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
                         </button>
                         <div class="vr align-middle mx-2 me-2" style="height: 20px;"></div>
-                        <a class="btn btn-inverse-primary me-auto" id="bt-board" href="<?= base_url('board/out') ?>">
+                        <a class="btn btn-inverse-primary me-2" id="bt-board" href="<?= base_url('board/out') ?>">
                             <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-bold fs-7">Boards</span>
                         </a>
                         <button class="btn btn-inverse-dark" id="btn_share" idb="<?= session()->get('idb') ?>">
@@ -74,8 +74,7 @@
                         $.notify(thrownError, 'error');
                     }
                 })
-            })
-
+            });
         }
     });
 

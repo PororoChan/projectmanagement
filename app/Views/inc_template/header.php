@@ -35,11 +35,6 @@
             color: #0033C4;
             transition: 200ms ease-in-out;
         }
-
-        .nav-sub-menu-hovered {
-            color: #0033C4;
-            transition: 200ms ease-in-out;
-        }
     </style>
     <?= $this->include('v_script') ?>
 </head>
@@ -55,15 +50,13 @@
                         </a>
                     </div>
                     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                        <ul class="navbar-nav mr-lg-2 mx-auto">
+                        <ul class="navbar-nav mx-auto">
                             <li class="nav-item nav-search d-none d-lg-block">
                                 <div class="input-group">
-                                    <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                                        <span class="input-group-text" id="search">
-                                            <i class="fas fa-search text-dark fs-6"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control text-secondary" id="navbar-search-input" placeholder="Search" aria-label="search" aria-describedby="search" />
+                                    <span class="input-group-text" id="search">
+                                        <i class="fas fa-search text-secondary fs-6"></i>
+                                    </span>
+                                    <input type="text" class="form-control text-secondary" id="search-input" placeholder="Search" aria-label="search" aria-describedby="search" />
                                 </div>
                             </li>
                         </ul>
@@ -90,7 +83,8 @@
                                 </a>
                                 <div class="dropdown-menu navbar-dropdown mx-5 bg-white" aria-labelledby="profileDropdown">
                                     <a class="dropdown-item fs-7" href="<?= base_url('logout') ?>">
-                                        <i class="fas fa-sign-out-alt fs-7 me-2 text-danger"></i> Log Out </a>
+                                        <i class="fas fa-sign-out fs-7 me-2 text-danger"></i><span class="fw-semibold fs-7 text-dark">Log Out</span>
+                                    </a>
                                 </div>
                             </li>
                         </ul>
@@ -106,13 +100,13 @@
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('home') ?>">
                                 <i class="far fa-compass menu-icon"></i>
-                                <span class="fs-7 menu-title">Dashboard</span>
+                                <span class="fs-7 fw-semibold menu-title">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('boards') ?>">
                                 <i class="fas fa-chart-bar fs-6 menu-icon"></i>
-                                <span class="fs-7 menu-title">Boards</span>
+                                <span class="fs-7 fw-semibold menu-title">Boards</span>
                             </a>
                         </li>
                     </ul>

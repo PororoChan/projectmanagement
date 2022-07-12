@@ -9,7 +9,7 @@
     }
 
     .rotate_elem {
-        transform: rotate(90deg);
+        transform: rotate(-180deg);
         transition: 0.2s ease-in-out;
     }
 </style>
@@ -24,8 +24,8 @@
                 <section class="section w-100">
                     <div class="section-header pb-3 pt-2">
                         <div class="d-flex align-items-center justify-content-between">
-                            <h2 class="text-dark fs-6 text-start mb-0">
-                                <i class="fas fa-chalkboard-teacher text-dark me-2"></i> Boards
+                            <h2 class="text-dark fs-6 fw-bold text-start mb-0">
+                                <i class="fas fa-chalkboard-teacher text-dark me-2"></i>Boards
                             </h2>
                             <button class="btn btn-primary shadow-sm" id="create_board">
                                 <i class="fas fa-plus fw-semibold fs-7"></i>

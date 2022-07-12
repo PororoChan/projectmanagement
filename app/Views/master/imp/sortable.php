@@ -1,5 +1,7 @@
 <script>
+    "use strict";
     $(document).ready(function() {
+
         var idt = '',
             idl = '';
 
@@ -7,14 +9,12 @@
 
         var sort = $('.portlet-card-list').sortable({
             placeholder: "bg-secondary bg-opacity-10 mt-2 rounded",
-            connectWith: '.portlet-card-list',
-            cursor: 'grabbing',
+            connectWith: ".portlet-card-list",
+            cursor: "grabbing",
             items: ".portlet-card",
             start: function(ev, ui) {
-                // Rotate
                 ui.item.css('transform', 'rotate(3deg)');
-                // Placeholder
-                ui.placeholder.height(ui.item.height() * 1.2);
+                ui.placeholder.height(ui.item.height());
                 ui.placeholder.css('visibility', 'visible');
 
                 idt = $(this).attr('sts');
@@ -22,7 +22,7 @@
             stop: function(ev, ui) {
                 ui.item.css('transform', 'rotate(0deg)');
 
-                idl = ui.item.attr('tlid')
+                idl = ui.item.attr('tlid');
 
                 $.ajax({
                     url: '<?= base_url('list/switch') ?>',

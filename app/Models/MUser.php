@@ -14,6 +14,13 @@ class MUser extends Model
         $this->builder = $this->db->table($this->table);
     }
 
+    public function getUser($search)
+    {
+        return $this->builder
+            ->where("m.name like '%" . $search . "%'")
+            ->get()->getResultArray();
+    }
+
     public function cek($username)
     {
         return $this->builder

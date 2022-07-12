@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://kit.fontawesome.com/9cc02ff3df.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Additional CSS -->
     <link rel="stylesheet" href="<?= base_url('public/assets/css/login/style.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('public/assets/css/login/vendor.bundle.base.css') ?>">
     <link rel="icon" href="<?= base_url('public/assets/images/logo.ico') ?>" />
 </head>
 
@@ -53,12 +53,12 @@
                                         <input type="password" name="pass" id="pass" class="form-control form-control-sm border-left-0" style="font-size: 13px;" placeholder="Password">
                                     </div>
                                 </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
+                                <div class="form-group my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check d-flex justify-content-center">
                                         <input type="checkbox" style="width: 15px; height: 15px;"> <span class="text-dark font-13">&nbsp; Remember Me</span>
                                     </div>
                                 </div>
-                                <div class="my-3 d-flex justify-content-end">
+                                <div class="form-group my-3 d-flex justify-content-end">
                                     <button type="button" class="btn btn-primary w-25" style="height: 45px;" id="btn-login">Login</button>
                                 </div>
                                 <div class="text-center mt-5 font-14"> Don't have an account? <a href="#" class="text-primary">Register</a>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 login-half-bg d-flex">
-                        <p class="text-white font-weight-semibold fs-6 text-center flex-grow align-self-end">Copyright &copy; 2021 All rights reserved.</p>
+                        <p class="text-white font-weight-semibold fs-6 text-center flex-grow align-self-end">Copyright &copy; 2022 All rights reserved.</p>
                     </div>
                 </div>
             </div>
@@ -76,8 +76,7 @@
 </body>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#btn-login').on('click', function(ev) {
+        $('#btn-login').click(function(ev) {
             ev.preventDefault();
             $('#btn-login').html("<i class='fas fa-spinner fa-spin-pulse text-white'></i>")
 
@@ -129,8 +128,7 @@
             setTimeout(() => {
                 $('#warn').fadeOut(800);
             }, 1000);
-        })
-    });
+        });
 </script>
 
 </html>

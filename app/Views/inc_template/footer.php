@@ -80,7 +80,6 @@
 </div>
 </body>
 
-<!-- Additional JS -->
 <?= $this->include('master/imp/sortable') ?>
 
 <script>

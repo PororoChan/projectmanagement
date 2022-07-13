@@ -26,7 +26,7 @@
                 </div>
             </li>
             <li class="nav-item nav-items w-100 rounded" style="height: 40px;">
-                <a onclick="reload()" href="#" class="nav-link w-100 text-secondary">
+                <a href="#" class="nav-link w-100 text-secondary">
                     <i class="fas fa-share-alt m-1 me-3" style="min-width: 15px;"></i>
                     <span class="fw-semibold fs-7">Shared Board</span>
                 </a>

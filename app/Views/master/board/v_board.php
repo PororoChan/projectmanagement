@@ -33,13 +33,13 @@
                             </button>
                         </div>
                     </div>
-                    <div class="section-body p-4 bg-white shadow-sm border-opacity-25 rounded">
+                    <div class="section-body px-3 pb-2 pt-2 bg-white shadow-sm border-opacity-25 rounded">
                         <div class="board">
                             <div class="board-head">
                                 <span class="text-secondary fs-7 font-weight-normal">Showing <span class="fw-semibold text-dark count"></span> of <span class="fw-semibold text-dark count"></span> boards</span>
                             </div>
                             <div class="board-body">
-                                <div class="row" id="bbody" draggable="false">
+                                <div class="row px-1" id="bbody" draggable="false">
                                     <?= $this->include('master/board/v_card') ?>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
     }
 
     $(window).on('load', function() {
-        $('#loadcont').fadeIn(200)
+        $('#loadcont').fadeIn('slow')
         setTimeout(() => {
             count();
         }, 100);

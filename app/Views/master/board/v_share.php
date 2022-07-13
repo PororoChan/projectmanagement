@@ -1,5 +1,5 @@
 <form method="POST" id="shareBoard">
-    <div class="form-group d-flex justify-content-between align-items-center">
+    <div class="form-group mb-2 d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-start">
             <i class="fas fa-share-alt fs-6 text-secondary me-2"></i><label class="fw-bold text-secondary fs-6">Share board</label>
         </div>
@@ -9,10 +9,12 @@
         <input type="hidden" id="bidd" name="bidd" value="<?= $id ?>">
         <div class="row d-flex justify-content-around">
             <div class="col-lg-8">
+                <label for="usershare" class="fw-semibold text-secondary fs-7">Username :</label>
                 <input type="text" class="form-control form-control-sm" id="address_share" name="address_share" placeholder="Enter Username" spellcheck="false">
             </div>
             <div class="col-lg-4">
-                <select class="form-select form-select-sm" name="roles" id="roles">
+                <label for="roles" class="fw-semibold text-secondary fs-7">Roles :</label>
+                <select class="form-control form-control-sm" name="roles" id="roles">
                     <option value="1">Admin</option>
                     <option value="2">Member</option>
                 </select>
@@ -31,7 +33,7 @@
 <script>
     $(document).ready(function() {
         $('#bshare').on('click', function() {
-            var address = $('#address_share').val();
+            var address = $('#roles').val();
             $.notify('Board has been shared to ' + address, 'success');
         });
     });

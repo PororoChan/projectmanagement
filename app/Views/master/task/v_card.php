@@ -32,7 +32,7 @@
                                     <div class="portlet-card-header mb-0">
                                         <div class="text-dark fw-semibold d-flex justify-content-between">
                                             <span class="w-100 font-13" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
-                                            <div class="btn_options" style="height: 0px; display: none;">
+                                            <div class="btn_options top-0" style="height: 0px; display: none;">
                                                 <button class="btn btn-sm btn-light deltasklist" dtid="<?= $list['id'] ?>" href="#">
                                                     <i class="fas fa-trash text-danger fs-7sep"></i>
                                                 </button>
@@ -188,7 +188,8 @@
     });
 
     $('.deltasklist').each(function() {
-        $(this).on('click', function() {
+        $(this).on('click', function(el) {
+            el.stopPropagation();
             listDel('Task List', 'Anda yakin ingin hapus task ini ?', '<?= base_url('list/delete') ?>', $(this).attr('dtid'));
         })
     })

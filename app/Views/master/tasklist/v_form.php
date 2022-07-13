@@ -23,8 +23,10 @@
                     </div>
                     <?php if ($form_type == 'Edit') { ?>
                         <div class="form-group">
-                            <i class="fas fa-align-left fs-7 text-secondary me-2"></i><label class="mt-2 mb-0 fw-semibold fs-7 text-secondary" for="desc">Description</label>
-                            <textarea rows="10" cols="6" class="form-control form-control-sm mx-4 mt-2 pt-3 pb-3 rounded" name="desc" id="desc" spellcheck="false" placeholder="Task Description"><?= (($form_type == 'Edit') ? $row['description'] : '') ?></textarea>
+                            <i class="fas fa-align-left fs-7 text-secondary me-2"></i><label class="mt-2 mb-2 fw-semibold fs-7 text-secondary" for="desc">Description</label>
+                            <div class="mx-4">
+                                <textarea class="form-control rounded" name="desc" id="desc" spellcheck="false" placeholder="Task Description"><?= (($form_type == 'Edit') ? $row['description'] : '') ?></textarea>
+                            </div>
                         </div>
                     <?php } ?>
                     <div class="form-group mb-0 <?= (($form_type == 'Edit') ? 'mx-4' : '') ?> d-flex align-items-center justify-content-end">
@@ -71,21 +73,34 @@
 <?= $this->include('master/imp/process') ?>
 <script>
     var type = '<?= $form_type ?>',
+        desc,
         comment;
     $('#btn-close').on('click', function() {
         $('#modalcrud').hide();
         $('#form-tlist').remove();
     });
 
-    $('#desc').focusin(function() {
-        $('#btn-upt').slideDown('fast');
-    })
 
-    $('#desc').focusout(function() {
-        $('#btn-upt').slideUp('fast');
-    })
 
     if (type == 'Edit') {
+        ClassicEditor
+            .create(document.querySelector('#desc'), {
+                toolbar: ['bold', 'italic', '|', 'undo', 'redo', '|', 'numberedList', 'bulletedList'],
+            })
+            .then(editor => {
+                desc = editor;
+                editor.ui.focusTracker.on('change:isFocused', (evt, name, isFocused) => {
+                    if (isFocused) {
+                        $('#btn-upt').slideDown('fast');
+                    } else {
+                        $('#btn-upt').slideUp('fast');
+                    }
+                })
+            })
+            .catch(error => {
+                $.notify(error, 'error');
+            })
+
         ClassicEditor
             .create(document.querySelector('#comment-input'), {
                 toolbar: ['bold', 'italic', '|', 'undo', 'redo', '|', 'numberedList', 'bulletedList'],

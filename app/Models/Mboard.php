@@ -20,6 +20,13 @@ class Mboard extends Model
             ->get()->getResultArray();
     }
 
+    public function getBoard($user)
+    {
+        return $this->builder
+            ->where("createdby", $user)
+            ->get()->getResultArray();
+    }
+
     public function getOne($boardid = 0)
     {
         return $this->builder
@@ -27,9 +34,11 @@ class Mboard extends Model
             ->get()->getRowArray();
     }
 
-    public function count()
+    public function count($user)
     {
-        return $this->builder->countAll();
+        return $this->builder
+            ->where("createdby", $user)
+            ->countAllResults();
     }
 
     public function tambah($data)

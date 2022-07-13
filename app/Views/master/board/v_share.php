@@ -7,9 +7,15 @@
     </div>
     <div class="form-group">
         <input type="hidden" id="bidd" name="bidd" value="<?= $id ?>">
-        <div class="row">
-            <div>
-                <input type="text" class="form-control form-control-sm" id="address_share" name="address_share" placeholder="Email address or name" spellcheck="false">
+        <div class="row d-flex justify-content-around">
+            <div class="col-lg-8">
+                <input type="text" class="form-control form-control-sm" id="address_share" name="address_share" placeholder="Enter Username" spellcheck="false">
+            </div>
+            <div class="col-lg-4">
+                <select class="form-select form-select-sm" name="roles" id="roles">
+                    <option value="1">Admin</option>
+                    <option value="2">Member</option>
+                </select>
             </div>
         </div>
     </div>
@@ -27,27 +33,6 @@
         $('#bshare').on('click', function() {
             var address = $('#address_share').val();
             $.notify('Board has been shared to ' + address, 'success');
-        });
-
-        $('#roles').select2({
-            dropdownParent: $('#formboard'),
-            ajax: {
-                url: '<?= base_url('board/getUser') ?>',
-                type: 'post',
-                dataType: 'json',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        searchTerm: params.term,
-                    };
-                },
-                processResults: function(response) {
-                    return {
-                        results: response
-                    };
-                },
-                cache: true,
-            }
         });
     });
 </script>

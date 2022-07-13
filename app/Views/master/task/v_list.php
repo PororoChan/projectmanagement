@@ -19,12 +19,15 @@
     }
 </style>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
+<div class="w-100 position-fixed text-center top-50 mt-0" id="loading">
+    <img class="position" id="loading-image" src="<?= base_url('public/assets/images/loading/loading.gif') ?>">
+</div>
 <div class="content-wrapper pb-0" style="max-height: 100vh;">
-    <div class="main-panel p-0">
+    <div class="main-panel p-0" id="wrapper" style="display: none;">
         <div class="main-content">
             <section class="section">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" style="position: sticky; left: 8px; flex-grow: 0; flex-shrink: 0;">
                         <button class="btn btn-inverse-primary" disabled>
                             <i class="fas fa-fire fs-7 me-2"></i><span class="text-start fs-7"><?= session()->get('bname') ?></span>
                             <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
@@ -76,6 +79,13 @@
                 })
             });
         }
+    });
+
+    $(window).on('load', function() {
+        setTimeout(() => {
+            $('#loading').fadeOut('fast');
+            $('#wrapper').fadeIn('slow');
+        }, 200);
     });
 
     $('#btn_share').each(function() {

@@ -8481,7 +8481,7 @@ textarea.is-invalid.tt-hint {
   padding: 0.5rem !important; }
 
 .p-3 {
-  padding: 0.8rem !important; }
+  padding: 0.76rem !important; }
 
 .p-4 {
   padding: 1.5rem !important; }
@@ -8637,6 +8637,10 @@ html {
 
 .fs-7set {
   font-size: 0.675rem !important;
+}
+
+.fs-7sep {
+  font-size: 0.78rem !important;
 }
 
 .fs-8 {

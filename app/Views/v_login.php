@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check d-flex justify-content-center">
-                                        <input type="checkbox" style="width: 15px; height: 15px;"> <span class="text-dark font-13">&nbsp; Remember Me</span>
+                                        <input type="checkbox" id="cekpas" style="width: 15px; height: 15px;"> <span class="text-dark font-13">&nbsp; Remember Me</span>
                                     </div>
                                 </div>
                                 <div class="form-group my-3 d-flex justify-content-end">
@@ -76,59 +76,59 @@
 </body>
 
 <script type="text/javascript">
-        $('#btn-login').click(function(ev) {
-            ev.preventDefault();
-            $('#btn-login').html("<i class='fas fa-spinner fa-spin-pulse text-white'></i>")
+    $('#btn-login').click(function(ev) {
+        ev.preventDefault();
+        $('#btn-login').html("<i class='fas fa-spinner fa-spin-pulse text-white'></i>")
 
-            var username = $('#uname').val();
-            var password = $('#pass').val();
-            var link = "<?= base_url('auth') ?>";
-            var msg = '';
+        var username = $('#uname').val();
+        var password = $('#pass').val();
+        var link = "<?= base_url('auth') ?>";
+        var msg = '';
 
-            setTimeout(() => {
-                if (username != '' && password != '') {
-                    $.ajax({
-                        url: link,
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            uname: username,
-                            passw: password,
-                        },
-                        success: function(res) {
-                            if (res.success == 1) {
-                                msg = "Login berhasil"
-                                $('#warn').removeClass('alert alert-fill-danger');
-                                $('#warn').addClass('alert alert-fill-success');
-                                setTimeout(() => {
-                                    window.location.href = "<?= base_url('boards') ?>"
-                                }, 700);
-                            } else {
-                                msg = "Username atau Password salah"
-                                $('#warn').addClass('alert alert-fill-danger');
-                            }
-                            $('#warn').html(msg);
-                            $('#warn').show();
+        setTimeout(() => {
+            if (username != '' && password != '') {
+                $.ajax({
+                    url: link,
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        uname: username,
+                        passw: password,
+                    },
+                    success: function(res) {
+                        if (res.success == 1) {
+                            msg = "Login berhasil"
+                            $('#warn').removeClass('alert alert-fill-danger');
+                            $('#warn').addClass('alert alert-fill-success');
                             setTimeout(() => {
-                                $('#btn-login').html("Login");
-                            }, 500);
+                                window.location.href = "<?= base_url('boards') ?>"
+                            }, 700);
+                        } else {
+                            msg = "Username atau Password salah"
+                            $('#warn').addClass('alert alert-fill-danger');
                         }
-                    })
-                } else {
-                    msg = "Username dan Password dibutuhkan!";
-                    $('#warn').addClass('alert alert-fill-danger');
-                    $('#warn').html(msg);
-                    $('#warn').show();
-                    setTimeout(() => {
-                        $('#btn-login').html("Login");
-                    }, 500);
-                }
-            }, 500);
-            $('#form-log')[0].reset();
-            setTimeout(() => {
-                $('#warn').fadeOut(800);
-            }, 1000);
-        });
+                        $('#warn').html(msg);
+                        $('#warn').show();
+                        setTimeout(() => {
+                            $('#btn-login').html("Login");
+                        }, 500);
+                    }
+                })
+            } else {
+                msg = "Username dan Password dibutuhkan!";
+                $('#warn').addClass('alert alert-fill-danger');
+                $('#warn').html(msg);
+                $('#warn').show();
+                setTimeout(() => {
+                    $('#btn-login').html("Login");
+                }, 500);
+            }
+        }, 500);
+        $('#form-log')[0].reset();
+        setTimeout(() => {
+            $('#warn').fadeOut(800);
+        }, 1000);
+    });
 </script>
 
 </html>

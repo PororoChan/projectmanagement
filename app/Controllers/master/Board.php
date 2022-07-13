@@ -8,12 +8,14 @@ use App\Models\Mscomment;
 use App\Models\Mstask;
 use App\Models\Mstasklist;
 use App\Models\MUser;
+use DateTime;
 
 class Board extends BaseController
 {
     public function __construct()
     {
         helper('form');
+        $this->date = new DateTime('now');
         $this->user = new MUser();
         $this->board = new Mboard();
         $this->task = new Mstask();
@@ -24,15 +26,13 @@ class Board extends BaseController
     public function index()
     {
         $id = session()->get('id_user');
-        $boardid = session()->get('idb');
         if ($id == null) {
             return redirect()->to('login');
-        } else if ($boardid != '') {
-            return redirect()->to('board/b/' . $boardid);
         } else {
+            $user = session()->get('name');
             $data = [
                 'title' => 'PM | Boards',
-                'board' => $this->board->getAll(),
+                'board' => $this->board->getBoard($user),
             ];
             return view('master/board/v_board', $data);
         }
@@ -42,8 +42,10 @@ class Board extends BaseController
     {
         if (session()->get('id_user') == NULL) {
             return redirect()->to('login');
+        } else {
+            $name = session()->get('name');
+            $q = $this->board->count($name);
         }
-        $q = $this->board->count();
 
         echo json_encode($q);
     }
@@ -53,8 +55,9 @@ class Board extends BaseController
         if (session()->get('id_user') == NULL) {
             return redirect()->to('login');
         }
+        $user = session()->get('name');
         $data = [
-            'board' => $this->board->getAll(),
+            'board' => $this->board->getBoard($user),
         ];
         return view('master/board/v_card', $data);
     }
@@ -64,22 +67,18 @@ class Board extends BaseController
         if (session()->get('id_user') == NULL) {
             return redirect()->to('login');
         } else {
-            if ($bid == '') {
-                return redirect()->to('board');
+            $board = $this->board->getOne($bid);
+            if ($board != '') {
+                $q = [
+                    'title' => 'PM | ' . $board['boardname'],
+                    'task' => $this->task->getTask($bid),
+                    'comment' => $this->comment,
+                    'tasklist' => $this->tasklist,
+                    session()->set('idb', $board['boardid']),
+                    session()->set('bname', $board['boardname']),
+                ];
             } else {
-                $board = $this->board->getOne($bid);
-                if ($board != '') {
-                    $q = [
-                        'title' => 'PM | ' . $board['boardname'],
-                        'task' => $this->task->getTask($bid),
-                        'comment' => $this->comment,
-                        'tasklist' => $this->tasklist,
-                        session()->set('idb', $board['boardid']),
-                        session()->set('bname', $board['boardname']),
-                    ];
-                } else {
-                    return redirect()->to('board');
-                }
+                return redirect()->to('board');
             }
         }
         return view('master/task/v_list', $q);
@@ -103,7 +102,7 @@ class Board extends BaseController
     public function getUser()
     {
         $search = $this->request->getPost('searchTerm');
-        $data = $this->user->getUser($search);
+        $data = $this->user->getUsers($search);
         $res = array();
 
         foreach ($data as $dt) {
@@ -137,7 +136,9 @@ class Board extends BaseController
         if ($btitle != '') {
             $data = [
                 'boardid' => random_int(1000000, 9999999),
-                'boardname' => $btitle
+                'boardname' => $btitle,
+                'createddate' => $this->date->format('Y-m-d H:i:s'),
+                'createdby' => session()->get('name'),
             ];
             $this->board->tambah($data);
             $dt['success'] = 1;
@@ -155,6 +156,8 @@ class Board extends BaseController
         $id = $this->request->getPost('idboard');
         $dt = [
             'boardname' => $title,
+            'updateddate' => $this->date->format('Y-m-d H:i:s'),
+            'updatedby' => session()->get('name'),
         ];
         if ($title != '') {
             $this->board->edit($dt, $id);

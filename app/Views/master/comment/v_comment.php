@@ -243,7 +243,7 @@ if ($count > 0) {
                             $('#com-load').html(res.view)
                             $('#list_board').load('<?= base_url('task/t') ?>')
                         } else {
-                            $.notify(res.msg, 'error');
+                            $.notify(res.msg, 'warn');
                         }
                     },
                     error: function(xhr, ajaxOptions, thrownError) {

@@ -113,4 +113,4 @@
                 </div>
             </nav>
         </div>
-        <div class="container-fluid page-body-wrapper" style="overflow-x: scroll; overflow-y: hidden;">
+        <div class="container-fluid page-body-wrapper" style="overflow-x: scroll; overflow-y: hidden; height: max-content;">

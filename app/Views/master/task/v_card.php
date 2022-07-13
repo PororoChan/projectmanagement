@@ -1,5 +1,5 @@
 <?php foreach ($task as $t) : ?>
-    <div class="col-md-4 scol-lg-3 list min-vh-100" tasid="<?= $t['taskid'] ?>">
+    <div class="col-md-4 scol-lg-3 col-lg-2 list min-vh-100" tasid="<?= $t['taskid'] ?>">
         <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-2 list-hover rounded">
             <div class="row d-flex handle justify-content-between">
                 <div class="col-lg-10 text-start">
@@ -11,8 +11,8 @@
                     <a href="" id="dropdownlist" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-ellipsis-h text-secondary"></i>
                     </a>
-                    <ul class="dropdown-menu shadow-sm" aria-labelledby="dropdownlist">
-                        <li><a href="#" role="button" class="dropdown-item delist" idt="<?= $t['taskid'] ?>"><i class="fas fa-trash-alt text-dark fs-7 me-3"></i><span class="text-dark fw-bold fs-7">Delete</span></a></li>
+                    <ul class="dropdown-menu p-1 m-0 shadow-sm" aria-labelledby="dropdownlist">
+                        <li><a href="#" role="button" class="dropdown-item delist rounded" idt="<?= $t['taskid'] ?>"><i class="fas fa-trash text-danger fs-7 me-3"></i><span class="text-dark fw-bold fs-7">Delete</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -27,38 +27,32 @@
                 <ul class="portlet-card-list list-unstyled overflow-auto mt-1 mb-0" sts="<?= $t['taskid'] ?>" style="min-height: 35px; max-height: 55vh;">
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
                         <li class="portlet-card task-hover bg-white border rounded" tlid="<?= $list['id'] ?>">
-                            <div class="p-3">
-                                <div class="portlet-card-header mb-0">
-                                    <div class="text-dark fw-semibold me-2 d-flex justify-content-between">
-                                        <span class="w-100 font-13" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
-                                        <div style="height: 0px;">
-                                            <a class="btn_options" data-bs-toggle="dropdown" id="dropdownMenu" aria-expanded="false" data-target="#dropdownMenu" style="display: none;">
-                                                <i class="fas fa-ellipsis-v fs-5 text-secondary"></i>
-                                            </a>
-                                            <!-- Bug Detected -->
-                                            <ul class="dropdown-menu shadow-sm" id="dropdownMenu">
-                                                <li><a class="dropdown-item taskedit" lname="<?= $t['taskname'] ?>" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>" href="#"><i class="fas fa-pencil-alt text-dark fs-7 me-3"></i><span class="text-dark fs-7 fw-bold">Edit</span></a></li>
-                                                <li><a class="dropdown-item deltasklist" dtid="<?= $list['id'] ?>" href="#"><i class="fas fa-trash-alt text-dark fs-7 me-3"></i><span class="text-dark fs-7 fw-bold">Delete</span></a></li>
-                                            </ul>
+                            <a href="#" class="text-decoration-none text-dark taskedit" lname="<?= $t['taskname'] ?>" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>">
+                                <div class="p-3">
+                                    <div class="portlet-card-header mb-0">
+                                        <div class="text-dark fw-semibold d-flex justify-content-between">
+                                            <span class="w-100 font-13" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
+                                            <div class="btn_options" style="height: 0px; display: none;">
+                                                <button class="btn btn-sm btn-light deltasklist" dtid="<?= $list['id'] ?>" href="#">
+                                                    <i class="fas fa-trash text-danger fs-7sep"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <?php if ($list['description'] != '') { ?>
-                                    <div class="portlet-card-body mt-0">
-                                        <div class="text-secondary text-start fw-semibold font-12" style="overflow-wrap: break-word;">
-                                            <?= $list['description'] ?>
-                                        </div>
+                                    <div class="d-flex align-items-center mt-1" style="width: max-content;">
+                                        <?php if ($list['description'] != '') { ?>
+                                            <i class="fas fa-align-left font-11 text-secondary me-2" title="Task Description"></i>
+                                        <?php } ?>
+                                        <?php if ($comment->countAll($list['id']) > 0) { ?>
+                                            <div class="d-flex align-items-center" title="Comments" style="width: max-content;">
+                                                <i class="far fa-comment font-11 text-secondary me-1"></i>
+                                                <span class="font-11 text-dark"><?= $comment->countAll($list['id']) ?></span>
+                                            <?php } else { ?>
+                                                <div></div>
+                                            <?php } ?>
+                                            </div>
                                     </div>
-                                <?php } ?>
-                                <?php if ($comment->countAll($list['id']) > 0) { ?>
-                                    <div class="d-flex align-items-center mt-1" title="Comments" style="width: max-content;">
-                                        <i class="far fa-comment font-11 text-secondary me-1"></i>
-                                        <span class="font-11 text-dark"><?= $comment->countAll($list['id']) ?></span>
-                                    </div>
-                                <?php } else { ?>
-                                    <div></div>
-                                <?php } ?>
-                            </div>
+                            </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -168,7 +162,8 @@
 
     $('.taskedit').each(function() {
         var self = $(this);
-        $(this).on('click', function() {
+        $(this).on('click', function(e) {
+            e.preventDefault()
             var did = $(this).attr('taskid'),
                 link = "<?= base_url('list/editView') ?>" + '/' + did;
 

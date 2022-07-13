@@ -35,6 +35,7 @@
             dt = new FormData(form);
 
         if (ftype == 'Edit') {
+            dt.append('desc', desc.getData());
             link = '<?= base_url('list/editData') ?>';
             pros = "Updated";
         }

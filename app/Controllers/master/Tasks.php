@@ -62,7 +62,6 @@ class Tasks extends BaseController
         } else {
             $dt['success'] = 0;
         }
-
         echo json_encode($dt);
     }
 
@@ -95,7 +94,6 @@ class Tasks extends BaseController
     {
         $id = $this->request->getPost('id');
         $data = $this->request->getPost('dt');
-
         if ($id != '') {
             $data = [
                 'taskname' => $data
@@ -106,7 +104,6 @@ class Tasks extends BaseController
             $res['success'] = 0;
             $res['msg'] = 'Id not Defined';
         }
-
         echo json_encode($res);
     }
 

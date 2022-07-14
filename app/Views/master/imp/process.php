@@ -50,7 +50,9 @@
             success: function(res) {
                 if (res == 1) {
                     $.notify("Task " + pros, "success");
-                    $('#list_board').load('<?= base_url('task/t') ?>');
+                    $('#list_board').load('<?= base_url('task/t') ?>', function() {
+                        $('#btn-upt').slideUp('fast');
+                    });
                 } else {
                     $.notify("Taskname cannot be empty", "warn");
                     form.reset();
@@ -80,6 +82,7 @@
                     $('#list_board').load('<?= base_url('task/t') ?>')
                 } else {
                     $.notify(res.msg, 'warn');
+                    $('#btn-com').slideUp('fast');
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {
@@ -114,6 +117,7 @@
                     $('#com-load').html(res.view);
                 } else {
                     $.notify('Data not Updated', 'error');
+                    $('#btn-com').slideUp('fast');
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {

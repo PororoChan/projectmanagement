@@ -27,7 +27,7 @@
                 <ul class="portlet-card-list list-unstyled overflow-auto mt-1 mb-0" sts="<?= $t['taskid'] ?>" style="min-height: 35px; max-height: 55vh;">
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
                         <li class="portlet-card task-hover bg-white border rounded" tlid="<?= $list['id'] ?>">
-                            <a href="#" class="text-decoration-none text-dark taskedit" lname="<?= $t['taskname'] ?>" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>">
+                            <a href="#" class="text-decoration-none text-dark p-0 taskedit" lname="<?= $t['taskname'] ?>" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>">
                                 <div class="p-3">
                                     <div class="portlet-card-header mb-0">
                                         <div class="text-dark fw-semibold d-flex justify-content-between">
@@ -41,17 +41,18 @@
                                     </div>
                                     <div class="d-flex align-items-center mt-1" style="width: max-content;">
                                         <?php if ($list['description'] != '') { ?>
-                                            <i class="fas fa-align-left font-11 text-secondary me-2" title="Task Description"></i>
+                                            <i class="fas fa-align-left font-11 text-secondary me-3" title="Task Description"></i>
                                         <?php } ?>
                                         <?php if ($comment->countAll($list['id']) > 0) { ?>
-                                            <div class="d-flex align-items-center" title="Comments" style="width: max-content;">
-                                                <i class="far fa-comment font-11 text-secondary me-1"></i>
+                                            <div title="Comments">
+                                                <i class="far fa-comment font-11 text-secondary"></i>
                                                 <span class="font-11 text-dark"><?= $comment->countAll($list['id']) ?></span>
-                                            <?php } else { ?>
-                                                <div></div>
-                                            <?php } ?>
                                             </div>
+                                        <?php } else { ?>
+                                            <div></div>
+                                        <?php } ?>
                                     </div>
+                                </div>
                             </a>
                         </li>
                     <?php endforeach; ?>

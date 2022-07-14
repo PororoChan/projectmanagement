@@ -77,7 +77,7 @@
                                         <img src="<?= base_url('public/assets/images/faces/avatar-1.png') ?>" />
                                     </div>
                                     <div class="nav-profile-text">
-                                        <p class="text-black fs-7 font-weight-semibold m-0"> <?= session()->get('name') ?> </p>
+                                        <p class="text-black fs-7 font-weight-semibold"> <?= session()->get('name') ?> </p>
                                         <span class="fs-7 text-success">Online <i class="fas fa-chevron-down fs-8"></i></span>
                                     </div>
                                 </a>

@@ -25,7 +25,7 @@
                     <div class="section-header pb-3 pt-2">
                         <div class="d-flex align-items-center justify-content-between">
                             <h2 class="text-dark fs-6 fw-bold text-start mb-0">
-                                <i class="fas fa-chalkboard-teacher text-dark me-2"></i>Boards
+                                <i class="fas fa-chalkboard-teacher text-dark me-2"></i><span id="boards">Boards</span>
                             </h2>
                             <button class="btn btn-primary p-2 shadow-sm" id="create_board">
                                 <i class="fas fa-plus fw-semibold fs-7sep"></i>
@@ -52,11 +52,37 @@
 </div>
 <?= $this->include('inc_template/footer') ?>
 <script type="text/javascript">
-    function reload() {
+    function board() {
         $('#bbody').load('<?= base_url('board/b') ?>', function() {
-            scaleCard()
+            scaleCard();
+            $('#boards').text("Boards");
+            $('#create_board').attr('disabled', false);
         });
         count();
+    }
+
+    function sharedBoard() {
+        $('#bbody').load('<?= base_url('board/share') ?>', function() {
+            scaleCard();
+            $('#boards').text("Shared Board");
+            $('#create_board').attr('disabled', true);
+        });
+        countShare();
+    }
+
+    function countShare() {
+        $.ajax({
+            url: '<?= base_url('board/shareCount') ?>',
+            type: 'post',
+            success: function(res) {
+                $('.count').each(function() {
+                    $(this).html('...');
+                    setTimeout(() => {
+                        $(this).html(res);
+                    }, 200);
+                })
+            }
+        })
     }
 
     function count() {
@@ -88,10 +114,10 @@
     }
 
     $(window).on('load', function() {
-        $('#loadcont').fadeIn('slow')
+        $('#loadcont').fadeIn('slow');
         setTimeout(() => {
             count();
-        }, 100);
+        }, 200);
     });
 
     $(document).ready(function() {

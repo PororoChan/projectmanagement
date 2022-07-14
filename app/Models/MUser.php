@@ -28,6 +28,13 @@ class MUser extends Model
             ->get()->getRowArray();
     }
 
+    public function cekUSer($username)
+    {
+        return $this->builder
+            ->where('m.name', $username)
+            ->get()->getRowArray();
+    }
+
     public function getAll()
     {
         return $this->builder

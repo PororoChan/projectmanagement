@@ -68,17 +68,17 @@ if ($count > 0) {
                             <div class="act-comment mt-1 mb-0" id="act-comment" style="display: none;">
                             <div class="d-flex align-items-center">
                             ' . (($dt['headerid'] != '' ? '
-                                    <button type="button" class="btn btn-sm btn-warning shadow-sm d-flex align-items-center text-center rep-edit me-1" cid=' . $dt['commentid'] . '>
+                                    <button type="button" class="btn btn-sm btn-inverse-warning shadow-sm d-flex align-items-center text-center rep-edit me-1" cid=' . $dt['commentid'] . '>
                                         <input type="hidden" class="rep_field_content" value="' . $dt['message'] . '">
                                         <i class="fas fa-pencil-alt text-center fs-7set"></i>
                                     </button>
                                     ' : '
-                                    <button type="button" class="btn btn-sm btn-warning shadow-sm d-flex align-items-center text-center com-edit me-1" cid=' . $dt['commentid'] . '>
+                                    <button type="button" class="btn btn-sm btn-inverse-warning shadow-sm d-flex align-items-center text-center com-edit me-1" cid=' . $dt['commentid'] . '>
                                         <input type="hidden" id="field-content" class="field-content" value="' . $dt['message'] . '">
                                         <i class="fas fa-pencil-alt text-center fs-7set"></i>
                                     </button>
                                     ')) . '
-                                    <button type="button" class="btn btn-sm btn-danger shadow-sm d-flex align-items-center text-center com-delete" cid=' . $dt['commentid'] . ' sid=' . $dt['taskid'] . '>
+                                    <button type="button" class="btn btn-sm btn-inverse-danger shadow-sm d-flex align-items-center text-center com-delete" cid=' . $dt['commentid'] . ' sid=' . $dt['taskid'] . '>
                                         <i class="fas fa-trash text-center fs-7set"></i>
                                     </button>
                                 </div>

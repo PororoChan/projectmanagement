@@ -51,7 +51,6 @@ class Tasklist extends BaseController
             $b['success'] = 0;
             $b['msg'] = 'Null Data!';
         }
-
         echo json_encode($b);
     }
 
@@ -66,7 +65,6 @@ class Tasklist extends BaseController
                 'createddate' => date('Y-m-d H:i:s'),
                 'createdby' => session()->get('name')
             ];
-
             $this->tasklist->tambah($data);
             echo 1;
         } else {
@@ -79,7 +77,6 @@ class Tasklist extends BaseController
         $tname = $this->request->getPost('taskname');
         $tdesc = $this->request->getPost('desc');
         $taskid = $this->request->getPost('id');
-
         if ($tname != '') {
             $data = [
                 'tasklistname' => $tname,
@@ -87,7 +84,6 @@ class Tasklist extends BaseController
                 'updateddate' => date('Y-m-d H:i:s'),
                 'updatedby' => session()->get('name'),
             ];
-
             $this->tasklist->edit($data, $taskid);
             echo 1;
         } else {
@@ -110,7 +106,6 @@ class Tasklist extends BaseController
     {
         $taskid = $this->request->getPost('task');
         $comment = $this->request->getPost('comment');
-
         if ($comment != '') {
             $data = [
                 'taskid' => $taskid,
@@ -119,7 +114,6 @@ class Tasklist extends BaseController
                 'createddate' => $this->date->format('Y-m-d H:i:s'),
                 'createdby' => session()->get('name'),
             ];
-
             $this->comment->tambah($data);
             $dt['success'] = 1;
             $vd = [
@@ -132,7 +126,6 @@ class Tasklist extends BaseController
             $dt['msg'] = 'Comment cannot be empty';
             $dt['success'] = 0;
         }
-
         echo json_encode($dt);
     }
 
@@ -141,12 +134,10 @@ class Tasklist extends BaseController
         $id = $this->request->getPost('id');
         $task = $this->request->getPost('task');
         $newcom = $this->request->getPost('com');
-
         if ($id != '') {
             $data = [
                 'message' => $newcom,
             ];
-
             $this->comment->edit($data, $id);
             $res['success'] = 1;
             $vw = [
@@ -158,7 +149,6 @@ class Tasklist extends BaseController
         } else {
             $res['success'] = 0;
         }
-
         echo json_encode($res);
     }
 
@@ -166,10 +156,8 @@ class Tasklist extends BaseController
     {
         $id = $this->request->getPost('id');
         $taskid = $this->request->getPost('taskid');
-
         if ($id != '') {
             $this->comment->hapus($id);
-
             $data = [
                 'count' => $this->comment->comCount($taskid),
                 'comment' => $this->comment->getComment($taskid),
@@ -181,7 +169,6 @@ class Tasklist extends BaseController
         } else {
             $vw['success'] = 0;
         }
-
         echo json_encode($vw);
     }
 
@@ -190,7 +177,6 @@ class Tasklist extends BaseController
         $commentid = $this->request->getPost('id');
         $taskid = $this->request->getPost('taskid');
         $reply = $this->request->getPost('reply');
-
         if ($commentid != '' && $reply != '') {
             $data = [
                 'taskid' => $taskid,
@@ -205,7 +191,6 @@ class Tasklist extends BaseController
                 'comment' => $this->comment->getComment($taskid),
                 'reply' => $this->comment,
             ];
-
             $this->comment->tambahReply($data);
             $res['success'] = 1;
             $res['view'] = view('master/comment/v_comment', $dv);
@@ -213,7 +198,6 @@ class Tasklist extends BaseController
             $res['success'] = 0;
             $res['msg'] = 'Reply cannot be empty';
         }
-
         echo json_encode($res);
     }
 
@@ -222,7 +206,6 @@ class Tasklist extends BaseController
         $commentid = $this->request->getPost('id');
         $taskid = $this->request->getPost('taskid');
         $reply = $this->request->getPost('reply');
-
         if ($commentid != '' && $taskid != '') {
             $data = [
                 'message' => $reply,
@@ -232,14 +215,12 @@ class Tasklist extends BaseController
                 'comment' => $this->comment->getComment($taskid),
                 'reply' => $this->comment,
             ];
-
             $this->comment->edit($data, $commentid);
             $res['success'] = 1;
             $res['view'] = view('master/comment/v_comment', $vw);
         } else {
             $res['success'] = 0;
         }
-
         echo json_encode($res);
     }
 }

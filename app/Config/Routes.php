@@ -55,9 +55,13 @@ $routes->add('board/delBoard', 'master\Board::deleteBoard');
 $routes->add('board/getUser', 'master\Board::getUser');
 $routes->add('board/b', 'master\Board::board');
 $routes->add('board/FormViews', 'master\Board::FormViews');
+$routes->add('board/shares', 'master\Board::shareBoard');
 $routes->add('board/EditViews/(:any)', 'master\Board::FormViews/$1');
-$routes->add('board/share', 'master\Board::shareBoard');
 $routes->add('board/out', 'master\Board::clean');
+// SharedBoard
+$routes->add('board/share', 'master\SBoard::getBoard');
+$routes->add('board/shareCount', 'master\SBoard::count');
+$routes->add('board/share/add', 'master\SBoard::addShared');
 // Task
 $routes->add('task/formAdd', 'master\Tasks::FormViews');
 $routes->add('task/addTask', 'master\Tasks::addTask');

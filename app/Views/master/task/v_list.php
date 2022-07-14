@@ -91,7 +91,7 @@
     $('#btn_share').each(function() {
         $(this).on('click', function() {
             var id = $(this).attr('idb'),
-                link = "<?= base_url('board/share') ?>";
+                link = "<?= base_url('board/shares') ?>";
 
             $.ajax({
                 url: link,

@@ -1,16 +1,21 @@
 <style>
     .ck-editor__editable {
         min-height: 50px;
-        min-width: 650px;
-        max-width: 650px;
+        min-width: 660px;
+        max-width: 660px;
         word-wrap: break-word;
     }
+
+    .ck.ck-editor__main>.ck-editor__editable {
+        border-color: #E4E9F0 !important;
+        border-radius: 3px !important;
+    }
 </style>
-<div class="row">
+<div class="row" id="loadForm">
     <div class="<?= (($form_type == 'Edit' ? 'col-lg-8' : '')) ?>">
         <div id="form-load">
             <form id="form-tlist" <?= (($form_type == 'Add' ? 'class="mt-2"' : '')) ?> method="POST" ftype="<?= $form_type ?>">
-                <div class="row <?= (($form_type == 'Edit') ? '' : '') ?>">
+                <div class="row <?= (($form_type == 'Edit') ? '' : '') ?>" id="form-upper">
                     <div class="form-group mb-2">
                         <input type="hidden" name="id" id="id" value="<?= (($form_type == 'Edit') ? $row['id'] : '') ?>">
                         <input type="hidden" class="tid" name="tid" id="tid">
@@ -80,7 +85,29 @@
         $('#form-tlist').remove();
     });
 
+    function resizeDesc() {
+        $('#form-upper').closest($('#form-upper')).find('.ck-editor__editable').css('min-width', '715px');
+        $('#form-upper').closest($('#form-upper')).find('.ck-editor__editable').css('min-height', '85px');
+        $('#form-upper').closest($('#form-upper')).find('.ck-editor__editable').attr('spellcheck', 'false');
+        $('#form-upper').closest($('#form-upper')).find('.ck-editor__top').css('min-width', '715px');
+    }
 
+    function spellcheck() {
+        $('#form-comment').closest($('#form-comment')).find('.ck-editor__editable').attr('spellcheck', 'false');
+    }
+
+    function toggleToolbar() {
+        $('#form-upper').closest($('#form-upper')).find('.ck-editor__top').slideToggle('fast');
+    }
+
+    function hideToolbar() {
+        $('#form-upper').closest($('#form-upper')).find('.ck-editor__top').css('display', 'none');
+        $('#form-comment').closest($('#form-comment')).find('.ck-editor__top').css('display', 'none');
+    }
+
+    function toolbarToggle() {
+        $('#form-comment').closest($('#form-comment')).find('.ck-editor__top').slideToggle('fast');
+    }
 
     if (type == 'Edit') {
         ClassicEditor
@@ -89,12 +116,16 @@
             })
             .then(editor => {
                 desc = editor;
+                resizeDesc();
+                hideToolbar();
                 editor.ui.focusTracker.on('change:isFocused', (evt, name, isFocused) => {
                     if (isFocused) {
+                        toggleToolbar();
                         $('#btn-upt').slideDown('fast');
                     } else {
-                        $('#btn-upt').slideUp('fast');
+                        toggleToolbar();
                     }
+                    resizeDesc();
                 })
             })
             .catch(error => {
@@ -107,16 +138,16 @@
             })
             .then(editor => {
                 comment = editor;
+                spellcheck();
+                hideToolbar();
                 editor.ui.focusTracker.on('change:isFocused', (evt, name, isFocused) => {
                     if (isFocused) {
+                        toolbarToggle();
                         $('#btn-com').slideDown('fast');
                     } else if (!isFocused) {
-                        if ($('#btn-com').html() == 'Send') {
-                            $('#btn-com').slideUp('fast');
-                        } else if ($('#btn-com').html() == 'Edit') {
-                            // Do Nothing
-                        }
+                        toolbarToggle();
                     }
+                    spellcheck();
                 })
             })
             .catch(error => {

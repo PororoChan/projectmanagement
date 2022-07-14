@@ -4,6 +4,7 @@ namespace App\Controllers\master;
 
 use App\Controllers\BaseController;
 use App\Models\Mboard;
+use App\Models\Msboardshare;
 use App\Models\Mscomment;
 use App\Models\Mstask;
 use App\Models\Mstasklist;
@@ -18,6 +19,7 @@ class Board extends BaseController
         $this->date = new DateTime('now');
         $this->user = new MUser();
         $this->board = new Mboard();
+        $this->shared = new Msboardshare();
         $this->task = new Mstask();
         $this->comment = new Mscomment();
         $this->tasklist = new Mstasklist();
@@ -46,7 +48,6 @@ class Board extends BaseController
             $name = session()->get('name');
             $q = $this->board->count($name);
         }
-
         echo json_encode($q);
     }
 
@@ -104,29 +105,26 @@ class Board extends BaseController
         $search = $this->request->getPost('searchTerm');
         $data = $this->user->getUsers($search);
         $res = array();
-
         foreach ($data as $dt) {
             $res[] = array("id" => $dt['userid'], "text" => $dt['name']);
         }
-
         echo json_encode($res);
     }
 
     public function shareBoard()
     {
         $bid = $this->request->getPost('bid');
-
         if ($bid != '') {
             $data = [
                 'id' => $bid,
-                'user' => $this->user->getAll(),
+                'user' => session()->get('id_user'),
+                'board' => session()->get('bname'),
             ];
-            $res['view'] = view('master/board/v_share', $data);
+            $res['view'] = view('master/board/share/v_share_form', $data);
             $res['success'] = 1;
         } else {
             $res['success'] = 0;
         }
-
         echo json_encode($res);
     }
 
@@ -146,7 +144,6 @@ class Board extends BaseController
             $dt['success'] = 0;
             $dt['msg'] = 'Board Title cannot be empty';
         }
-
         echo json_encode($dt);
     }
 
@@ -166,7 +163,6 @@ class Board extends BaseController
             $res['success'] = 0;
             $res['msg'] = 'Boardname cannot empty';
         }
-
         echo json_encode($res);
     }
 
@@ -185,7 +181,6 @@ class Board extends BaseController
     {
         session()->set('idb', null);
         session()->set('bname', null);
-
         return redirect()->to('boards');
     }
 }

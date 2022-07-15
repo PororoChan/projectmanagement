@@ -31,7 +31,7 @@
                                 <div class="p-3">
                                     <div class="portlet-card-header mb-0">
                                         <div class="text-dark fw-semibold d-flex justify-content-between">
-                                            <span class="w-100 font-13" style="overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
+                                            <span class="font-13" style="max-width: 215px; overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
                                             <div class="btn_options top-0" style="height: 0px; display: none;">
                                                 <button class="btn btn-sm btn-light deltasklist" dtid="<?= $list['id'] ?>" href="#">
                                                     <i class="fas fa-trash text-danger fs-7sep"></i>
@@ -39,12 +39,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex align-items-center mt-1" style="width: max-content;">
+                                    <div class="d-flex align-items-center pt-1" style="width: max-content;">
                                         <?php if ($list['description'] != '') { ?>
-                                            <i class="fas fa-align-left font-11 text-secondary me-3" title="Task Description"></i>
+                                            <i class="fas fa-align-left font-11 text-secondary me-2" title="Task Description"></i>
                                         <?php } ?>
                                         <?php if ($comment->countAll($list['id']) > 0) { ?>
-                                            <div title="Comments">
+                                            <div title="Comments" class="pb-0 pt-0 mt-0 mb-0">
                                                 <i class="far fa-comment font-11 text-secondary"></i>
                                                 <span class="font-11 text-dark"><?= $comment->countAll($list['id']) ?></span>
                                             </div>

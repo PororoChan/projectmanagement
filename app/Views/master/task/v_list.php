@@ -37,7 +37,7 @@
                             <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-bold fs-7">Boards</span>
                         </a>
                         <button class="btn btn-inverse-dark" id="btn_share" idb="<?= session()->get('idb') ?>">
-                            <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-bold fs-7">Share</span>
+                            <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-bold fs-7"><?= $roles ?></span>
                         </button>
                     </div>
                 </div>

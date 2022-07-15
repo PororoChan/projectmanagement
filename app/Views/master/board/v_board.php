@@ -39,7 +39,7 @@
                                 <span class="text-secondary fs-7 font-weight-normal">Showing <span class="fw-semibold text-dark count"></span> of <span class="fw-semibold text-dark count"></span> boards</span>
                             </div>
                             <div class="board-body">
-                                <div class="row px-1" id="bbody" draggable="false">
+                                <div class="row px-2" id="bbody" draggable="false">
                                     <?= $this->include('master/board/v_card') ?>
                                 </div>
                             </div>

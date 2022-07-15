@@ -62,6 +62,7 @@ $routes->add('board/out', 'master\Board::clean');
 $routes->add('board/share', 'master\SBoard::getBoard');
 $routes->add('board/shareCount', 'master\SBoard::count');
 $routes->add('board/share/add', 'master\SBoard::addShared');
+$routes->add('board/share/delete', 'master\SBoard::shareDelete');
 // Task
 $routes->add('task/formAdd', 'master\Tasks::FormViews');
 $routes->add('task/addTask', 'master\Tasks::addTask');

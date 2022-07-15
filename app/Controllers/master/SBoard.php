@@ -40,18 +40,13 @@ class SBoard extends BaseController
 
     public function addShared()
     {
-        $roles = '';
         $userid = $this->request->getPost('uid');
         $bid = $this->request->getPost('bidd');
         $board = $this->request->getPost('bname');
         $uname = $this->request->getPost('username');
         $role = $this->request->getPost('roles');
         if ($userid != '' && $uname != '') {
-            if ($role == 1) {
-                $roles = 'Admin';
-            } else if ($role == 2) {
-                $roles = 'Member';
-            }
+
             $cek = $this->user->cekUser($uname);
             if ($cek) {
                 if ($cek['userid'] == session()->get('id_user')) {
@@ -64,7 +59,7 @@ class SBoard extends BaseController
                         'userid' => session()->get('id_user'),
                         'boardid' => $bid,
                         'boardname' => $board,
-                        'roles' => $roles,
+                        'roles' => $role,
                         'shareddate' => $this->date->format('Y-m-d H:i:s'),
                         'sharedby' => session()->get('name'),
                         'sharedto' => $cek['userid'],
@@ -93,6 +88,18 @@ class SBoard extends BaseController
                 'success' => 0,
                 'msg' => "User's name required",
             ];
+        }
+        echo json_encode($res);
+    }
+
+    public function shareDelete()
+    {
+        $bid = $this->request->getPost('id');
+        if ($bid != '') {
+            $this->share->hapus($bid);
+            $res = 1;
+        } else {
+            $res = 0;
         }
         echo json_encode($res);
     }

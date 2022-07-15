@@ -32,4 +32,9 @@ class Msboardshare extends Model
     {
         return $this->builder->insert($data);
     }
+
+    public function hapus($id)
+    {
+        return $this->builder->delete(['bs.boardid' => $id]);
+    }
 }

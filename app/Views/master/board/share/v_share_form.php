@@ -13,13 +13,15 @@
             <div class="w-75 me-0 px-1">
                 <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="Enter Username" spellcheck="false">
             </div>
-            <div class="w-25 mb-4 px-1">
+            <div class="w-25 mb-3 px-1">
                 <select class="form-control form-control-sm" name="roles" id="roles">
-                    <option value="1">Admin</option>
-                    <option value="2">Member</option>
+                    <option value="1">View Only</option>
+                    <option value="2">Edit</option>
                 </select>
             </div>
-            <div class="w-100 d-flex justify-content-end mb-0">
+        </div>
+        <div class="row">
+            <div class="w-100 d-flex justify-content-end">
                 <button type="button" id="scancel" class="btn btn-inverse-secondary me-2" data-bs-dismiss="modal">
                     Cancel
                 </button>

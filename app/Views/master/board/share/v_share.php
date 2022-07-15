@@ -8,22 +8,13 @@
             </a>
         </div>
     </div>
-    <?php if ($b['userid'] == session()->get('id_user')) { ?>
-        <div class="dropdown-menu dropdown-menu-sm p-1 mb-1 m-0 shadow-sm" style="width: 100px;" id="context-menu">
-            <a class="dropdown-item btned rounded align-middle" href="#">
-                <i class="fas fa-pencil-alt text-warning fs-7 me-3"></i>
-                <input type="hidden" id="bed">
-                <span class="text-dark font-12 fw-bold">Edit</span>
-            </a>
-            <a class="dropdown-item btndel rounded align-middle" href="#">
-                <i class="fas fa-trash text-danger fs-7 me-3"></i>
-                <input type="hidden" id="bde">
-                <span class="text-dark font-12 fw-bold">Delete</span>
-            </a>
-        </div>
-    <?php } else { ?>
-        <div></div>
-    <?php } ?>
+    <div class="dropdown-menu dropdown-menu-sm p-1 mb-1 m-0 shadow-sm" style="width: 100px;" id="context-menu">
+        <a class="dropdown-item btndel rounded align-middle" href="#">
+            <i class="fas fa-trash text-danger fs-7 me-3"></i>
+            <input type="hidden" id="bde">
+            <span class="text-dark font-12 fw-bold">Delete</span>
+        </a>
+    </div>
 <?php endforeach; ?>
 <script>
     var id = '';
@@ -54,25 +45,9 @@
         });
     });
 
-    $('.btned').each(function() {
-        $(this).on('click', function() {
-            $.ajax({
-                url: '<?= base_url('board/EditViews') ?>' + '/' + $("#bed").val(),
-                type: 'post',
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                success: function(res) {
-                    modalB();
-                    $('#mobody').html(res.view);
-                }
-            })
-        })
-    });
-
     $('.btndel').each(function() {
         $(this).on('click', function() {
-            modalDel('Board Workspace', 'Anda yakin ingin hapus board ini ?', '<?= base_url('board/delBoard') ?>', $('#bde').val());
+            modalDel('Board Workspace', 'Anda yakin ingin hapus board ini ?', '<?= base_url('board/share/delete') ?>', $('#bde').val());
         })
     })
 </script>

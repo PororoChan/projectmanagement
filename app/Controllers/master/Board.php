@@ -70,6 +70,7 @@ class Board extends BaseController
         } else {
             $board = $this->board->getOne($bid);
             if ($board != '') {
+                $y = $this->shared->getBoard(session()->get('id_user'));
                 $q = [
                     'title' => 'PM | ' . $board['boardname'],
                     'task' => $this->task->getTask($bid),

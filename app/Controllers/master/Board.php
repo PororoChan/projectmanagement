@@ -19,7 +19,7 @@ class Board extends BaseController
         $this->date = new DateTime('now');
         $this->user = new MUser();
         $this->board = new Mboard();
-        $this->shared = new Msboardshare();
+        $this->share = new Msboardshare();
         $this->task = new Mstask();
         $this->comment = new Mscomment();
         $this->tasklist = new Mstasklist();
@@ -69,15 +69,16 @@ class Board extends BaseController
             return redirect()->to('login');
         } else {
             $board = $this->board->getOne($bid);
+            session()->set('idb', $board['boardid']);
+            session()->set('bname', $board['boardname']);
+            $y = $this->share->getRoles(session()->get('id_user'), session()->get('idb'));
             if ($board != '') {
-                $y = $this->shared->getBoard(session()->get('id_user'));
                 $q = [
                     'title' => 'PM | ' . $board['boardname'],
                     'task' => $this->task->getTask($bid),
                     'comment' => $this->comment,
                     'tasklist' => $this->tasklist,
-                    session()->set('idb', $board['boardid']),
-                    session()->set('bname', $board['boardname']),
+                    'roles' => (($y != '' ? $y['roles'] : '0')),
                 ];
             } else {
                 return redirect()->to('board');

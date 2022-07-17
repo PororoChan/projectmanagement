@@ -3,6 +3,7 @@
 namespace App\Controllers\master;
 
 use App\Controllers\BaseController;
+use App\Models\Msboardshare;
 use App\Models\Mscomment;
 use App\Models\Mstask;
 use App\Models\Mstasklist;
@@ -13,6 +14,7 @@ class Tasks extends BaseController
     {
         helper('form');
         $this->task = new Mstask();
+        $this->share = new Msboardshare();
         $this->comment = new Mscomment();
         $this->tasklist = new Mstasklist();
     }
@@ -23,9 +25,11 @@ class Tasks extends BaseController
             return redirect()->to('login');
         }
         $bid = session()->get('idb');
+        $query = $this->share->getRoles(session()->get('id_user'), $bid);
         $data = [
             'tasklist' => $this->tasklist,
             'comment' => $this->comment,
+            'roles' => (($query != '' ? $query['roles'] : '0')),
             'task' => $this->task->getTask($bid),
         ];
         return view('master/task/v_card', $data);

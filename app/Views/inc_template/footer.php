@@ -80,8 +80,6 @@
 </div>
 </body>
 
-<?= $this->include('master/imp/sortable') ?>
-
 <script>
     $('.nav-btn').each(function() {
         $(this).hover(

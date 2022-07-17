@@ -21,6 +21,14 @@ class Msboardshare extends Model
             ->get()->getResultArray();
     }
 
+    public function getRoles($user, $boardid)
+    {
+        return $this->builder
+            ->where("bs.sharedto", $user)
+            ->where("bs.boardid", $boardid)
+            ->get()->getRowArray();
+    }
+
     public function getCount($userid)
     {
         return $this->builder

@@ -37,7 +37,7 @@
                             <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-bold fs-7">Boards</span>
                         </a>
                         <button class="btn btn-inverse-dark" id="btn_share" idb="<?= session()->get('idb') ?>">
-                            <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-bold fs-7"><?= $roles ?></span>
+                            <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-bold fs-7">Share</span>
                         </button>
                     </div>
                 </div>
@@ -53,63 +53,82 @@
 <?= $this->include('inc_template/footer') ?>
 <?= $this->include('master/imp/process') ?>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-<script>
-    var newSeq = '';
+<?php if ($roles != '' && $roles == '2' || $roles != '1' && $roles != '2') { ?>
+    <script>
+        var newSeq = '';
 
-    var sort = new Sortable(list_board, {
-        draggable: '.list',
-        swapThreshold: 0.60,
-        animation: 250,
-        onEnd: function(evt) {
-            $('.list').each(function(i, e) {
-                var id = $(this).attr('tasid'),
-                    newSeq = i;
+        var sort = new Sortable(list_board, {
+            draggable: '.list',
+            swapThreshold: 0.60,
+            animation: 250,
+            onEnd: function(evt) {
+                $('.list').each(function(i, e) {
+                    var id = $(this).attr('tasid'),
+                        newSeq = i;
+
+                    $.ajax({
+                        url: '<?= base_url('task/swap') ?>',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            seq: newSeq,
+                            tsid: id,
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            $.notify(thrownError, 'error');
+                        }
+                    })
+                });
+            }
+        });
+
+        var btn = $('#btn_share').each(function() {
+            $(this).on('click', function() {
+                var id = $(this).attr('idb'),
+                    link = "<?= base_url('board/shares') ?>";
 
                 $.ajax({
-                    url: '<?= base_url('task/swap') ?>',
+                    url: link,
                     type: 'post',
-                    dataType: 'json',
                     data: {
-                        seq: newSeq,
-                        tsid: id,
+                        bid: id,
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        if (res.success == 1) {
+                            $('#formboard').modal('show');
+                            $('#mobody').html(res.view);
+                        }
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                         $.notify(thrownError, 'error');
                     }
                 })
-            });
-        }
-    });
-
+            })
+        });
+    </script>
+<?php } else if ($roles == '1') { ?>
+    <script>
+        $('#btn_share').attr('disabled', true);
+        $('.btn-add').each(function() {
+            $(this).attr('disabled', true);
+        });
+        $('.add_list').each(function() {
+            $(this).attr('disabled', true);
+        });
+        $('.deltasklist').each(function() {
+            $(this).attr('disabled', true);
+        });
+        $('.tsid').each(function() {
+            $(this).attr('contenteditable', 'false');
+        });
+    </script>
+<?php } ?>
+<script>
     $(window).on('load', function() {
         setTimeout(() => {
             $('#loading').fadeOut('fast');
             $('#wrapper').fadeIn('slow');
         }, 200);
-    });
-
-    $('#btn_share').each(function() {
-        $(this).on('click', function() {
-            var id = $(this).attr('idb'),
-                link = "<?= base_url('board/shares') ?>";
-
-            $.ajax({
-                url: link,
-                type: 'post',
-                data: {
-                    bid: id,
-                },
-                dataType: 'json',
-                success: function(res) {
-                    if (res.success == 1) {
-                        $('#formboard').modal('show');
-                        $('#mobody').html(res.view);
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    $.notify(thrownError, 'error');
-                }
-            })
-        })
     });
 </script>

@@ -27,17 +27,20 @@
         <div class="main-content">
             <section class="section">
                 <div class="row">
-                    <div class="col-lg-6" style="position: sticky; left: 8px; flex-grow: 0; flex-shrink: 0;">
+                    <div class="col-lg-16" style="position: sticky; left: 8px; flex-grow: 0; flex-shrink: 0;">
                         <button class="btn btn-inverse-primary" disabled>
                             <i class="fas fa-fire fs-7 me-2"></i><span class="text-start fs-7"><?= session()->get('bname') ?></span>
                             <input type="hidden" name="boardid" id="boardid" value="<?= session()->get('idb') ?>">
                         </button>
-                        <div class="vr align-middle mx-2 me-2" style="height: 20px;"></div>
+                        <div class="vr align-middle mx-2 me-2" style="height: 25px;"></div>
                         <a class="btn btn-inverse-primary me-2" id="bt-board" href="<?= base_url('board/out') ?>">
-                            <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-bold fs-7">Boards</span>
+                            <i class="fas fa-chalkboard-teacher fw-bold fs-7 me-2"></i><span class="text-start fw-semibold fs-7">Boards</span>
                         </a>
-                        <button class="btn btn-inverse-dark" id="btn_share" idb="<?= session()->get('idb') ?>">
-                            <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-bold fs-7">Share</span>
+                        <button class="btn btn-inverse-dark me-1" id="btn_share" idb="<?= session()->get('idb') ?>">
+                            <i class="fas fa-user-plus fs-7 me-2"></i><span class="fw-semibold fs-7">Share</span>
+                        </button>
+                        <button class="btn btn-outline-danger" id="view__only" style="border: none; display: none;" disabled>
+                            <i class="fas fa-info-circle text-danger rounded-circle shadow-sm fs-6 me-2"></i><span class="text-secondary fw-semibold fs-7">View Only Mode</span>
                         </button>
                     </div>
                 </div>
@@ -109,19 +112,26 @@
     </script>
 <?php } else if ($roles == '1') { ?>
     <script>
-        $('#btn_share').attr('disabled', true);
+        $('#btn_share').off('click').removeClass('btn-inverse-dark').addClass('btn-dark');
         $('.btn-add').each(function() {
-            $(this).attr('disabled', true);
+            $(this).off('click');
         });
         $('.add_list').each(function() {
-            $(this).attr('disabled', true);
+            $(this).off('click');
         });
         $('.deltasklist').each(function() {
-            $(this).attr('disabled', true);
+            $(this).off('click');
         });
         $('.tsid').each(function() {
             $(this).attr('contenteditable', 'false');
         });
+        $('.taskedit').each(function() {
+            $(this).off('click');
+        });
+        $('.btn-dropdelete').each(function() {
+            $(this).removeAttr('data-bs-toggle');
+        });
+        $('#view__only').fadeIn('fast');
     </script>
 <?php } ?>
 <script>

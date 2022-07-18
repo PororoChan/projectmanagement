@@ -7,7 +7,7 @@ use App\Models\Msboardshare;
 use App\Models\MUser;
 use DateTime;
 
-class SBoard extends BaseController
+class bShare extends BaseController
 {
     public function __construct()
     {

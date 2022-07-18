@@ -53,19 +53,25 @@
 <?= $this->include('inc_template/footer') ?>
 <script type="text/javascript">
     function board() {
-        $('#bbody').load('<?= base_url('board/b') ?>', function() {
-            scaleCard();
-            $('#boards').text("Boards");
-            $('#create_board').attr('disabled', false);
+        $('#bbody').fadeOut('fast', function() {
+            $('#bbody').load('<?= base_url('board/b') ?>', function() {
+                scaleCard();
+                $('#boards').text("Boards");
+                $('#create_board').attr('disabled', false);
+                $('#bbody').fadeIn('slow', function() {})
+            });
         });
         count();
     }
 
     function sharedBoard() {
-        $('#bbody').load('<?= base_url('board/share') ?>', function() {
-            scaleCard();
-            $('#boards').text("Shared Board");
-            $('#create_board').attr('disabled', true);
+        $('#bbody').fadeOut('fast', function() {
+            $('#bbody').load('<?= base_url('board/share') ?>', function() {
+                scaleCard();
+                $('#boards').text("Shared Board");
+                $('#create_board').attr('disabled', true);
+                $('#bbody').fadeIn('slow', function() {});
+            });
         });
         countShare();
     }

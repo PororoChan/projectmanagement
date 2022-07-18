@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="col-lg-1 d-flex justify-content-end dropstart">
-                    <a href="" id="dropdownlist" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a href="#" class="btn-dropdelete" id="dropdownlist" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-ellipsis-h text-secondary"></i>
                     </a>
                     <ul class="dropdown-menu p-1 m-0 shadow-sm" aria-labelledby="dropdownlist">
@@ -39,15 +39,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex align-items-center pt-1" style="width: max-content;">
+                                    <div class="d-flex align-items-center pt-1 mb-0" style="width: max-content;">
                                         <?php if ($list['description'] != '') { ?>
                                             <i class="fas fa-align-left font-11 text-secondary me-2" title="Task Description"></i>
                                         <?php } ?>
                                         <?php if ($comment->countAll($list['id']) > 0) { ?>
-                                            <div title="Comments" class="pb-0 pt-0 mt-0 mb-0">
-                                                <i class="far fa-comment font-11 text-secondary"></i>
-                                                <span class="font-11 text-dark"><?= $comment->countAll($list['id']) ?></span>
-                                            </div>
+                                            <i class="far fa-comment font-11 text-secondary me-1" title="Comments"></i><span class="text-secondary fw-semibold font-11"><?= $comment->countAll($list['id']) ?></span>
                                         <?php } else { ?>
                                             <div></div>
                                         <?php } ?>

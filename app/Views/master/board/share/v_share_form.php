@@ -10,13 +10,13 @@
         <input type="hidden" id="uid" name="uid" value="<?= $user ?>">
         <input type="hidden" id="bname" name="bname" value="<?= $board ?>">
         <div class="row d-flex justify-content-evenly px-2">
-            <div class="w-75 me-0 px-1">
+            <div class="col-lg-8 me-0 px-1">
                 <input type="text" class="form-control form-control-sm" id="username" name="username" placeholder="Enter Username" spellcheck="false">
             </div>
-            <div class="w-25 mb-3 px-1">
+            <div class="col-lg-4 mb-3 px-1">
                 <select class="form-control form-control-sm" name="roles" id="roles">
-                    <option value="1">View Only</option>
-                    <option value="2">Edit</option>
+                    <option value="1" data-icon="fa-eye text-success fs-7set">View Only</option>
+                    <option value="2" data-icon="fa-crown text-warning fs-7set">Edit Content</option>
                 </select>
             </div>
         </div>
@@ -33,8 +33,34 @@
     </div>
     </div>
 </form>
+<style>
+    .select2-results__option,
+    .select2-selection__rendered {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 42px !important;
+        padding-left: 2px !important;
+        vertical-align: middle;
+    }
+</style>
 <script>
     $(document).ready(function() {
+        function iconFormat(roles) {
+            return $('<span><i class="fas ' + $(roles.element).data('icon') + ' me-2"></i>' + roles.text + '</span>');
+        }
+
+        $('#roles').select2({
+            dropdownParent: $('#formboard'),
+            minimumResultsForSearch: Infinity,
+            templateSelection: iconFormat,
+            templateResult: iconFormat,
+            width: "100%",
+            height: "40px",
+        });
+
         $('#bshare').on('click', function() {
             var link = '<?= base_url('board/share/add') ?>';
             let data = $('#shareBoard').serialize();
@@ -47,6 +73,7 @@
                 success: function(res) {
                     if (res.success == 1) {
                         $.notify(res.msg, 'success');
+                        $('#formboard').modal('toggle');
                     } else {
                         $.notify(res.msg, 'warn');
                     }

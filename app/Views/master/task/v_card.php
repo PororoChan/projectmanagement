@@ -1,7 +1,7 @@
 <?php foreach ($task as $t) : ?>
-    <div class="col-md-4 scol-lg-3 col-lg-2 list min-vh-100" tasid="<?= $t['taskid'] ?>">
+    <div class="col-md-3 px-2 list min-vh-100" tasid="<?= $t['taskid'] ?>">
         <div id="<?= $t['taskid'] ?>" class="bg-white shadow p-2 list-hover rounded">
-            <div class="row d-flex handle justify-content-between">
+            <div class="d-flex handle justify-content-between">
                 <div class="col-lg-10 text-start">
                     <div id="taskid" class="font-12 fw-bold p-1 text-dark tsid" tsid="<?= $t['taskid'] ?>" spellcheck="false" contenteditable="true">
                         <span id="taskname" class="font-12 me-2 sts" spellcheck="false"><?= $t['taskname'] ?></span>
@@ -18,8 +18,8 @@
             </div>
             <hr class="text-secondary fw-bolder mt-1 mb-2 rounded" style="height: 0.05rem;">
             <button class="btn btn-inverse-light mb-0 border w-100 btn-add" tsid="<?= $t['taskid'] ?>" style="min-height: 45px;">
-                <i class="fas fa-plus fs-7 text-primary me-2"></i>
-                <span class="text-primary text-center fs-7 font-weight-bold new">
+                <i class="fas fa-plus fs-7 fw-bolder text-primary me-2"></i>
+                <span class="text-primary text-center fs-7 fw-bold new">
                     New Task
                 </span>
             </button>
@@ -28,7 +28,7 @@
                     <?php foreach ($tasklist->getAll($t['taskid']) as $list) : ?>
                         <li class="portlet-card task-hover bg-white border rounded" tlid="<?= $list['id'] ?>">
                             <a href="#" class="text-decoration-none text-dark p-0 taskedit" lname="<?= $t['taskname'] ?>" tname="<?= $list['tasklistname'] ?>" taskid="<?= $list['id'] ?>">
-                                <div class="p-3">
+                                <div class="p-2">
                                     <div class="portlet-card-header mb-0">
                                         <div class="text-dark fw-semibold d-flex justify-content-between">
                                             <span class="font-13" style="max-width: 215px; overflow-wrap: break-word;"><?= $list['tasklistname'] ?></span>
@@ -39,16 +39,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex align-items-center pt-1 mb-0" style="width: max-content;">
-                                        <?php if ($list['description'] != '') { ?>
-                                            <i class="fas fa-align-left font-11 text-secondary me-2" title="Task Description"></i>
-                                        <?php } ?>
-                                        <?php if ($comment->countAll($list['id']) > 0) { ?>
-                                            <i class="far fa-comment font-11 text-secondary me-1" title="Comments"></i><span class="text-secondary fw-semibold font-11"><?= $comment->countAll($list['id']) ?></span>
-                                        <?php } else { ?>
-                                            <div></div>
-                                        <?php } ?>
-                                    </div>
+                                    <?php if ($list['description'] != '') { ?>
+                                        <div class="d-flex align-items-center pt-1 mb-0" style="width: max-content; height: 20px; max-height: 20px;">
+                                            <?php if ($list['description'] != '') { ?>
+                                                <i class="fas fa-align-left font-11 text-secondary me-2" title="Task Description"></i>
+                                            <?php } ?>
+                                            <?php if ($comment->countAll($list['id']) > 0) { ?>
+                                                <i class="far fa-comment font-11 text-secondary me-1" title="Comments"></i><span class="text-secondary fw-semibold fs-7set"><?= $comment->countAll($list['id']) ?></span>
+                                            <?php } else { ?>
+                                                <div></div>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </a>
                         </li>
@@ -58,7 +60,7 @@
         </div>
     </div>
 <?php endforeach; ?>
-<div class="col-md-4 scol-lg-3 add">
+<div class="col-md-3 px-2 add">
     <div id="row" class="board-portlet bg-white shadow p-2 rounded">
         <button class="btn btn-success w-100 add_list" style="height: 40px;" id="add_list">
             <i class="fas fa-plus fs-7 me-2"></i>

@@ -31,6 +31,7 @@ class Tasks extends BaseController
             'comment' => $this->comment,
             'roles' => (($query != '' ? $query['roles'] : '0')),
             'task' => $this->task->getTask($bid),
+            'count' => $this->tasklist,
         ];
         return view('master/task/v_card', $data);
     }

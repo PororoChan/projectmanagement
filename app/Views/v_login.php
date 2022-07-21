@@ -25,14 +25,14 @@
                 <div class="row flex-grow">
                     <div class="col-lg-6 d-flex align-items-center justify-content-center">
                         <div class="auth-form-transparent text-left p-3">
-                            <h3>Welcome back!</h3>
-                            <h5 class="font-14 font-weight-light">Happy to see you again!</h5>
+                            <h3 class="fw-bolder">Welcome back!</h3>
+                            <h5 class="fw-normal fs-7">Happy to see you again!</h5>
                             <div id="warn" class="mt-3 mb-0">
 
                             </div>
                             <form id="form-log" method="POST" class="pt-3">
                                 <div class="form-group">
-                                    <label class="font-13" for="uname">Username</label>
+                                    <label class="fs-7 fw-semibold" for="uname">Username</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="font-13" for="pass">Password</label>
+                                    <label class="fs-7 fw-semibold" for="pass">Password</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
@@ -55,10 +55,10 @@
                                 </div>
                                 <div class="form-group my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check d-flex justify-content-center">
-                                        <input type="checkbox" id="cekpas" style="width: 15px; height: 15px;"> <span class="text-dark font-13">&nbsp; Remember Me</span>
+                                        <input type="checkbox" id="cekpas" style="width: 15px; height: 15px;"> <span class="text-dark fs-7 fw-semibold">&nbsp; Remember Me</span>
                                     </div>
                                 </div>
-                                <div class="form-group my-3 d-flex justify-content-end">
+                                <div class="form-group my-2 d-flex justify-content-end">
                                     <button type="button" class="btn btn-primary w-25" style="height: 45px;" id="btn-login">Login</button>
                                 </div>
                                 <div class="text-center mt-5 font-14"> Don't have an account? <a href="#" class="text-primary">Register</a>

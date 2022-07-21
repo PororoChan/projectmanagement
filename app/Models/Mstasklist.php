@@ -20,6 +20,13 @@ class Mstasklist extends Model
             ->get()->getResultArray();
     }
 
+    public function getCount($taskid)
+    {
+        return $this->builder
+            ->where("s.taskid", $taskid)
+            ->countAllResults();
+    }
+
     public function getOne($id = 0)
     {
         return $this->builder

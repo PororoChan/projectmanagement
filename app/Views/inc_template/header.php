@@ -63,12 +63,12 @@
                         <ul class="navbar-nav navbar-nav-right">
                             <li class="nav-item">
                                 <a class="text-secondary nav-btn" href="#">
-                                    <i class="fas fa-envelope nav-icon fs-6"></i>
+                                    <i class="far fa-envelope nav-icon fs-6"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="text-secondary nav-btn" href="#">
-                                    <i class="fas fa-bell nav-icon fs-6"></i>
+                                    <i class="far fa-bell nav-icon fs-6"></i>
                                 </a>
                             </li>
                             <li class="nav-item nav-profile dropdown">
@@ -89,13 +89,13 @@
                             </li>
                         </ul>
                         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
-                            <span class="fas fa-bars"></span>
+                            <i class="fas fa-bars fs-7"></i>
                         </button>
                     </div>
                 </div>
             </nav>
             <nav class="bottom-navbar">
-                <div class="container">
+                <div class="container-fluid px-5">
                     <ul class="nav page-navigation">
                         <li class="nav-item">
                             <a class="nav-link justify-content-center" href="<?= base_url('home') ?>">

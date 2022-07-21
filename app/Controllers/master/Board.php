@@ -79,6 +79,7 @@ class Board extends BaseController
                     'comment' => $this->comment,
                     'tasklist' => $this->tasklist,
                     'roles' => (($y != '' ? $y['roles'] : '0')),
+                    'count' => $this->tasklist,
                 ];
             } else {
                 return redirect()->to('board');
